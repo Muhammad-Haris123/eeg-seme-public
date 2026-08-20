@@ -62,7 +62,7 @@ Citation: Haris, M. (2026). SEME locked EEG–drug CVAE checkpoints (constrained
 ## Public repository
 
 - **Code:** https://github.com/Muhammad-Haris123/eeg-seme-public
-- **Release:** `v0.1.0` (commit `15d43b9`)
+- **Release:** `v0.1.0` (commit `2194011`)
 - **Demo (JSON only):** `src/seme/demo_scorecard.py`
 - **Weights (Zenodo):** https://doi.org/10.5281/zenodo.22028681 (`checkpoint_constrained.pt`, `checkpoint_unconstrained.pt`)
 - Do not redistribute raw TUH/CAUEEG beyond provider terms.

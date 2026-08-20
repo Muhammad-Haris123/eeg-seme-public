@@ -18,7 +18,7 @@ Please consider our manuscript for publication in *Computer Methods and Programs
 
 **What we do not claim.** Empirical post-dose pharmacodynamic validation; seed- or fold-stable continuous external fidelity; independent pharmacological discovery; Alzheimer’s diagnostic superiority; ChemBERTa large-library chemical generalization; or constraint-caused diagnostic compression.
 
-**Reproducibility.** Supplementary Material S1 and `paper/CODE_AVAILABILITY.md` list environment pins, frozen checkpoint aliases, and a one-command artifact regeneration path. Public code: https://github.com/Muhammad-Haris123/eeg-seme-public (commit `42f0d9b`). Locked checkpoints: Zenodo DOI https://doi.org/10.5281/zenodo.22028681. Raw TUH/CAUEEG EEG are not redistributed.
+**Reproducibility.** Supplementary Material S1 and `paper/CODE_AVAILABILITY.md` list environment pins, frozen checkpoint aliases, and a one-command artifact regeneration path. Public code: https://github.com/Muhammad-Haris123/eeg-seme-public (release `v0.1.0`; commit `2194011`). Locked checkpoints: Zenodo DOI https://doi.org/10.5281/zenodo.22028681. Demo: `src/seme/demo_scorecard.py`. Raw TUH/CAUEEG EEG are not redistributed.
 
 This work has not been published and is not under consideration elsewhere. Author names and affiliations will be completed in the Editorial Manager submission metadata.
 
