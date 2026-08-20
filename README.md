@@ -12,12 +12,25 @@ Public code and frozen validation artifacts for the CMPB manuscript.
 - Locked `.pt` checkpoints — https://doi.org/10.5281/zenodo.22028681
 - Training virtualenv (`eeg_twin`) — create locally from `requirements.txt`
 
-## Quick start
+## One-command SEME demo (no EEG, no checkpoints)
+
+Prints the locked SEME scorecard from frozen JSON only:
+
 ```powershell
 python -m venv eeg_twin
 .\eeg_twin\Scripts\python.exe -m pip install -r requirements.txt
 $env:PYTHONPATH = (Get-Location).Path
+.\eeg_twin\Scripts\python.exe src\seme\demo_scorecard.py
+```
+
+## Optional: regenerate tables/figures
+
+```powershell
 .\eeg_twin\Scripts\python.exe src\paper\regenerate_cmpb_artifacts.py --skip-figures
 ```
 
 See `paper/CODE_AVAILABILITY.md` and `paper/SEME_PROTOCOL.md`.
+
+## Release
+- GitHub Release: `v0.1.0`
+- Weights: https://doi.org/10.5281/zenodo.22028681

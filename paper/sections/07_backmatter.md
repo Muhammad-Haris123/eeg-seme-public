@@ -28,9 +28,9 @@ Training resting-state EEG features used in this project are from OpenNeuro acce
 
 ---
 
-## Code availability
+\section*{Code availability}
 
-Analysis and figure-generation code are available at https://github.com/Muhammad-Haris123/eeg-seme-public (commit `31e4249`). Locked fold-0 CVAE checkpoints (`checkpoint_constrained.pt`, `checkpoint_unconstrained.pt`) are deposited on Zenodo (DOI https://doi.org/10.5281/zenodo.22028681; version v0.1.0). Reproducibility details, environment pins, and the one-command regenerator `src/paper/regenerate_cmpb_artifacts.py` are listed in `paper/CODE_AVAILABILITY.md` and Supplementary Material S1. The Python environment is the project virtualenv `eeg_twin` (Python 3.10); install from `requirements.txt` into that environment. Raw CAUEEG and TUH recordings remain under provider terms and are not redistributed.
+Analysis and figure-generation code are available at https://github.com/Muhammad-Haris123/eeg-seme-public (release `v0.1.0`; commit `15d43b9`). A one-command SEME scorecard demo that uses only frozen validation JSON (no raw EEG and no checkpoints) is `src/seme/demo_scorecard.py`. Locked fold-0 CVAE checkpoints (`checkpoint_constrained.pt`, `checkpoint_unconstrained.pt`) are deposited on Zenodo (DOI https://doi.org/10.5281/zenodo.22028681; version v0.1.0). Environment pins, the regenerator `src/paper/regenerate_cmpb_artifacts.py`, and further paths are listed in `paper/CODE_AVAILABILITY.md` and Supplementary Material S1. The Python environment is the project virtualenv `eeg_twin` (Python 3.10); install from `requirements.txt` into that environment. Raw CAUEEG and TUH recordings remain under provider terms and are not redistributed.
 
 ---
 
@@ -70,3 +70,7 @@ The authors declare that they have no known competing financial interests or per
 ## Acknowledgments
 
 We thank the Temple University Hospital (TUH) EEG Corpus team for access to clinical EEG under the TUH data use agreement; Min-jae Kim and the CAUEEG investigators for academic access to the Chung-Ang University Hospital EEG dataset; and the providers of OpenNeuro ds004504 (Miltiadous et al.), the OSF Eyes_closed AD/HC partition, and the Dryad P-ADIC release. We also thank the Alzheimer's Disease Neuroimaging Initiative (ADNI) for related clinical data infrastructure used in supporting cohort work outside the primary EEG external battery.
+
+## Declaration of generative AI and AI-assisted technologies in the writing process
+
+The authors used no generative AI tools to create scientific content, analyses, figures, or the graphical abstract. General-purpose writing assistants, if used at all, were limited to grammar, spelling, and punctuation checks. The authors reviewed and edited the manuscript and take full responsibility for its content.

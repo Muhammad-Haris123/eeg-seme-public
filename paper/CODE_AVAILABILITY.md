@@ -31,17 +31,23 @@ $env:PYTHONPATH = (Get-Location).Path
 
 This regenerates DeLong outputs, selected tables/figures from frozen JSON, and optionally the Overleaf zip. It does **not** overwrite locked CVAE checkpoints or reprocess TUH.
 
+## One-command SEME demo (public; no EEG / no checkpoints)
+
+```powershell
+.\eeg_twin\Scripts\python.exe src\seme\demo_scorecard.py
+```
+
+Prints the locked SEME scorecard (signs, unconstrained contrast, prior-only, encoding bake-off) from frozen JSON under `models/validation/`.
+
 ## Frozen checkpoints (locked; do not overwrite)
 
-Locked `.pt` weights are **not** stored in this GitHub mirror (size and clinical-data hygiene). Download from Zenodo:
+| Role | Local path (lab) | Public weights |
+|------|------------------|----------------|
+| Constrained external twin | `models/checkpoints_constrained/checkpoint_constrained.pt` | Zenodo v0.1.0 |
+| Matched unconstrained twin | `models/checkpoints_unconstrained/checkpoint_unconstrained.pt` | Zenodo v0.1.0 |
+| Selection rule | `models/checkpoints_unconstrained/CHECKPOINT_SELECTION.md` | included on Zenodo |
 
-| Role | Filename on Zenodo |
-|------|--------------------|
-| Constrained external twin | `checkpoint_constrained.pt` |
-| Matched unconstrained twin | `checkpoint_unconstrained.pt` |
-| Selection rule | `CHECKPOINT_SELECTION.md` |
-
-**Zenodo (v0.1.0):** https://doi.org/10.5281/zenodo.22028681  
+**Zenodo (locked `.pt` weights, v0.1.0):** https://doi.org/10.5281/zenodo.22028681  
 **Concept DOI (all versions):** https://doi.org/10.5281/zenodo.22028680  
 Citation: Haris, M. (2026). SEME locked EEG–drug CVAE checkpoints (constrained and unconstrained) (Version v0.1.0) [Dataset]. Zenodo. https://doi.org/10.5281/zenodo.22028681
 
@@ -56,6 +62,7 @@ Citation: Haris, M. (2026). SEME locked EEG–drug CVAE checkpoints (constrained
 ## Public repository
 
 - **Code:** https://github.com/Muhammad-Haris123/eeg-seme-public
-- **Commit:** `31e424933ef84adbb957d78b70b964721aa5a264` (short: `31e4249`)
-- **Weights:** https://doi.org/10.5281/zenodo.22028681
+- **Release:** `v0.1.0` (commit `15d43b9`)
+- **Demo (JSON only):** `src/seme/demo_scorecard.py`
+- **Weights (Zenodo):** https://doi.org/10.5281/zenodo.22028681 (`checkpoint_constrained.pt`, `checkpoint_unconstrained.pt`)
 - Do not redistribute raw TUH/CAUEEG beyond provider terms.
