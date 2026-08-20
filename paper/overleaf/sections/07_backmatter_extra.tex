@@ -1,0 +1,67 @@
+\section*{CRediT authorship contribution statement}
+
+Author contributions will be completed when the author list is finalized. No corresponding author is designated in this draft.
+
+
+
+\subsection{Ethics statement}
+
+This work is a secondary analysis of de-identified EEG datasets. No new human participants were recruited and no clinical interventions were performed. Training resting-state EEG features derive from the public OpenNeuro accession ds004504 (Miltiadous et al.). External cohorts were obtained under each provider's academic data-use terms: the Temple University Hospital (TUH) EEG Corpus data use agreement; a public Open Science Framework (OSF) Eyes\_closed AD/HC partition; the Dryad P-ADIC release (DOI 10.5061/dryad.8gtht76pw); and academic, non-commercial access to CAUEEG granted by the CAUEEG team (access contact: Min-jae Kim), with no redistribution of raw CAUEEG or TUH recordings. Analyses were conducted for academic research. The study does not claim prospective clinical decision support.
+
+
+
+\subsection{Funding}
+
+This research received no specific grant from funding agencies in the public, commercial, or not-for-profit sectors.
+
+
+
+\section*{Data availability}
+
+Training resting-state EEG features used in this project are from OpenNeuro accession ds004504 (Miltiadous et al. AD/HC resting EEG), processed to the feature arrays described in Methods. Temple University Hospital (TUH) clinical EEG is available to researchers under the TUH corpus data use agreement and cannot be redistributed by the authors. The OSF Eyes\_closed AD/HC features used for the AD/HC external magnitude and direction checks were imported from a public OSF-hosted partition already present in the project archive. P-ADIC AD and control matrices are available from Dryad (DOI 10.5061/dryad.8gtht76pw) under the release terms of Shor et al. CAUEEG raw recordings were obtained by academic application to the CAUEEG team (access granted by Min-jae Kim; Kim et al., NeuroImage 2023) for non-commercial research use and must not be redistributed. Derived project artifacts that can be shared subject to those upstream terms include processed feature arrays generated in this repository (where redistribution is allowed), validation JSON summaries, and analysis code. Raw CAUEEG and TUH EDFs will not be redistributed by the authors. File-level paths are listed in Supplementary Material S1.
+
+
+
+\subsection{Code availability}
+
+Analysis and figure-generation code for this manuscript live in the local project repository and are not currently in a public repository. The Python environment is the project virtualenv \texttt{eeg\_twin} (Python 3.10); install from \texttt{requirements.\allowbreak{}txt} into that environment. Exact script names, configuration keys, checkpoint aliases, and regeneration commands are listed in Supplementary Material S1 and \texttt{paper/\allowbreak{}CODE\_\allowbreak{}AVAILABILITY.\allowbreak{}md}. A public mirror (URL and commit hash) will be linked at acceptance; until then, the packaged Overleaf zip and the local repository are the reproducibility sources for the reported JSON and figures.
+
+
+
+\section*{Glossary}
+
+Terms below follow Methods and Results. They do not introduce new endpoints or claims.
+
+
+\begin{itemize}
+  \item \textbf{CVAE:} conditional variational autoencoder.
+  \item \textbf{EEG:} electroencephalography.
+  \item \textbf{PD:} pharmacodynamic. In this paper the label names the literature-prior training objective, not empirical post-dose pharmacodynamic validation.
+  \item \textbf{ROC-AUC:} area under the receiver operating characteristic curve.
+  \item \textbf{OOF:} out-of-fold.
+  \item \textbf{TUH:} Temple University Hospital EEG corpus.
+  \item \textbf{OSF:} Open Science Framework Eyes\_closed AD/HC set used here.
+  \item \textbf{CAUEEG:} Chung-Ang University Hospital EEG dataset.
+  \item \textbf{P-ADIC:} p-adic quantum potential EEG cohort (Shor et al.; Dryad).
+  \item \textbf{ChemBERTa:} chemical Bidirectional Encoder Representations from Transformers. Here, frozen precomputed embeddings for Donepezil and Memantine, not a large-library chemistry test.
+  \item \textbf{MSE:} mean squared error (reconstruction term).
+  \item \textbf{KL:} Kullback-Leibler divergence (CVAE regularizer).
+  \item \textbf{ICA:} independent component analysis (FastICA on the training path).
+  \item \textbf{FIR:} finite impulse response filter (training band-pass 0.5-40 Hz).
+  \item \textbf{PCA:} principal component analysis.
+  \item \textbf{Latent representation:} CVAE latent mean under specified conditioning (baseline: zero-drug). Residual diagnostic content is scored with probes, not as an information-theoretic bottleneck.
+  \item \textbf{Drug-response signature:} the training constrained signature (mean simulated drug-minus-baseline feature vector). External direction scoring is concordance with that signature, not post-dose pharmacodynamic validation.
+  \item \textbf{Digital twin:} the constrained CVAE used for in silico EEG-drug signature simulation. It is not a clinically validated pharmacodynamic model.
+  \item \textbf{Effect vector:} cohort-mean drug-minus-baseline feature vector used to compute Pearson r and block-level sign agreement.
+\end{itemize}
+
+
+\section*{Declaration of competing interests}
+
+The authors declare that they have no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.
+
+
+
+\section*{Acknowledgments}
+
+We thank the Temple University Hospital (TUH) EEG Corpus team for access to clinical EEG under the TUH data use agreement; Min-jae Kim and the CAUEEG investigators for academic access to the Chung-Ang University Hospital EEG dataset; and the providers of OpenNeuro ds004504 (Miltiadous et al.), the OSF Eyes\_closed AD/HC partition, and the Dryad P-ADIC release. We also thank the Alzheimer's Disease Neuroimaging Initiative (ADNI) for related clinical data infrastructure used in supporting cohort work outside the primary EEG external battery.

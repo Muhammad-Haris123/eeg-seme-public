@@ -1,0 +1,7 @@
+{
+  "scheme": "padded_onehot",
+  "dim": 384,
+  "donepezil_index": 0,
+  "memantine_index": 1,
+  "note": "Orthogonal unit vectors in first two dimensions; remaining dims zero. Keeps DrugEncoder input_dim=384 matched to ChemBERTa."
+}

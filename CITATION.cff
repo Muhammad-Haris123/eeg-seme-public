@@ -1,0 +1,24 @@
+﻿cff-version: 1.2.0
+title: "SEME: A Decoupled Evaluation Protocol for Literature-Constrained EEGâ€“Drug Generators"
+message: "If you use this software or protocol, please cite this manuscript and this repository."
+type: software
+authors:
+  - family-names: "Authors"
+    given-names: "To be completed at submission"
+abstract: >
+  SEME (Signed concordance, Effect-vector fidelity, Magnitude transfer,
+  Encoding retention) is an evaluation protocol for literature-constrained,
+  chemistry-conditioned EEG generative models, demonstrated on a
+  pharmacodynamically penalized Donepezil/Memantine CVAE case study.
+keywords:
+  - SEME
+  - EEG
+  - CVAE
+  - evaluation protocol
+  - pharmacodynamic constraints
+license: MIT
+repository-code: "https://github.com/Muhammad-Haris123/eeg-seme-public"
+version: "0.1.0-pathA"
+date-released: "2026-08-20"
+
+

@@ -1,0 +1,177 @@
+{
+  "dataset": "CAUEEG (Kim et al., NeuroImage 2023)",
+  "doi": "10.1016/j.neuroimage.2023.120054",
+  "split_file": "dementia-no-overlap.json",
+  "status": "FAIL",
+  "discrimination": {
+    "primary_dementia_vs_normal": {
+      "n_dementia": 291,
+      "n_normal": 436,
+      "mean_dementia": 0.21168235894228585,
+      "std_dementia": 0.012966916665585177,
+      "mean_normal": 0.2117089662581272,
+      "std_normal": 0.011401903851699105,
+      "mannwhitney_u": 61634.0,
+      "mannwhitney_p": 0.5156554952669556,
+      "cohens_d": -0.002207650957295547,
+      "direction_dementia_gt_normal": false,
+      "status": "FAIL",
+      "pass": false
+    },
+    "dementia_vs_mci": {
+      "n_dementia": 291,
+      "n_mci": 395,
+      "mean_dementia": 0.21168235894228585,
+      "std_dementia": 0.012966916665585177,
+      "mean_mci": 0.21090773078082484,
+      "std_mci": 0.01078644358378433,
+      "mannwhitney_u": 57870.0,
+      "mannwhitney_p": 0.877010808106602,
+      "cohens_d": 0.06586759265997934,
+      "direction_dementia_gt_mci": true,
+      "status": "FAIL",
+      "pass": false
+    },
+    "mci_vs_normal": {
+      "n_mci": 395,
+      "n_normal": 436,
+      "mean_mci": 0.21090773078082484,
+      "std_mci": 0.01078644358378433,
+      "mean_normal": 0.2117089662581272,
+      "std_normal": 0.011401903851699105,
+      "mannwhitney_u": 82965.0,
+      "mannwhitney_p": 0.3628254089122751,
+      "cohens_d": -0.0720947582049941,
+      "direction_mci_gt_normal": false,
+      "status": "FAIL",
+      "pass": false
+    },
+    "ad_tagged_dementia_vs_normal": {
+      "n_dementia_ad_tag": 214,
+      "n_normal": 436,
+      "mean_dementia_ad_tag": 0.21155986691189704,
+      "std_dementia_ad_tag": 0.01226986584905369,
+      "mean_normal": 0.2117089662581272,
+      "std_normal": 0.011401903851699105,
+      "mannwhitney_u": 45548.0,
+      "mannwhitney_p": 0.6237934507230813,
+      "cohens_d": -0.012749728040084316,
+      "direction_dementia_ad_tag_gt_normal": false,
+      "status": "FAIL",
+      "pass": false
+    },
+    "kruskal_three_group": {
+      "H": 0.902321128683873,
+      "p": 0.6368885723732505
+    },
+    "status": "FAIL",
+    "pass": false,
+    "caveats": [
+      "Dementia labels are clinical spectrum (not pure biomarker AD)",
+      "Twin disease_label: Dementia=1, Normal/MCI=0",
+      "No drug-response outcomes in CAUEEG \u2014 latent shift is model-side only",
+      "Hospital AVG-referenced EEG; domain shift vs training cohort expected"
+    ]
+  },
+  "scale_check": {
+    "train_abs_bandpower_mean": 3.2201134568993676e-05,
+    "caueeg_abs_bandpower_mean": 3.5547232982935384e-05,
+    "bandpower_ratio_caueeg_over_train": 1.1039124384506518,
+    "target_n_epochs": 864,
+    "epoch_count_summary": {
+      "min": 743,
+      "median": 791.0,
+      "max": 791,
+      "mean": 790.8868092691622
+    }
+  },
+  "pca": {
+    "pca_overlap": "good",
+    "overlap_fraction_within_train_r95": 0.6114081996434938,
+    "figure": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\validation\\figures\\layer5e_caueeg_pca.png"
+  },
+  "n_features": 1122,
+  "n_by_class": {
+    "Normal": 436,
+    "Dementia": 291,
+    "MCI": 395
+  },
+  "addition_only": true,
+  "feature_space_discrimination": {
+    "mean_abs_bandpower": {
+      "dementia_vs_normal": {
+        "mean_dementia": 3.375544474693015e-05,
+        "mean_normal": 3.808175461017527e-05,
+        "mannwhitney_p": 0.006378848215820485,
+        "cohens_d": -0.1713719784186256
+      },
+      "kruskal_p": 0.003943314985199477
+    },
+    "mean_theta": {
+      "dementia_vs_normal": {
+        "mean_dementia": 3.305267819087021e-05,
+        "mean_normal": 2.672360096767079e-05,
+        "mannwhitney_p": 0.20769661741947487,
+        "cohens_d": 0.18783415519736332
+      },
+      "kruskal_p": 0.21092273283218985
+    },
+    "mean_alpha": {
+      "dementia_vs_normal": {
+        "mean_dementia": 2.1059817299828865e-05,
+        "mean_normal": 3.4280343243153766e-05,
+        "mannwhitney_p": 8.29581644212366e-06,
+        "cohens_d": -0.2519956293995646
+      },
+      "kruskal_p": 8.273829654304189e-07
+    },
+    "theta_alpha_ratio": {
+      "dementia_vs_normal": {
+        "mean_dementia": 2.4441893100738525,
+        "mean_normal": 1.616273283958435,
+        "mannwhitney_p": 1.1750682008800228e-15,
+        "cohens_d": 0.46907675246491404
+      },
+      "kruskal_p": 1.26831686918184e-16
+    },
+    "flat_l2": {
+      "dementia_vs_normal": {
+        "mean_dementia": 31.457902908325195,
+        "mean_normal": 31.71712303161621,
+        "mannwhitney_p": 0.00032545755435487366,
+        "cohens_d": -0.2919653323001203
+      },
+      "kruskal_p": 8.477642006275134e-05
+    }
+  },
+  "disease_label_ablation": {
+    "disease_fixed_0": {
+      "n_dementia": 291,
+      "n_normal": 436,
+      "mean_dementia": 0.21128438185273168,
+      "std_dementia": 0.01233378937633364,
+      "mean_normal": 0.2117089662581272,
+      "std_normal": 0.011401903851699105,
+      "mannwhitney_u": 61158.0,
+      "mannwhitney_p": 0.4112891189177006,
+      "cohens_d": -0.03603209774758672,
+      "direction_dementia_gt_normal": false,
+      "status": "FAIL",
+      "pass": false
+    },
+    "disease_fixed_1": {
+      "n_dementia": 291,
+      "n_normal": 436,
+      "mean_dementia": 0.21168235894228585,
+      "std_dementia": 0.012966916665585177,
+      "mean_normal": 0.21167211634440158,
+      "std_normal": 0.011765230514860382,
+      "mannwhitney_u": 62647.0,
+      "mannwhitney_p": 0.7756983275595816,
+      "cohens_d": 0.0008354452154616849,
+      "direction_dementia_gt_normal": true,
+      "status": "FAIL",
+      "pass": false
+    }
+  }
+}

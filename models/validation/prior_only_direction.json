@@ -1,0 +1,73 @@
+{
+  "timestamp": "2026-08-09T19:49:11.172722",
+  "endpoint": "Prior-only signed band/connectivity effect vs constrained training mean effect (same 10-block direction metric as external twins)",
+  "reference_signature": "models/simulations_constrained_full",
+  "prior_source": "get_eeg_effect_prior / DRUG_PHARMACOLOGY eeg_effects",
+  "donepezil": {
+    "direction_agreement": "5/5",
+    "agree": 5,
+    "total": 5,
+    "effect_corr": 0.5715458752815976,
+    "effect_corr_ci": {
+      "r": 0.5715458752815976,
+      "n": 2185,
+      "ci_low": 0.5426169077825042,
+      "ci_high": 0.5991206080569156,
+      "method": "fisher_z",
+      "alpha": 0.05
+    },
+    "band_means_prior": {
+      "delta": -0.15,
+      "theta": -0.20000000000000004,
+      "alpha": 0.25,
+      "beta": 0.10000000000000002,
+      "connectivity": 0.2
+    },
+    "band_means_cohort": {
+      "delta": -0.011834920383989811,
+      "theta": -0.08239433914422989,
+      "alpha": 0.04309284687042236,
+      "beta": 0.004145056940615177,
+      "connectivity": 0.04010438546538353
+    }
+  },
+  "memantine": {
+    "direction_agreement": "5/5",
+    "agree": 5,
+    "total": 5,
+    "effect_corr": 0.7004877311216317,
+    "effect_corr_ci": {
+      "r": 0.7004877311216317,
+      "n": 2185,
+      "ci_low": 0.6784836993534382,
+      "ci_high": 0.7212359484824019,
+      "method": "fisher_z",
+      "alpha": 0.05
+    },
+    "band_means_prior": {
+      "delta": -0.10000000000000002,
+      "theta": -0.15,
+      "alpha": 0.10000000000000002,
+      "beta": 0.05000000000000001,
+      "connectivity": 0.14999999999999994
+    },
+    "band_means_cohort": {
+      "delta": -0.019438855350017548,
+      "theta": -0.047913357615470886,
+      "alpha": 0.02463422901928425,
+      "beta": 0.006988253444433212,
+      "connectivity": 0.06606830656528473
+    }
+  },
+  "direction_agreement_total": "10/10",
+  "effect_magnitude_correlation_mean": 0.6360168032016147,
+  "effect_magnitude_correlation_mean_ci": {
+    "r": 0.6360168032016147,
+    "n": 2185,
+    "ci_low": 0.6103616116005507,
+    "ci_high": 0.660339060829646,
+    "method": "fisher_z",
+    "alpha": 0.05
+  },
+  "interpretation_note": "This baseline does not use a CVAE. Perfect or near-perfect agreement means the constrained training signature largely recovers the literature prior signs; imperfect agreement means the twin learned additional structure beyond the prior constants."
+}

@@ -1,0 +1,27 @@
+\begin{table*}[!t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\caption{Methodological safeguards and remaining scope boundaries. Rows for DeLong and chemistry conditioning summarize non-locked Phase~C secondary artifacts; locked Layer-5* numbers are unchanged.}
+\label{tab:reviewer-defense}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{@{}p{0.22\textwidth}p{0.42\textwidth}p{0.28\textwidth}@{}}
+\toprule
+Issue & Safeguard in this study & What remains outside scope \\
+\midrule
+Subject leakage & Subject-level stratified 5-fold; one subject in one test fold; per-subject z-score; probe scaler on training fold only & Features are extracted per subject before the split; no blanket no-leakage claim \\
+Checkpoint selection & Minimum fold-0 internal validation total loss (epoch 99; val total 0.0241) & Historical preregistration is not independently proven \\
+External assessment separation & External \(r\), signs, and AUCs scored after freeze; not arguments to the saver & Chronological lock is documented, not audit-grade \\
+Endpoint circularity & Concordance with the training constrained signature, not paired post-dose EEG & Empirical pharmacodynamic validation \\
+Prior-only control & Constant literature vector: 10/10 signs at mean \(r{=}0.636\). A non-locked fitted drug-conditioned linear imitation control also exists; targets are locked CVAE-simulated drug-minus-baseline effects & Imitation/control analysis, not independent biological validation \\
+Continuous \(r\) instability & Five-fold means \(\approx 0.37\)--\(0.39\); non-42 \(r\) typically 0.08--0.43; 10/10 is the sign endpoint & Locked \(0.908/0.851/0.918\) remain checkpoint-specific \\
+Diagnostic baseline fairness & 2185-D logistic \(0.699\) is a feature-space reference, not a CVAE score & No supervised deep 2185-D classifier \\
+Multiplicity & Escalation sequence; no Bonferroni/FDR; secondary contrasts descriptive & Not a confirmatory closed testing family \\
+DeLong & Paired DeLong on stored OOF scores (\(n{=}727\)); primary gaps latent/head vs \(\theta/\alpha\) and 2185-D & No multiplicity correction across pairs \\
+Preprocessing provenance & FIR, notch, FastICA, 4\,s / 90\% overlap, per-subject z-score after epoching & Empty default ICA exclusion; native ds004504 reference not in code \\
+Computational reproducibility & Table A.2 dummy-batch 0.602\,ms/subject; 2{,}648{,}777 parameters & Locked-run training wall-clock not logged; dummy time is not clinical real-time \\
+Chemistry generalization & Matched fold-0 ChemBERTa vs padded one-hot (non-locked); one-hot 10/10 signs & Not a large-library ChemBERTa claim; rematch \(r\) stays low \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table*}

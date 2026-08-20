@@ -1,0 +1,22 @@
+# Integrity report (ensemble bootstrap run)
+# timestamp: 2026-08-10T17:14:01.085313
+# pre: C:/Users/UC/Desktop/my_fyp/models/validation/fold_ensemble/bootstrap/pre_run_sha256.txt
+# post: C:/Users/UC/Desktop/my_fyp/models/validation/fold_ensemble/bootstrap/post_run_sha256.txt
+
+number_of_protected_files_checked: 2355
+number_unchanged: 2355
+number_changed: 0
+number_missing_in_post: 0
+number_extra_keys_in_post: 0
+all_protected_artifacts_byte_identical: true
+
+changed_files:
+  (none)
+
+missing_in_post:
+  (none)
+
+extra_keys_in_post_not_in_pre:
+  (none)
+
+RESULT: PASS — Changed protected files = 0

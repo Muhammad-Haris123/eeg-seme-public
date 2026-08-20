@@ -1,0 +1,144 @@
+{
+  "timestamp_utc": "2026-08-20T11:08:43.455755+00:00",
+  "experiment": "phase_c_delong_oof_probes",
+  "status": "NEW_NON_LOCKED",
+  "method": "DeLong et al. (1988) paired ROC AUC comparison via structural components / midrank covariance (Sun & Xu form).",
+  "multiplicity": "No multiplicity correction; primary pairs listed explicitly; remaining pairs are secondary.",
+  "input_npz": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\validation\\oof_probe_scores_phase1.npz",
+  "script": "C:\\Users\\UC\\Desktop\\my_fyp\\src\\validation\\run_delong_oof_probes.py",
+  "n": 727,
+  "n_pos": 291,
+  "n_neg": 436,
+  "sklearn_oof_aucs": {
+    "latent_probe": 0.576026986979413,
+    "theta_alpha": 0.6728932185756172,
+    "packed_2185": 0.6993127147766323,
+    "best_nested_head": 0.5928544405561336
+  },
+  "primary_pairs": [
+    {
+      "a": "latent_probe",
+      "b": "theta_alpha"
+    },
+    {
+      "a": "latent_probe",
+      "b": "packed_2185"
+    },
+    {
+      "a": "best_nested_head",
+      "b": "theta_alpha"
+    },
+    {
+      "a": "best_nested_head",
+      "b": "packed_2185"
+    }
+  ],
+  "comparisons": [
+    {
+      "auc_a": 0.5760269869794129,
+      "auc_b": 0.6993127147766323,
+      "auc_diff_a_minus_b": -0.12328572779721936,
+      "z": -4.638795849700028,
+      "p_two_sided": 3.5044500679563687e-06,
+      "var_diff": 0.0007063420910954656,
+      "cov_aa": 0.00046926975402416274,
+      "cov_bb": 0.0003863650643737319,
+      "cov_ab": 7.464636365121452e-05,
+      "sklearn_auc_a": 0.576026986979413,
+      "sklearn_auc_b": 0.6993127147766323,
+      "model_a": "latent_probe",
+      "model_b": "packed_2185",
+      "primary_planned": true
+    },
+    {
+      "auc_a": 0.6993127147766323,
+      "auc_b": 0.5928544405561337,
+      "auc_diff_a_minus_b": 0.10645827422049858,
+      "z": 4.088632881784404,
+      "p_two_sided": 4.339229529460508e-05,
+      "var_diff": 0.00067795771799327,
+      "cov_aa": 0.0003863650643737319,
+      "cov_bb": 0.0004544004156030503,
+      "cov_ab": 8.14038809917561e-05,
+      "sklearn_auc_a": 0.6993127147766323,
+      "sklearn_auc_b": 0.5928544405561336,
+      "model_a": "packed_2185",
+      "model_b": "best_nested_head",
+      "primary_planned": true
+    },
+    {
+      "auc_a": 0.5760269869794129,
+      "auc_b": 0.6728932185756171,
+      "auc_diff_a_minus_b": -0.09686623159620422,
+      "z": -3.6288475373295315,
+      "p_two_sided": 0.0002846893039534457,
+      "var_diff": 0.0007125369083293773,
+      "cov_aa": 0.00046926975402416274,
+      "cov_bb": 0.0004100827639081741,
+      "cov_ab": 8.340780480147981e-05,
+      "sklearn_auc_a": 0.576026986979413,
+      "sklearn_auc_b": 0.6728932185756172,
+      "model_a": "latent_probe",
+      "model_b": "theta_alpha",
+      "primary_planned": true
+    },
+    {
+      "auc_a": 0.6728932185756171,
+      "auc_b": 0.5928544405561337,
+      "auc_diff_a_minus_b": 0.08003877801948345,
+      "z": 3.31742044601998,
+      "p_two_sided": 0.0009085278460747228,
+      "var_diff": 0.0005821030368236551,
+      "cov_aa": 0.0004100827639081741,
+      "cov_bb": 0.0004544004156030503,
+      "cov_ab": 0.00014119007134378463,
+      "sklearn_auc_a": 0.6728932185756172,
+      "sklearn_auc_b": 0.5928544405561336,
+      "model_a": "theta_alpha",
+      "model_b": "best_nested_head",
+      "primary_planned": true
+    },
+    {
+      "auc_a": 0.6728932185756171,
+      "auc_b": 0.6993127147766323,
+      "auc_diff_a_minus_b": -0.026419496201015136,
+      "z": -1.1083839045824082,
+      "p_two_sided": 0.2676960530772635,
+      "var_diff": 0.0005681573670080831,
+      "cov_aa": 0.0004100827639081741,
+      "cov_bb": 0.0003863650643737319,
+      "cov_ab": 0.00011414523063691141,
+      "sklearn_auc_a": 0.6728932185756172,
+      "sklearn_auc_b": 0.6993127147766323,
+      "model_a": "theta_alpha",
+      "model_b": "packed_2185",
+      "primary_planned": false
+    },
+    {
+      "auc_a": 0.5760269869794129,
+      "auc_b": 0.5928544405561337,
+      "auc_diff_a_minus_b": -0.016827453576720774,
+      "z": -0.8062993923761922,
+      "p_two_sided": 0.42007024077903476,
+      "var_diff": 0.0004355561368369282,
+      "cov_aa": 0.00046926975402416274,
+      "cov_bb": 0.0004544004156030503,
+      "cov_ab": 0.0002440570163951424,
+      "sklearn_auc_a": 0.576026986979413,
+      "sklearn_auc_b": 0.5928544405561336,
+      "model_a": "latent_probe",
+      "model_b": "best_nested_head",
+      "primary_planned": false
+    }
+  ],
+  "source_meta": {
+    "n": 727,
+    "n_pos_dementia": 291,
+    "n_neg_normal": 436,
+    "cv_protocol": "StratifiedKFold(n_splits=5, shuffle=True, random_state=42)",
+    "seed": 42,
+    "best_nested_head_name": "tuned_logreg_l2",
+    "source_oof_json": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\validation\\oof_probe_scores_phase1.json"
+  },
+  "claim_boundary": "Non-locked secondary statistics on stored OOF vectors. Does not change locked CV-mean AUCs (0.579 / 0.675 / 0.699) or locked best-head OOF (0.593)."
+}

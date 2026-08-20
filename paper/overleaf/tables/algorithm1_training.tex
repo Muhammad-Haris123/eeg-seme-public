@@ -1,0 +1,24 @@
+\begin{algorithm}[H]
+\caption{Training procedure for the pharmacodynamically constrained CVAE.}
+\label{alg:train}
+\small
+\textbf{Input:} packed EEG features $x\in\mathbb{R}^{2185}$ (PSD, band powers, interleaved coherence/PLV); ChemBERTa embedding $d\in\mathbb{R}^{384}$; disease label $y\in\{0,1\}$; subject-level baseline features $x^{\mathrm{base}}$; priors $\pi$ from \texttt{get\_eeg\_effect\_prior}; $\beta=0.01$; $\alpha_c^{\star}=0.1$; $T_w=5$; Adam hyperparameters.\\
+\textbf{Output:} checkpoint minimizing validation total loss.\\[0.4em]
+\textbf{Training} (subject-level 5-fold; within-fold 10\% validation). For each epoch $t=0,\ldots,T-1$ and each minibatch:
+\begin{enumerate}
+  \setlength{\itemsep}{0.15em}
+  \item Flatten EEG tensors to $x$ with the same packing as the decoder target.
+  \item Encode EEG: $h_{\mathrm{eeg}}=\mathrm{EEGEncoder}(\mathrm{PSD},\mathrm{band},\mathrm{coh},\mathrm{PLV})$.
+  \item Encode drug: $h_{\mathrm{drug}}=\mathrm{DrugEncoder}(d)$ (384-D ChemBERTa; enhanced 416-D prior concatenation is off for this variant).
+  \item Fuse: $h=\mathrm{Fusion}(h_{\mathrm{eeg}},h_{\mathrm{drug}},y)$.
+  \item CVAE encode: $(\mu,\log\sigma^2)=\mathrm{Enc}(h)$.
+  \item Reparameterize: $z=\mu+\exp(\tfrac12\log\sigma^2)\odot\varepsilon$, $\varepsilon\sim\mathcal{N}(0,I)$.
+  \item Decode: $\hat{x}=\mathrm{Dec}([z; h_{\mathrm{drug}}; y])$ (linear output, no output activation).
+  \item $L_{\mathrm{MSE}}=\mathrm{mean}((\hat{x}-x)^2)$; $L_{\mathrm{KL}}$ as in Eq.~(\ref{eq:kl}).
+  \item If the batch item is not baseline, compute $L_{\mathrm{band}}$ and $L_{\mathrm{conn}}$ vs $x^{\mathrm{base}}$ (Eqs.~(\ref{eq:band})--(\ref{eq:conn})); else both are 0.
+  \item Set $\alpha_c(t)$ from Eq.~(\ref{eq:alpha}); form $L$ (Eq.~(\ref{eq:total})). Unique \texttt{drug\_id} subsets are scored separately and summed with batch-fraction weights.
+  \item Backpropagate $L$ and take one Adam step.
+\end{enumerate}
+After each epoch, record train/val losses. Save the fold checkpoint with the lowest validation total loss.\\[0.3em]
+\textbf{External evaluation} (not used for the Adam step): freeze the locked fold-0 checkpoint; simulate Donepezil/Memantine feature effects; score direction, magnitude, and encoding probes on held-out cohorts.
+\end{algorithm}

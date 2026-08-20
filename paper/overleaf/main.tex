@@ -1,0 +1,109 @@
+%% Computer Methods and Programs in Biomedicine -- Elsevier elsarticle package
+%% Created from paper/sections/ for Overleaf upload.
+%% First submission: preprint layout is acceptable per Elsevier guidance.
+\documentclass[preprint,12pt,3p,times]{elsarticle}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{adjustbox}
+\usepackage{xcolor}
+\usepackage{textcomp}
+\usepackage{float}
+\newfloat{algorithm}{htbp}{loa}
+\floatname{algorithm}{Algorithm}
+\usepackage[expansion=false,protrusion=true]{microtype}
+\usepackage{xurl}
+\usepackage{hyperref}
+\hypersetup{hidelinks,breaklinks=true,pdfauthor={},pdfcreator={}}
+\urlstyle{tt}
+% Allow slightly stretchy paragraphs instead of margin overflow.
+\emergencystretch=3em
+\tolerance=2000
+\hbadness=10000
+\hyphenpenalty=400
+\exhyphenpenalty=100
+% Soft hyphenation hints for dense technical prose
+\hyphenation{phar-ma-co-dy-nam-i-cal-ly Chem-BER-Ta Done-pezil Mem-an-tine
+CAU-EEG Alz-hei-mer con-nec-tiv-i-ty}
+
+\journal{Computer Methods and Programs in Biomedicine}
+
+\bibliographystyle{elsarticle-num}
+
+\begin{document}
+
+\begin{frontmatter}
+
+\title{SEME: A Decoupled Evaluation Protocol for
+Literature-Constrained EEG--Drug Generators}
+
+\author{Authors to be completed at submission}
+
+\begin{abstract}
+\noindent\textbf{Background and Objective:} Chemistry-conditioned EEG generators are often scored with conflated endpoints. We introduce SEME (Signed concordance, Effect-vector fidelity, Magnitude transfer, Encoding retention), a formal evaluation protocol that scores those axes separately for literature-constrained EEG--drug generators, demonstrated on a pharmacodynamically penalized CVAE for Donepezil and Memantine.
+
+\noindent\textbf{Methods:} Under SEME, a constrained CVAE ($N{=}66$; 2185-D EEG features; frozen ChemBERTa embeddings) used subject-level five-fold splits. External cohorts lacked paired pre/post-drug EEG, so signed concordance and continuous effect-vector $r$ were scored against the training constrained signature on TUH, OSF, and P-ADIC. Core controls were matched unconstrained twins, a prior-only signed effect (circularity budget), linear imitation on CVAE-simulated targets, fold/seed sensitivity, and CAUEEG encoding probes against theta/alpha and packed 2185-D logistic references, with paired DeLong tests on stored out-of-fold scores.
+
+\noindent\textbf{Results:} On the locked sign endpoint, constrained twins reached 10/10 agreement on TUH, OSF, and P-ADIC while matched unconstrained twins failed (3/10, 4/10, 4/10). Prior-only already reached 10/10 signs at mean $r{=}0.636$, so binary signs are partly prior-recoverable. Continuous $r$ at the locked fold-0 seed-42 checkpoint was high ($0.908$/$0.851$/$0.918$) but checkpoint-specific (five-fold means $0.385$/$0.371$/$0.372$; non-42 seeds typically 0.08 to 0.43). Magnitude did not diagnose reliably. Encoding bake-off placed latent ROC-AUC $0.579$ below theta/alpha $0.675$ and a 2185-D logistic reference of $0.699$ (best nested-head OOF AUC $0.593$; DeLong $p{<}0.001$ vs 2185-D).
+
+\noindent\textbf{Conclusions:} SEME shows that constrained sign concordance is the more reproducible external finding in this battery, that continuous fidelity is checkpoint-specific, that prior-only bounds circularity for signs, and that residual latent diagnostic signal sits below classical feature references. The study supports a scoped measurement framework, not post-dose pharmacodynamic validation, seed-stable continuous fidelity, or standalone external diagnosis.
+\end{abstract}
+
+\begin{keyword}
+SEME evaluation protocol \sep pharmacodynamically constrained CVAE \sep EEG-drug simulation \sep external signature assessment \sep encoding-level attenuation \sep reproducibility
+\end{keyword}
+
+\begin{highlights}
+\item SEME protocol separates signs, continuous r, magnitude, and encoding.
+\item Constrained signs beat unconstrained; locked high r is checkpoint-specific.
+\item Prior-only reaches 10/10 signs (mean r=0.636); circularity budget made explicit.
+\item No paired post-dose EEG; endpoint is signature concordance, not PD validation.
+\item Latent AUC 0.579 vs theta/alpha 0.675 and 2185-D 0.699; head OOF 0.593.
+\end{highlights}
+
+\begin{graphicalabstract}
+\centering
+\includegraphics[width=\textwidth]{figures/graphical_abstract.png}
+\\[0.4em]
+{\footnotesize Direction scoring uses the 2185-D feature-space drug-minus-baseline effect vector, not CVAE latent means. SEME treats signs, continuous $r$, magnitude, and encoding as separate axes.}
+\end{graphicalabstract}
+
+\end{frontmatter}
+
+\section{Introduction}
+\label{sec:introduction}
+\input{sections/01_introduction}
+
+\section{Methods}
+\label{sec:methods}
+\input{sections/02_methods}
+
+\section{Results}
+\label{sec:results}
+\input{sections/03_results_mechanism}
+
+\section{Discussion}
+\label{sec:discussion}
+\input{sections/06_discussion}
+
+\section{Conclusion}
+\label{sec:conclusion}
+\input{sections/07_conclusion}
+
+\input{sections/07_backmatter_extra}
+
+\appendix
+\renewcommand{\thetable}{A.\arabic{table}}
+\renewcommand{\thefigure}{A.\arabic{figure}}
+\renewcommand{\theHtable}{A.\arabic{table}}
+\renewcommand{\theHfigure}{A.\arabic{figure}}
+\setcounter{table}{0}
+\setcounter{figure}{0}
+\input{sections/S1_reproducibility}
+
+\bibliography{references}
+
+\end{document}

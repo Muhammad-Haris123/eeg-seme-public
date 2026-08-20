@@ -1,0 +1,2392 @@
+{
+  "timestamp_utc": "2026-08-11T20:09:47.340258+00:00",
+  "experiment": "fitted_ridge_linear_drug_conditioned_direction_baseline",
+  "status": "NEW_NON_LOCKED_PHASE1_CONTROL",
+  "scientific_role": "Control analysis. Not independent pharmacodynamic discovery, not clinical validation, not diagnostic superiority.",
+  "model": {
+    "form": "\u0394x = W_x x_base + W_d d + W_y y + b",
+    "estimator": "sklearn.linear_model.Ridge",
+    "regularization": "L2 (ridge)",
+    "fit_intercept": true,
+    "feature_scaling": "StandardScaler fit on training-fold design matrix only",
+    "input_dim": 2570,
+    "output_dim": 2185,
+    "x_base": "packed 2185-D EEG features (psd[0:380), bands[380:475), interleaved coh/PLV[475:2185))",
+    "d": "frozen ChemBERTa 384-D embeddings from load_drug_embeddings()",
+    "y": "disease label AD=1 / HC=0 (external: TUH abnormal=1, OSF/P-ADIC AD=1)",
+    "target_delta": "locked CVAE simulated drug-minus-baseline from models/simulations_constrained_full (mean over 10 samples). These are CVAE outputs, not observed post-dose EEG.",
+    "alpha_grid": [
+      0.01,
+      0.03162277660168379,
+      0.1,
+      0.31622776601683794,
+      1.0,
+      3.1622776601683795,
+      10.0,
+      31.622776601683793,
+      100.0,
+      316.22776601683796,
+      1000.0,
+      3162.2776601683795,
+      10000.0,
+      31622.776601683792,
+      100000.0,
+      316227.7660168379,
+      1000000.0
+    ],
+    "alpha_selection": "Per outer fold: inner 10% stratified subject split of non-test IDs, random_state=42+fold_idx, matching CVAE train_phase2_upgraded.py. Select alpha minimizing MSE on inner val. No external cohort used.",
+    "fold_protocol": "get_subject_level_kfold(n_splits=5, random_seed=42); StratifiedKFold",
+    "seed": 42,
+    "n_training_subjects": 66,
+    "n_ad": 37,
+    "n_hc": 29
+  },
+  "osf_location_check": {
+    "canonical": "data/ad_labeled_external (features_calibrated for x_base, matching Layer 5b / unconstrained battery)",
+    "compared_to": "data/external_osf/features",
+    "equivalent_raw_group_arrays": true,
+    "note": "data/ad_labeled_external used as canonical; SHA256 match vs data/external_osf/features for AD/HC psd and band_powers."
+  },
+  "locked_cvae_fold0_seed42_for_reference_only_not_replaced": {
+    "TUH": {
+      "r": 0.908,
+      "signs": "10/10"
+    },
+    "OSF": {
+      "r": 0.851,
+      "signs": "10/10"
+    },
+    "P-ADIC": {
+      "r": 0.918,
+      "signs": "10/10"
+    },
+    "scored_against": "own CVAE training signature"
+  },
+  "prior_only_existing_locked": {
+    "r_mean": 0.6360168032016147,
+    "donepezil_r": 0.5715458752815976,
+    "memantine_r": 0.7004877311216317,
+    "signs": "10/10",
+    "scored_against": "CVAE training signature",
+    "note": "Prior-only is a fixed vector vs the training signature; not a per-cohort TUH/OSF/P-ADIC r.",
+    "source": "models/validation/prior_only_direction.json"
+  },
+  "simulation_metadata_checkpoint": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\checkpoints_constrained\\checkpoint_constrained.pt",
+  "script": "C:\\Users\\UC\\Desktop\\my_fyp\\src\\validation\\run_linear_direction_baseline.py",
+  "folds": [
+    {
+      "fold": 0,
+      "alpha": 100000.0,
+      "alpha_selection": {
+        "method": "inner 10% subject split of non-test IDs; minimize MSE of 2185-D \u0394x",
+        "test_size": 0.1,
+        "stratify": "disease label",
+        "random_state": 42,
+        "grid": [
+          0.01,
+          0.03162277660168379,
+          0.1,
+          0.31622776601683794,
+          1.0,
+          3.1622776601683795,
+          10.0,
+          31.622776601683793,
+          100.0,
+          316.22776601683796,
+          1000.0,
+          3162.2776601683795,
+          10000.0,
+          31622.776601683792,
+          100000.0,
+          316227.7660168379,
+          1000000.0
+        ],
+        "val_mse_by_alpha": {
+          "0.01": 0.056445556632537405,
+          "0.0316228": 0.05644100867244372,
+          "0.1": 0.056426632651839864,
+          "0.316228": 0.05638123051422347,
+          "1": 0.05623824196661567,
+          "3.16228": 0.05579184478151327,
+          "10": 0.05443540732322491,
+          "31.6228": 0.050628618842232284,
+          "100": 0.04193554192938518,
+          "316.228": 0.028864611526751665,
+          "1000": 0.01810680181129682,
+          "3162.28": 0.01326241346254245,
+          "10000": 0.011805460339688545,
+          "31622.8": 0.011407301521526188,
+          "100000": 0.011330832240831921,
+          "316228": 0.011351998861934796,
+          "1e+06": 0.011373826144353076
+        },
+        "selected_val_mse": 0.011330832240831921
+      },
+      "n_train_subjects": 46,
+      "n_val_subjects": 6,
+      "n_test_subjects_training_cohort": 14,
+      "train_ids": [
+        5,
+        33,
+        41,
+        52,
+        10,
+        8,
+        21,
+        9,
+        37,
+        61,
+        0,
+        25,
+        38,
+        7,
+        17,
+        40,
+        35,
+        63,
+        31,
+        15,
+        4,
+        3,
+        48,
+        64,
+        28,
+        30,
+        51,
+        27,
+        57,
+        19,
+        62,
+        32,
+        12,
+        11,
+        42,
+        29,
+        53,
+        14,
+        58,
+        65,
+        13,
+        46,
+        44,
+        1,
+        59,
+        55
+      ],
+      "val_ids": [
+        54,
+        24,
+        22,
+        36,
+        47,
+        45
+      ],
+      "test_ids": [
+        2,
+        6,
+        16,
+        18,
+        20,
+        23,
+        26,
+        34,
+        39,
+        43,
+        49,
+        50,
+        56,
+        60
+      ],
+      "refit": "Ridge fit on train_ids only (val used only for alpha); CVAE-matched",
+      "primary": {
+        "TUH": {
+          "signature_used": "locked_CVAE_training_signature_simulations_constrained_full",
+          "n_used": 200,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.8400645579683926,
+          "memantine_effect_corr": 0.8621599877504104,
+          "effect_magnitude_correlation": 0.8511122728594015,
+          "donepezil_cosine": 0.8679353951166294,
+          "memantine_cosine": 0.9131978769303182,
+          "cosine_mean": 0.8905666360234739,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.8511122728594015,
+              "ci_low": 0.8362117031813493,
+              "ci_high": 0.8644938295902261
+            },
+            "donepezil_effect_corr": {
+              "point": 0.8400645579683926,
+              "ci_low": 0.8249120311047868,
+              "ci_high": 0.8538010440030355
+            },
+            "memantine_effect_corr": {
+              "point": 0.8621599877504104,
+              "ci_low": 0.8475888844702874,
+              "ci_high": 0.8750574920060664
+            }
+          }
+        },
+        "OSF": {
+          "signature_used": "locked_CVAE_training_signature_simulations_constrained_full",
+          "n_used": 92,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.6227119077935717,
+          "memantine_effect_corr": 0.6547070962757923,
+          "effect_magnitude_correlation": 0.638709502034682,
+          "donepezil_cosine": 0.6897505396985548,
+          "memantine_cosine": 0.7508585763059475,
+          "cosine_mean": 0.7203045580022511,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.638709502034682,
+              "ci_low": 0.6194410548194382,
+              "ci_high": 0.6581289094757682
+            },
+            "donepezil_effect_corr": {
+              "point": 0.6227119077935717,
+              "ci_low": 0.6032348142420756,
+              "ci_high": 0.6423911271728716
+            },
+            "memantine_effect_corr": {
+              "point": 0.6547070962757923,
+              "ci_low": 0.6355903173136861,
+              "ci_high": 0.6739560235200551
+            }
+          }
+        },
+        "P-ADIC": {
+          "signature_used": "locked_CVAE_training_signature_simulations_constrained_full",
+          "n_used": 145,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.7707807074668691,
+          "memantine_effect_corr": 0.7794567249014666,
+          "effect_magnitude_correlation": 0.7751187161841678,
+          "donepezil_cosine": 0.8125677230522481,
+          "memantine_cosine": 0.8397110673998321,
+          "cosine_mean": 0.8261393952260401,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.7751187161841678,
+              "ci_low": 0.7563789408560145,
+              "ci_high": 0.7918014920865826
+            },
+            "donepezil_effect_corr": {
+              "point": 0.7707807074668691,
+              "ci_low": 0.7523616676480708,
+              "ci_high": 0.7870932170025403
+            },
+            "memantine_effect_corr": {
+              "point": 0.7794567249014666,
+              "ci_low": 0.760539067118055,
+              "ci_high": 0.7961907900723922
+            }
+          }
+        }
+      },
+      "secondary_own_fit_subjects": {
+        "TUH": {
+          "signature_used": "linear_own_signature_mean_predicted_delta_on_fit_subjects",
+          "n_used": 200,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.8956005311253431,
+          "memantine_effect_corr": 0.8986006789821065,
+          "effect_magnitude_correlation": 0.8971006050537248,
+          "donepezil_cosine": 0.9262221075547012,
+          "memantine_cosine": 0.93553152985205,
+          "cosine_mean": 0.9308768187033756,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.8971006050537248,
+              "ci_low": 0.8805460576166547,
+              "ci_high": 0.9120364032310475
+            },
+            "donepezil_effect_corr": {
+              "point": 0.8956005311253431,
+              "ci_low": 0.8788194814832987,
+              "ci_high": 0.9107510319276471
+            },
+            "memantine_effect_corr": {
+              "point": 0.8986006789821065,
+              "ci_low": 0.8822726337500109,
+              "ci_high": 0.9133217745344478
+            }
+          }
+        },
+        "OSF": {
+          "signature_used": "linear_own_signature_mean_predicted_delta_on_fit_subjects",
+          "n_used": 92,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.6632404223006628,
+          "memantine_effect_corr": 0.6721026162624775,
+          "effect_magnitude_correlation": 0.6676715192815701,
+          "donepezil_cosine": 0.7359898038967763,
+          "memantine_cosine": 0.762499424412303,
+          "cosine_mean": 0.7492446141545397,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.6676715192815701,
+              "ci_low": 0.64706344007151,
+              "ci_high": 0.68841980556127
+            },
+            "donepezil_effect_corr": {
+              "point": 0.6632404223006628,
+              "ci_low": 0.6424570804459984,
+              "ci_high": 0.6841551131195897
+            },
+            "memantine_effect_corr": {
+              "point": 0.6721026162624775,
+              "ci_low": 0.6516697996970214,
+              "ci_high": 0.6926321034822791
+            }
+          }
+        },
+        "P-ADIC": {
+          "signature_used": "linear_own_signature_mean_predicted_delta_on_fit_subjects",
+          "n_used": 145,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.8167856266734006,
+          "memantine_effect_corr": 0.8201548734597273,
+          "effect_magnitude_correlation": 0.8184702500665639,
+          "donepezil_cosine": 0.8548820730009653,
+          "memantine_cosine": 0.8702136525378319,
+          "cosine_mean": 0.8625478627693985,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.8184702500665639,
+              "ci_low": 0.7980503713327847,
+              "ci_high": 0.8365103120328797
+            },
+            "donepezil_effect_corr": {
+              "point": 0.8167856266734006,
+              "ci_low": 0.796179074438991,
+              "ci_high": 0.8349188713066558
+            },
+            "memantine_effect_corr": {
+              "point": 0.8201548734597273,
+              "ci_low": 0.7999221109378666,
+              "ci_high": 0.8381017527591037
+            }
+          }
+        }
+      },
+      "secondary_own_full66": {
+        "TUH": {
+          "signature_used": "linear_own_signature_mean_predicted_delta_on_all_66_training_subjects",
+          "n_used": 200,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.8955232285934146,
+          "memantine_effect_corr": 0.898525466588317,
+          "effect_magnitude_correlation": 0.8970243475908658,
+          "donepezil_cosine": 0.9261604917614011,
+          "memantine_cosine": 0.9354762793434651,
+          "cosine_mean": 0.9308183855524331,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.8970243475908658,
+              "ci_low": 0.8806184348046138,
+              "ci_high": 0.9119883955003542
+            },
+            "donepezil_effect_corr": {
+              "point": 0.8955232285934146,
+              "ci_low": 0.8788934268595514,
+              "ci_high": 0.9107003451390003
+            },
+            "memantine_effect_corr": {
+              "point": 0.898525466588317,
+              "ci_low": 0.8823434427496761,
+              "ci_high": 0.913276445861708
+            }
+          }
+        },
+        "OSF": {
+          "signature_used": "linear_own_signature_mean_predicted_delta_on_all_66_training_subjects",
+          "n_used": 92,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.6668264931924769,
+          "memantine_effect_corr": 0.6756052617542727,
+          "effect_magnitude_correlation": 0.6712158774733747,
+          "donepezil_cosine": 0.738686949003535,
+          "memantine_cosine": 0.7649031420419418,
+          "cosine_mean": 0.7517950455227385,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.6712158774733747,
+              "ci_low": 0.6508683154454962,
+              "ci_high": 0.6916685846257395
+            },
+            "donepezil_effect_corr": {
+              "point": 0.6668264931924769,
+              "ci_low": 0.6463002523154506,
+              "ci_high": 0.68744795666082
+            },
+            "memantine_effect_corr": {
+              "point": 0.6756052617542727,
+              "ci_low": 0.6554426896767704,
+              "ci_high": 0.6959165957906334
+            }
+          }
+        },
+        "P-ADIC": {
+          "signature_used": "linear_own_signature_mean_predicted_delta_on_all_66_training_subjects",
+          "n_used": 145,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.822354673631527,
+          "memantine_effect_corr": 0.8256128973861198,
+          "effect_magnitude_correlation": 0.8239837855088235,
+          "donepezil_cosine": 0.8590580979261684,
+          "memantine_cosine": 0.8739196853833285,
+          "cosine_mean": 0.8664888916547484,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.8239837855088235,
+              "ci_low": 0.8037954095826506,
+              "ci_high": 0.841764487620709
+            },
+            "donepezil_effect_corr": {
+              "point": 0.822354673631527,
+              "ci_low": 0.8020051399516537,
+              "ci_high": 0.8402274776737704
+            },
+            "memantine_effect_corr": {
+              "point": 0.8256128973861198,
+              "ci_low": 0.8056095316688516,
+              "ci_high": 0.8433014975676476
+            }
+          }
+        }
+      }
+    },
+    {
+      "fold": 1,
+      "alpha": 316227.7660168379,
+      "alpha_selection": {
+        "method": "inner 10% subject split of non-test IDs; minimize MSE of 2185-D \u0394x",
+        "test_size": 0.1,
+        "stratify": "disease label",
+        "random_state": 43,
+        "grid": [
+          0.01,
+          0.03162277660168379,
+          0.1,
+          0.31622776601683794,
+          1.0,
+          3.1622776601683795,
+          10.0,
+          31.622776601683793,
+          100.0,
+          316.22776601683796,
+          1000.0,
+          3162.2776601683795,
+          10000.0,
+          31622.776601683792,
+          100000.0,
+          316227.7660168379,
+          1000000.0
+        ],
+        "val_mse_by_alpha": {
+          "0.01": 0.08193528689168789,
+          "0.0316228": 0.08193093231781597,
+          "0.1": 0.08191716572852839,
+          "0.316228": 0.08187366973816945,
+          "1": 0.0817365000252628,
+          "3.16228": 0.08130646098318287,
+          "10": 0.07998271791760501,
+          "31.6228": 0.0761258035973543,
+          "100": 0.06645127143250178,
+          "316.228": 0.04904782829830911,
+          "1000": 0.030751822306165147,
+          "3162.28": 0.019842267409264508,
+          "10000": 0.014885960580211062,
+          "31622.8": 0.0128141714542837,
+          "100000": 0.012251321115117503,
+          "316228": 0.01218541542766735,
+          "1e+06": 0.012194083547093013
+        },
+        "selected_val_mse": 0.01218541542766735
+      },
+      "n_train_subjects": 47,
+      "n_val_subjects": 6,
+      "n_test_subjects_training_cohort": 13,
+      "train_ids": [
+        61,
+        60,
+        54,
+        6,
+        32,
+        9,
+        26,
+        7,
+        40,
+        62,
+        43,
+        34,
+        20,
+        38,
+        27,
+        58,
+        47,
+        55,
+        28,
+        37,
+        5,
+        50,
+        0,
+        46,
+        25,
+        49,
+        53,
+        22,
+        36,
+        2,
+        59,
+        18,
+        15,
+        48,
+        45,
+        21,
+        13,
+        4,
+        33,
+        52,
+        42,
+        29,
+        57,
+        16,
+        24,
+        23,
+        8
+      ],
+      "val_ids": [
+        64,
+        39,
+        56,
+        3,
+        31,
+        17
+      ],
+      "test_ids": [
+        1,
+        10,
+        11,
+        12,
+        14,
+        19,
+        30,
+        35,
+        41,
+        44,
+        51,
+        63,
+        65
+      ],
+      "refit": "Ridge fit on train_ids only (val used only for alpha); CVAE-matched",
+      "primary": {
+        "TUH": {
+          "signature_used": "locked_CVAE_training_signature_simulations_constrained_full",
+          "n_used": 200,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.8676666779812414,
+          "memantine_effect_corr": 0.8936312148591334,
+          "effect_magnitude_correlation": 0.8806489464201874,
+          "donepezil_cosine": 0.8801719391144142,
+          "memantine_cosine": 0.9365139503573096,
+          "cosine_mean": 0.9083429447358619,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.8806489464201874,
+              "ci_low": 0.8744373883817893,
+              "ci_high": 0.886521623955603
+            },
+            "donepezil_effect_corr": {
+              "point": 0.8676666779812414,
+              "ci_low": 0.8612735279460254,
+              "ci_high": 0.8738841083826083
+            },
+            "memantine_effect_corr": {
+              "point": 0.8936312148591334,
+              "ci_low": 0.8875393928823803,
+              "ci_high": 0.899304616685556
+            }
+          }
+        },
+        "OSF": {
+          "signature_used": "locked_CVAE_training_signature_simulations_constrained_full",
+          "n_used": 92,
+          "direction_agreement_total": "8/10",
+          "donepezil_direction_agreement": "4/5",
+          "memantine_direction_agreement": "4/5",
+          "donepezil_effect_corr": 0.7931400495813892,
+          "memantine_effect_corr": 0.814923036219047,
+          "effect_magnitude_correlation": 0.804031542900218,
+          "donepezil_cosine": 0.8287300575061641,
+          "memantine_cosine": 0.8862212709101258,
+          "cosine_mean": 0.8574756642081449,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.804031542900218,
+              "ci_low": 0.7951372593669201,
+              "ci_high": 0.812910029345493
+            },
+            "donepezil_effect_corr": {
+              "point": 0.7931400495813892,
+              "ci_low": 0.7843842933110303,
+              "ci_high": 0.8018168836626065
+            },
+            "memantine_effect_corr": {
+              "point": 0.814923036219047,
+              "ci_low": 0.8057694261169204,
+              "ci_high": 0.8238485952191907
+            }
+          }
+        },
+        "P-ADIC": {
+          "signature_used": "locked_CVAE_training_signature_simulations_constrained_full",
+          "n_used": 145,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.8766812254936043,
+          "memantine_effect_corr": 0.8949018394714342,
+          "effect_magnitude_correlation": 0.8857915324825192,
+          "donepezil_cosine": 0.8879531575731922,
+          "memantine_cosine": 0.9363369307923392,
+          "cosine_mean": 0.9121450441827657,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.8857915324825192,
+              "ci_low": 0.8794629098618547,
+              "ci_high": 0.891127701483556
+            },
+            "donepezil_effect_corr": {
+              "point": 0.8766812254936043,
+              "ci_low": 0.8706414469253829,
+              "ci_high": 0.8818742119103997
+            },
+            "memantine_effect_corr": {
+              "point": 0.8949018394714342,
+              "ci_low": 0.8882278185528907,
+              "ci_high": 0.9005167220465398
+            }
+          }
+        }
+      },
+      "secondary_own_fit_subjects": {
+        "TUH": {
+          "signature_used": "linear_own_signature_mean_predicted_delta_on_fit_subjects",
+          "n_used": 200,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.9518402243462456,
+          "memantine_effect_corr": 0.9526154188767678,
+          "effect_magnitude_correlation": 0.9522278216115068,
+          "donepezil_cosine": 0.9687926047256559,
+          "memantine_cosine": 0.9706547746512945,
+          "cosine_mean": 0.9697236896884751,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.9522278216115068,
+              "ci_low": 0.9457915702777192,
+              "ci_high": 0.9583320209543549
+            },
+            "donepezil_effect_corr": {
+              "point": 0.9518402243462456,
+              "ci_low": 0.9453546587867068,
+              "ci_high": 0.9579926505619208
+            },
+            "memantine_effect_corr": {
+              "point": 0.9526154188767678,
+              "ci_low": 0.9462251186313515,
+              "ci_high": 0.9586723420205503
+            }
+          }
+        },
+        "OSF": {
+          "signature_used": "linear_own_signature_mean_predicted_delta_on_fit_subjects",
+          "n_used": 92,
+          "direction_agreement_total": "8/10",
+          "donepezil_direction_agreement": "4/5",
+          "memantine_direction_agreement": "4/5",
+          "donepezil_effect_corr": 0.8680737789697511,
+          "memantine_effect_corr": 0.8697844034681855,
+          "effect_magnitude_correlation": 0.8689290912189683,
+          "donepezil_cosine": 0.9131052989933982,
+          "memantine_cosine": 0.9176683385970335,
+          "cosine_mean": 0.9153868187952159,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.8689290912189683,
+              "ci_low": 0.8593579471427144,
+              "ci_high": 0.878353252525495
+            },
+            "donepezil_effect_corr": {
+              "point": 0.8680737789697511,
+              "ci_low": 0.8584707533179937,
+              "ci_high": 0.8775542066844845
+            },
+            "memantine_effect_corr": {
+              "point": 0.8697844034681855,
+              "ci_low": 0.8602456357834728,
+              "ci_high": 0.8791413971178839
+            }
+          }
+        },
+        "P-ADIC": {
+          "signature_used": "linear_own_signature_mean_predicted_delta_on_fit_subjects",
+          "n_used": 145,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.954889271733668,
+          "memantine_effect_corr": 0.9555292496247617,
+          "effect_magnitude_correlation": 0.9552092606792149,
+          "donepezil_cosine": 0.9706888550147097,
+          "memantine_cosine": 0.972361682534876,
+          "cosine_mean": 0.9715252687747928,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.9552092606792149,
+              "ci_low": 0.9485065471334683,
+              "ci_high": 0.9608915322499224
+            },
+            "donepezil_effect_corr": {
+              "point": 0.954889271733668,
+              "ci_low": 0.9481451038623717,
+              "ci_high": 0.9606065345110686
+            },
+            "memantine_effect_corr": {
+              "point": 0.9555292496247617,
+              "ci_low": 0.9488679904045648,
+              "ci_high": 0.9611765299887763
+            }
+          }
+        }
+      },
+      "secondary_own_full66": {
+        "TUH": {
+          "signature_used": "linear_own_signature_mean_predicted_delta_on_all_66_training_subjects",
+          "n_used": 200,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.9552524458471366,
+          "memantine_effect_corr": 0.9559780485387189,
+          "effect_magnitude_correlation": 0.9556152471929278,
+          "donepezil_cosine": 0.9710531899727685,
+          "memantine_cosine": 0.9727803888985631,
+          "cosine_mean": 0.9719167894356657,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.9556152471929278,
+              "ci_low": 0.9494062404294876,
+              "ci_high": 0.9614695126981072
+            },
+            "donepezil_effect_corr": {
+              "point": 0.9552524458471366,
+              "ci_low": 0.9489941228091036,
+              "ci_high": 0.9611543071905935
+            },
+            "memantine_effect_corr": {
+              "point": 0.9559780485387189,
+              "ci_low": 0.9498185594520014,
+              "ci_high": 0.9617847182056208
+            }
+          }
+        },
+        "OSF": {
+          "signature_used": "linear_own_signature_mean_predicted_delta_on_all_66_training_subjects",
+          "n_used": 92,
+          "direction_agreement_total": "8/10",
+          "donepezil_direction_agreement": "4/5",
+          "memantine_direction_agreement": "4/5",
+          "donepezil_effect_corr": 0.8741693776120713,
+          "memantine_effect_corr": 0.8758035986280447,
+          "effect_magnitude_correlation": 0.874986488120058,
+          "donepezil_cosine": 0.9171960525517361,
+          "memantine_cosine": 0.921534286446971,
+          "cosine_mean": 0.9193651694993535,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.874986488120058,
+              "ci_low": 0.8655962559208261,
+              "ci_high": 0.8841888668066855
+            },
+            "donepezil_effect_corr": {
+              "point": 0.8741693776120713,
+              "ci_low": 0.8647475108865857,
+              "ci_high": 0.883437490226054
+            },
+            "memantine_effect_corr": {
+              "point": 0.8758035986280447,
+              "ci_low": 0.866445688129412,
+              "ci_high": 0.884940243387317
+            }
+          }
+        },
+        "P-ADIC": {
+          "signature_used": "linear_own_signature_mean_predicted_delta_on_all_66_training_subjects",
+          "n_used": 145,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.9580705082676205,
+          "memantine_effect_corr": 0.9586671478921248,
+          "effect_magnitude_correlation": 0.9583688280798727,
+          "donepezil_cosine": 0.9727981949534121,
+          "memantine_cosine": 0.974347620235229,
+          "cosine_mean": 0.9735729075943206,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.9583688280798727,
+              "ci_low": 0.9519108529538434,
+              "ci_high": 0.9638363820434808
+            },
+            "donepezil_effect_corr": {
+              "point": 0.9580705082676205,
+              "ci_low": 0.9515725679239794,
+              "ci_high": 0.9635688946144342
+            },
+            "memantine_effect_corr": {
+              "point": 0.9586671478921248,
+              "ci_low": 0.9522472124939974,
+              "ci_high": 0.9641020417525119
+            }
+          }
+        }
+      }
+    },
+    {
+      "fold": 2,
+      "alpha": 1000000.0,
+      "alpha_selection": {
+        "method": "inner 10% subject split of non-test IDs; minimize MSE of 2185-D \u0394x",
+        "test_size": 0.1,
+        "stratify": "disease label",
+        "random_state": 44,
+        "grid": [
+          0.01,
+          0.03162277660168379,
+          0.1,
+          0.31622776601683794,
+          1.0,
+          3.1622776601683795,
+          10.0,
+          31.622776601683793,
+          100.0,
+          316.22776601683796,
+          1000.0,
+          3162.2776601683795,
+          10000.0,
+          31622.776601683792,
+          100000.0,
+          316227.7660168379,
+          1000000.0
+        ],
+        "val_mse_by_alpha": {
+          "0.01": 0.04685775195829955,
+          "0.0316228": 0.04685283538625931,
+          "0.1": 0.046837297762292646,
+          "0.316228": 0.046788262690582234,
+          "1": 0.04663418545276134,
+          "3.16228": 0.04615659222512687,
+          "10": 0.044736496256483044,
+          "31.6228": 0.04098650436699755,
+          "100": 0.033543844518014766,
+          "316.228": 0.024541959517968163,
+          "1000": 0.01821352164695087,
+          "3162.28": 0.015041523992803247,
+          "10000": 0.013688230447346562,
+          "31622.8": 0.013176426210608385,
+          "100000": 0.013009480576248681,
+          "316228": 0.012975266118997568,
+          "1e+06": 0.012973705107218294
+        },
+        "selected_val_mse": 0.012973705107218294
+      },
+      "n_train_subjects": 47,
+      "n_val_subjects": 6,
+      "n_test_subjects_training_cohort": 13,
+      "train_ids": [
+        58,
+        20,
+        26,
+        49,
+        23,
+        6,
+        46,
+        4,
+        14,
+        21,
+        16,
+        44,
+        27,
+        37,
+        2,
+        8,
+        65,
+        56,
+        48,
+        25,
+        19,
+        17,
+        10,
+        47,
+        43,
+        62,
+        1,
+        18,
+        7,
+        5,
+        29,
+        11,
+        12,
+        61,
+        39,
+        51,
+        35,
+        54,
+        41,
+        3,
+        36,
+        24,
+        64,
+        63,
+        60,
+        28,
+        42
+      ],
+      "val_ids": [
+        34,
+        50,
+        30,
+        40,
+        13,
+        57
+      ],
+      "test_ids": [
+        0,
+        9,
+        15,
+        22,
+        31,
+        32,
+        33,
+        38,
+        45,
+        52,
+        53,
+        55,
+        59
+      ],
+      "refit": "Ridge fit on train_ids only (val used only for alpha); CVAE-matched",
+      "primary": {
+        "TUH": {
+          "signature_used": "locked_CVAE_training_signature_simulations_constrained_full",
+          "n_used": 200,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.9141939172689202,
+          "memantine_effect_corr": 0.9234983443422384,
+          "effect_magnitude_correlation": 0.9188461308055793,
+          "donepezil_cosine": 0.9215076232331971,
+          "memantine_cosine": 0.9450358104436485,
+          "cosine_mean": 0.9332717168384228,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.9188461308055793,
+              "ci_low": 0.9184379983249018,
+              "ci_high": 0.919223668046779
+            },
+            "donepezil_effect_corr": {
+              "point": 0.9141939172689202,
+              "ci_low": 0.9137150252965371,
+              "ci_high": 0.9146434810278143
+            },
+            "memantine_effect_corr": {
+              "point": 0.9234983443422384,
+              "ci_low": 0.923109033349056,
+              "ci_high": 0.9238291075525116
+            }
+          }
+        },
+        "OSF": {
+          "signature_used": "locked_CVAE_training_signature_simulations_constrained_full",
+          "n_used": 92,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.90888502904525,
+          "memantine_effect_corr": 0.9180863135251708,
+          "effect_magnitude_correlation": 0.9134856712852104,
+          "donepezil_cosine": 0.91835647229535,
+          "memantine_cosine": 0.9405371536971474,
+          "cosine_mean": 0.9294468129962488,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.9134856712852104,
+              "ci_low": 0.9128294809655229,
+              "ci_high": 0.9141514735633008
+            },
+            "donepezil_effect_corr": {
+              "point": 0.90888502904525,
+              "ci_low": 0.908241377876863,
+              "ci_high": 0.9095204674234244
+            },
+            "memantine_effect_corr": {
+              "point": 0.9180863135251708,
+              "ci_low": 0.9173819380358618,
+              "ci_high": 0.9187807732006766
+            }
+          }
+        },
+        "P-ADIC": {
+          "signature_used": "locked_CVAE_training_signature_simulations_constrained_full",
+          "n_used": 145,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.9155728511899567,
+          "memantine_effect_corr": 0.9216197717233897,
+          "effect_magnitude_correlation": 0.9185963114566732,
+          "donepezil_cosine": 0.9243520600656192,
+          "memantine_cosine": 0.9412876816520185,
+          "cosine_mean": 0.9328198708588189,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.9185963114566732,
+              "ci_low": 0.9182921305368017,
+              "ci_high": 0.9188479323806517
+            },
+            "donepezil_effect_corr": {
+              "point": 0.9155728511899567,
+              "ci_low": 0.9153416973333033,
+              "ci_high": 0.9157719261567034
+            },
+            "memantine_effect_corr": {
+              "point": 0.9216197717233897,
+              "ci_low": 0.9212291838516959,
+              "ci_high": 0.9219356835900325
+            }
+          }
+        }
+      },
+      "secondary_own_fit_subjects": {
+        "TUH": {
+          "signature_used": "linear_own_signature_mean_predicted_delta_on_fit_subjects",
+          "n_used": 200,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.9966916640484558,
+          "memantine_effect_corr": 0.9967037715209371,
+          "effect_magnitude_correlation": 0.9966977177846965,
+          "donepezil_cosine": 0.9977195576775445,
+          "memantine_cosine": 0.9977617540137723,
+          "cosine_mean": 0.9977406558456584,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.9966977177846965,
+              "ci_low": 0.9961224825183561,
+              "ci_high": 0.9972323581614162
+            },
+            "donepezil_effect_corr": {
+              "point": 0.9966916640484558,
+              "ci_low": 0.9961153662349224,
+              "ci_high": 0.9972272879284519
+            },
+            "memantine_effect_corr": {
+              "point": 0.9967037715209371,
+              "ci_low": 0.9961295988017899,
+              "ci_high": 0.9972374283943803
+            }
+          }
+        },
+        "OSF": {
+          "signature_used": "linear_own_signature_mean_predicted_delta_on_fit_subjects",
+          "n_used": 92,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.9896715823826917,
+          "memantine_effect_corr": 0.9897093385745918,
+          "effect_magnitude_correlation": 0.9896904604786417,
+          "donepezil_cosine": 0.9928640816776403,
+          "memantine_cosine": 0.9929957003947417,
+          "cosine_mean": 0.992929891036191,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.9896904604786417,
+              "ci_low": 0.9888792368872338,
+              "ci_high": 0.9905135858292212
+            },
+            "donepezil_effect_corr": {
+              "point": 0.9896715823826917,
+              "ci_low": 0.9888588985918769,
+              "ci_high": 0.990496214036269
+            },
+            "memantine_effect_corr": {
+              "point": 0.9897093385745918,
+              "ci_low": 0.9888995751825905,
+              "ci_high": 0.9905309576221734
+            }
+          }
+        },
+        "P-ADIC": {
+          "signature_used": "linear_own_signature_mean_predicted_delta_on_fit_subjects",
+          "n_used": 145,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.9968149817906597,
+          "memantine_effect_corr": 0.9968261760504928,
+          "effect_magnitude_correlation": 0.9968205789205763,
+          "donepezil_cosine": 0.9977208630401424,
+          "memantine_cosine": 0.9977637118604485,
+          "cosine_mean": 0.9977422874502955,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.9968205789205763,
+              "ci_low": 0.9963901295128108,
+              "ci_high": 0.9971814072837808
+            },
+            "donepezil_effect_corr": {
+              "point": 0.9968149817906597,
+              "ci_low": 0.9963837827661568,
+              "ci_high": 0.9971764244744228
+            },
+            "memantine_effect_corr": {
+              "point": 0.9968261760504928,
+              "ci_low": 0.9963964762594649,
+              "ci_high": 0.9971863900931387
+            }
+          }
+        }
+      },
+      "secondary_own_full66": {
+        "TUH": {
+          "signature_used": "linear_own_signature_mean_predicted_delta_on_all_66_training_subjects",
+          "n_used": 200,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.9966448769869609,
+          "memantine_effect_corr": 0.9966571560082033,
+          "effect_magnitude_correlation": 0.9966510164975821,
+          "donepezil_cosine": 0.9976871045979003,
+          "memantine_cosine": 0.9977298980207563,
+          "cosine_mean": 0.9977085013093283,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.9966510164975821,
+              "ci_low": 0.9960720080500918,
+              "ci_high": 0.997189625268862
+            },
+            "donepezil_effect_corr": {
+              "point": 0.9966448769869609,
+              "ci_low": 0.996064799060901,
+              "ci_high": 0.9971844765304018
+            },
+            "memantine_effect_corr": {
+              "point": 0.9966571560082033,
+              "ci_low": 0.9960792170392826,
+              "ci_high": 0.9971947740073223
+            }
+          }
+        },
+        "OSF": {
+          "signature_used": "linear_own_signature_mean_predicted_delta_on_all_66_training_subjects",
+          "n_used": 92,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.989601495560217,
+          "memantine_effect_corr": 0.989639507988059,
+          "effect_magnitude_correlation": 0.989620501774138,
+          "donepezil_cosine": 0.9928156121177752,
+          "memantine_cosine": 0.9929481196166263,
+          "cosine_mean": 0.9928818658672007,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.989620501774138,
+              "ci_low": 0.988806947899051,
+              "ci_high": 0.9904464870614165
+            },
+            "donepezil_effect_corr": {
+              "point": 0.989601495560217,
+              "ci_low": 0.9887864776571941,
+              "ci_high": 0.9904289923392896
+            },
+            "memantine_effect_corr": {
+              "point": 0.989639507988059,
+              "ci_low": 0.9888274185072701,
+              "ci_high": 0.9904639817835433
+            }
+          }
+        },
+        "P-ADIC": {
+          "signature_used": "linear_own_signature_mean_predicted_delta_on_all_66_training_subjects",
+          "n_used": 145,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.9967943445975544,
+          "memantine_effect_corr": 0.9968056184702458,
+          "effect_magnitude_correlation": 0.9967999815339001,
+          "donepezil_cosine": 0.9977071125340999,
+          "memantine_cosine": 0.997750214878653,
+          "cosine_mean": 0.9977286637063765,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.9967999815339001,
+              "ci_low": 0.9963677118715428,
+              "ci_high": 0.9971630250359431
+            },
+            "donepezil_effect_corr": {
+              "point": 0.9967943445975544,
+              "ci_low": 0.9963613219998005,
+              "ci_high": 0.9971580171218155
+            },
+            "memantine_effect_corr": {
+              "point": 0.9968056184702458,
+              "ci_low": 0.996374101743285,
+              "ci_high": 0.9971680329500708
+            }
+          }
+        }
+      }
+    },
+    {
+      "fold": 3,
+      "alpha": 316227.7660168379,
+      "alpha_selection": {
+        "method": "inner 10% subject split of non-test IDs; minimize MSE of 2185-D \u0394x",
+        "test_size": 0.1,
+        "stratify": "disease label",
+        "random_state": 45,
+        "grid": [
+          0.01,
+          0.03162277660168379,
+          0.1,
+          0.31622776601683794,
+          1.0,
+          3.1622776601683795,
+          10.0,
+          31.622776601683793,
+          100.0,
+          316.22776601683796,
+          1000.0,
+          3162.2776601683795,
+          10000.0,
+          31622.776601683792,
+          100000.0,
+          316227.7660168379,
+          1000000.0
+        ],
+        "val_mse_by_alpha": {
+          "0.01": 0.030314494455404167,
+          "0.0316228": 0.03031251152679383,
+          "0.1": 0.030306243886133337,
+          "0.316228": 0.03028645312081451,
+          "1": 0.030224160310141496,
+          "3.16228": 0.030030038494274526,
+          "10": 0.02944345680588015,
+          "31.6228": 0.027824165177908325,
+          "100": 0.024280557723452386,
+          "316.228": 0.019332096464397923,
+          "1000": 0.015336807601735815,
+          "3162.28": 0.013190730061964428,
+          "10000": 0.012319171679228323,
+          "31622.8": 0.011998264717913465,
+          "100000": 0.011886180321830258,
+          "316228": 0.011867513816381424,
+          "1e+06": 0.011871577880886297
+        },
+        "selected_val_mse": 0.011867513816381424
+      },
+      "n_train_subjects": 47,
+      "n_val_subjects": 6,
+      "n_test_subjects_training_cohort": 13,
+      "train_ids": [
+        45,
+        54,
+        40,
+        15,
+        17,
+        31,
+        41,
+        14,
+        59,
+        27,
+        63,
+        19,
+        25,
+        6,
+        32,
+        57,
+        1,
+        48,
+        44,
+        16,
+        11,
+        62,
+        18,
+        56,
+        60,
+        58,
+        24,
+        34,
+        12,
+        10,
+        52,
+        53,
+        22,
+        55,
+        65,
+        23,
+        2,
+        33,
+        9,
+        49,
+        29,
+        35,
+        51,
+        43,
+        0,
+        4,
+        26
+      ],
+      "val_ids": [
+        20,
+        50,
+        30,
+        38,
+        39,
+        13
+      ],
+      "test_ids": [
+        3,
+        5,
+        7,
+        8,
+        21,
+        28,
+        36,
+        37,
+        42,
+        46,
+        47,
+        61,
+        64
+      ],
+      "refit": "Ridge fit on train_ids only (val used only for alpha); CVAE-matched",
+      "primary": {
+        "TUH": {
+          "signature_used": "locked_CVAE_training_signature_simulations_constrained_full",
+          "n_used": 200,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.9014781107953234,
+          "memantine_effect_corr": 0.8978752053389321,
+          "effect_magnitude_correlation": 0.8996766580671277,
+          "donepezil_cosine": 0.9156951783039371,
+          "memantine_cosine": 0.9266925907430951,
+          "cosine_mean": 0.9211938845235161,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.8996766580671277,
+              "ci_low": 0.8959516550523341,
+              "ci_high": 0.903137542607252
+            },
+            "donepezil_effect_corr": {
+              "point": 0.9014781107953234,
+              "ci_low": 0.8977094978190979,
+              "ci_high": 0.9050286640157226
+            },
+            "memantine_effect_corr": {
+              "point": 0.8978752053389321,
+              "ci_low": 0.89420026792236,
+              "ci_high": 0.9012891408960709
+            }
+          }
+        },
+        "OSF": {
+          "signature_used": "locked_CVAE_training_signature_simulations_constrained_full",
+          "n_used": 92,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.8617515243771765,
+          "memantine_effect_corr": 0.8563089355527921,
+          "effect_magnitude_correlation": 0.8590302299649843,
+          "donepezil_cosine": 0.8865164557908043,
+          "memantine_cosine": 0.8944792696472524,
+          "cosine_mean": 0.8904978627190283,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.8590302299649843,
+              "ci_low": 0.8545103815650655,
+              "ci_high": 0.8636182281700011
+            },
+            "donepezil_effect_corr": {
+              "point": 0.8617515243771765,
+              "ci_low": 0.8572398364291233,
+              "ci_high": 0.8662805433438917
+            },
+            "memantine_effect_corr": {
+              "point": 0.8563089355527921,
+              "ci_low": 0.8516640996051426,
+              "ci_high": 0.8609032984200452
+            }
+          }
+        },
+        "P-ADIC": {
+          "signature_used": "locked_CVAE_training_signature_simulations_constrained_full",
+          "n_used": 145,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.9006926300813267,
+          "memantine_effect_corr": 0.8892814362696556,
+          "effect_magnitude_correlation": 0.8949870331754912,
+          "donepezil_cosine": 0.9174465132885694,
+          "memantine_cosine": 0.9140321278086544,
+          "cosine_mean": 0.915739320548612,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.8949870331754912,
+              "ci_low": 0.8917851213237369,
+              "ci_high": 0.8977893240052639
+            },
+            "donepezil_effect_corr": {
+              "point": 0.9006926300813267,
+              "ci_low": 0.8977724688005077,
+              "ci_high": 0.9033035225582128
+            },
+            "memantine_effect_corr": {
+              "point": 0.8892814362696556,
+              "ci_low": 0.8857783578446824,
+              "ci_high": 0.8922980289346013
+            }
+          }
+        }
+      },
+      "secondary_own_fit_subjects": {
+        "TUH": {
+          "signature_used": "linear_own_signature_mean_predicted_delta_on_fit_subjects",
+          "n_used": 200,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.9760688366218911,
+          "memantine_effect_corr": 0.9762856713896698,
+          "effect_magnitude_correlation": 0.9761772540057805,
+          "donepezil_cosine": 0.9827520856492938,
+          "memantine_cosine": 0.9836496433685193,
+          "cosine_mean": 0.9832008645089065,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.9761772540057805,
+              "ci_low": 0.9725120660730325,
+              "ci_high": 0.9795725691315094
+            },
+            "donepezil_effect_corr": {
+              "point": 0.9760688366218911,
+              "ci_low": 0.9723870673283299,
+              "ci_high": 0.9794798094796381
+            },
+            "memantine_effect_corr": {
+              "point": 0.9762856713896698,
+              "ci_low": 0.972637064817735,
+              "ci_high": 0.9796653287833805
+            }
+          }
+        },
+        "OSF": {
+          "signature_used": "linear_own_signature_mean_predicted_delta_on_fit_subjects",
+          "n_used": 92,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.9384491068550248,
+          "memantine_effect_corr": 0.9389395183057424,
+          "effect_magnitude_correlation": 0.9386943125803836,
+          "donepezil_cosine": 0.9543813638173356,
+          "memantine_cosine": 0.9566089397041803,
+          "cosine_mean": 0.9554951517607579,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.9386943125803836,
+              "ci_low": 0.934341099178244,
+              "ci_high": 0.9430844416753805
+            },
+            "donepezil_effect_corr": {
+              "point": 0.9384491068550248,
+              "ci_low": 0.9340829189993555,
+              "ci_high": 0.9428546563089076
+            },
+            "memantine_effect_corr": {
+              "point": 0.9389395183057424,
+              "ci_low": 0.9345992793571325,
+              "ci_high": 0.9433142270418535
+            }
+          }
+        },
+        "P-ADIC": {
+          "signature_used": "linear_own_signature_mean_predicted_delta_on_fit_subjects",
+          "n_used": 145,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.9752924250312248,
+          "memantine_effect_corr": 0.9754746707776536,
+          "effect_magnitude_correlation": 0.9753835479044393,
+          "donepezil_cosine": 0.9811550498381411,
+          "memantine_cosine": 0.9820809706119407,
+          "cosine_mean": 0.9816180102250409,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.9753835479044393,
+              "ci_low": 0.9725932271759725,
+              "ci_high": 0.977813193263097
+            },
+            "donepezil_effect_corr": {
+              "point": 0.9752924250312248,
+              "ci_low": 0.9724953484969237,
+              "ci_high": 0.9777289335250072
+            },
+            "memantine_effect_corr": {
+              "point": 0.9754746707776536,
+              "ci_low": 0.9726905387520824,
+              "ci_high": 0.9778972287620143
+            }
+          }
+        }
+      },
+      "secondary_own_full66": {
+        "TUH": {
+          "signature_used": "linear_own_signature_mean_predicted_delta_on_all_66_training_subjects",
+          "n_used": 200,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.9763580505920016,
+          "memantine_effect_corr": 0.9765725145586605,
+          "effect_magnitude_correlation": 0.976465282575331,
+          "donepezil_cosine": 0.9829732967295195,
+          "memantine_cosine": 0.9838588472405082,
+          "cosine_mean": 0.9834160719850138,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.976465282575331,
+              "ci_low": 0.9728278157472726,
+              "ci_high": 0.9798300639951891
+            },
+            "donepezil_effect_corr": {
+              "point": 0.9763580505920016,
+              "ci_low": 0.972705370372822,
+              "ci_high": 0.9797373276432653
+            },
+            "memantine_effect_corr": {
+              "point": 0.9765725145586605,
+              "ci_low": 0.9729514582455887,
+              "ci_high": 0.9799228003471131
+            }
+          }
+        },
+        "OSF": {
+          "signature_used": "linear_own_signature_mean_predicted_delta_on_all_66_training_subjects",
+          "n_used": 92,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.9385600869560473,
+          "memantine_effect_corr": 0.9390496882571449,
+          "effect_magnitude_correlation": 0.9388048876065961,
+          "donepezil_cosine": 0.9544607465773451,
+          "memantine_cosine": 0.9566846568673414,
+          "cosine_mean": 0.9555727017223432,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.9388048876065961,
+              "ci_low": 0.9344407620164407,
+              "ci_high": 0.9431970960119626
+            },
+            "donepezil_effect_corr": {
+              "point": 0.9385600869560473,
+              "ci_low": 0.9341829312831434,
+              "ci_high": 0.9429677298387577
+            },
+            "memantine_effect_corr": {
+              "point": 0.9390496882571449,
+              "ci_low": 0.9346985927497378,
+              "ci_high": 0.9434264621851675
+            }
+          }
+        },
+        "P-ADIC": {
+          "signature_used": "linear_own_signature_mean_predicted_delta_on_all_66_training_subjects",
+          "n_used": 145,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.9749688835120173,
+          "memantine_effect_corr": 0.9751534912854338,
+          "effect_magnitude_correlation": 0.9750611873987256,
+          "donepezil_cosine": 0.980888750955194,
+          "memantine_cosine": 0.9818294311240816,
+          "cosine_mean": 0.9813590910396378,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.9750611873987256,
+              "ci_low": 0.9722487528660883,
+              "ci_high": 0.9775098091106124
+            },
+            "donepezil_effect_corr": {
+              "point": 0.9749688835120173,
+              "ci_low": 0.9721501761982304,
+              "ci_high": 0.9774245588797492
+            },
+            "memantine_effect_corr": {
+              "point": 0.9751534912854338,
+              "ci_low": 0.9723473295339461,
+              "ci_high": 0.9775950593414755
+            }
+          }
+        }
+      }
+    },
+    {
+      "fold": 4,
+      "alpha": 100000.0,
+      "alpha_selection": {
+        "method": "inner 10% subject split of non-test IDs; minimize MSE of 2185-D \u0394x",
+        "test_size": 0.1,
+        "stratify": "disease label",
+        "random_state": 46,
+        "grid": [
+          0.01,
+          0.03162277660168379,
+          0.1,
+          0.31622776601683794,
+          1.0,
+          3.1622776601683795,
+          10.0,
+          31.622776601683793,
+          100.0,
+          316.22776601683796,
+          1000.0,
+          3162.2776601683795,
+          10000.0,
+          31622.776601683792,
+          100000.0,
+          316227.7660168379,
+          1000000.0
+        ],
+        "val_mse_by_alpha": {
+          "0.01": 0.08867413930776945,
+          "0.0316228": 0.0886667404705026,
+          "0.1": 0.08864335216538294,
+          "0.316228": 0.08856948044923765,
+          "1": 0.0883367595890693,
+          "3.16228": 0.08760952826261398,
+          "10": 0.08539307306891952,
+          "31.6228": 0.07911536017059402,
+          "100": 0.06442596649351674,
+          "316.228": 0.041423719163903805,
+          "1000": 0.022375735005568193,
+          "3162.28": 0.014681777755640875,
+          "10000": 0.01278021235279132,
+          "31622.8": 0.012311096856954256,
+          "100000": 0.01221504241028276,
+          "316228": 0.012227561222045208,
+          "1e+06": 0.012245044249595362
+        },
+        "selected_val_mse": 0.01221504241028276
+      },
+      "n_train_subjects": 47,
+      "n_val_subjects": 6,
+      "n_test_subjects_training_cohort": 13,
+      "train_ids": [
+        30,
+        19,
+        41,
+        3,
+        50,
+        61,
+        46,
+        10,
+        33,
+        44,
+        34,
+        31,
+        52,
+        18,
+        7,
+        26,
+        37,
+        20,
+        36,
+        39,
+        15,
+        63,
+        14,
+        42,
+        49,
+        23,
+        64,
+        5,
+        32,
+        43,
+        21,
+        0,
+        56,
+        59,
+        38,
+        9,
+        55,
+        8,
+        22,
+        6,
+        45,
+        2,
+        35,
+        65,
+        1,
+        11,
+        53
+      ],
+      "val_ids": [
+        60,
+        28,
+        47,
+        16,
+        51,
+        12
+      ],
+      "test_ids": [
+        4,
+        13,
+        17,
+        24,
+        25,
+        27,
+        29,
+        40,
+        48,
+        54,
+        57,
+        58,
+        62
+      ],
+      "refit": "Ridge fit on train_ids only (val used only for alpha); CVAE-matched",
+      "primary": {
+        "TUH": {
+          "signature_used": "locked_CVAE_training_signature_simulations_constrained_full",
+          "n_used": 200,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.8584398291972872,
+          "memantine_effect_corr": 0.868914400054552,
+          "effect_magnitude_correlation": 0.8636771146259197,
+          "donepezil_cosine": 0.8820169620445678,
+          "memantine_cosine": 0.9171959697177959,
+          "cosine_mean": 0.8996064658811819,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.8636771146259197,
+              "ci_low": 0.851015368107553,
+              "ci_high": 0.8758599010590824
+            },
+            "donepezil_effect_corr": {
+              "point": 0.8584398291972872,
+              "ci_low": 0.8449384479647143,
+              "ci_high": 0.8714069453471941
+            },
+            "memantine_effect_corr": {
+              "point": 0.868914400054552,
+              "ci_low": 0.8567388195793493,
+              "ci_high": 0.8805186374500312
+            }
+          }
+        },
+        "OSF": {
+          "signature_used": "locked_CVAE_training_signature_simulations_constrained_full",
+          "n_used": 92,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.7132053555208866,
+          "memantine_effect_corr": 0.7262754092020098,
+          "effect_magnitude_correlation": 0.7197403823614482,
+          "donepezil_cosine": 0.7663486976832151,
+          "memantine_cosine": 0.8057173959316984,
+          "cosine_mean": 0.7860330468074568,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.7197403823614482,
+              "ci_low": 0.7056797150323273,
+              "ci_high": 0.733909122597672
+            },
+            "donepezil_effect_corr": {
+              "point": 0.7132053555208866,
+              "ci_low": 0.6991658260699266,
+              "ci_high": 0.7273062744247483
+            },
+            "memantine_effect_corr": {
+              "point": 0.7262754092020098,
+              "ci_low": 0.712188953002349,
+              "ci_high": 0.7401830778530135
+            }
+          }
+        },
+        "P-ADIC": {
+          "signature_used": "locked_CVAE_training_signature_simulations_constrained_full",
+          "n_used": 145,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.8225335150245192,
+          "memantine_effect_corr": 0.8117386483637614,
+          "effect_magnitude_correlation": 0.8171360816941403,
+          "donepezil_cosine": 0.8531174553248603,
+          "memantine_cosine": 0.8529536341516885,
+          "cosine_mean": 0.8530355447382744,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.8171360816941403,
+              "ci_low": 0.8033360158985742,
+              "ci_high": 0.8291016609635614
+            },
+            "donepezil_effect_corr": {
+              "point": 0.8225335150245192,
+              "ci_low": 0.8090329513559348,
+              "ci_high": 0.8342210005835852
+            },
+            "memantine_effect_corr": {
+              "point": 0.8117386483637614,
+              "ci_low": 0.797376324798797,
+              "ci_high": 0.8240699822604495
+            }
+          }
+        }
+      },
+      "secondary_own_fit_subjects": {
+        "TUH": {
+          "signature_used": "linear_own_signature_mean_predicted_delta_on_fit_subjects",
+          "n_used": 200,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.8983333916043411,
+          "memantine_effect_corr": 0.9006659053324872,
+          "effect_magnitude_correlation": 0.8994996484684141,
+          "donepezil_cosine": 0.9265781494729056,
+          "memantine_cosine": 0.9356186597142988,
+          "cosine_mean": 0.9310984045936022,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.8994996484684141,
+              "ci_low": 0.885330008438825,
+              "ci_high": 0.9131510267538419
+            },
+            "donepezil_effect_corr": {
+              "point": 0.8983333916043411,
+              "ci_low": 0.8839715040287176,
+              "ci_high": 0.9121548214181293
+            },
+            "memantine_effect_corr": {
+              "point": 0.9006659053324872,
+              "ci_low": 0.8866886238121355,
+              "ci_high": 0.9141472320895545
+            }
+          }
+        },
+        "OSF": {
+          "signature_used": "linear_own_signature_mean_predicted_delta_on_fit_subjects",
+          "n_used": 92,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.7438548477497152,
+          "memantine_effect_corr": 0.7484780720516938,
+          "effect_magnitude_correlation": 0.7461664599007045,
+          "donepezil_cosine": 0.801461729518709,
+          "memantine_cosine": 0.8209778234019203,
+          "cosine_mean": 0.8112197764603146,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.7461664599007045,
+              "ci_low": 0.7313024482308125,
+              "ci_high": 0.7613129037131032
+            },
+            "donepezil_effect_corr": {
+              "point": 0.7438548477497152,
+              "ci_low": 0.7290028802750812,
+              "ci_high": 0.7590418062432299
+            },
+            "memantine_effect_corr": {
+              "point": 0.7484780720516938,
+              "ci_low": 0.7336187392494752,
+              "ci_high": 0.763574422046292
+            }
+          }
+        },
+        "P-ADIC": {
+          "signature_used": "linear_own_signature_mean_predicted_delta_on_fit_subjects",
+          "n_used": 145,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.8590875162113328,
+          "memantine_effect_corr": 0.8598560170579008,
+          "effect_magnitude_correlation": 0.8594717666346168,
+          "donepezil_cosine": 0.883257984354424,
+          "memantine_cosine": 0.8939985989178566,
+          "cosine_mean": 0.8886282916361403,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.8594717666346168,
+              "ci_low": 0.8447880764172779,
+              "ci_high": 0.8721464689017174
+            },
+            "donepezil_effect_corr": {
+              "point": 0.8590875162113328,
+              "ci_low": 0.8444000864968606,
+              "ci_high": 0.8717477884462423
+            },
+            "memantine_effect_corr": {
+              "point": 0.8598560170579008,
+              "ci_low": 0.8451762335013506,
+              "ci_high": 0.8725235668834508
+            }
+          }
+        }
+      },
+      "secondary_own_full66": {
+        "TUH": {
+          "signature_used": "linear_own_signature_mean_predicted_delta_on_all_66_training_subjects",
+          "n_used": 200,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.8973437980647613,
+          "memantine_effect_corr": 0.8996930483730636,
+          "effect_magnitude_correlation": 0.8985184232189125,
+          "donepezil_cosine": 0.9259530280064198,
+          "memantine_cosine": 0.935050386422687,
+          "cosine_mean": 0.9305017072145534,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.8985184232189125,
+              "ci_low": 0.884218332287843,
+              "ci_high": 0.9123229886061462
+            },
+            "donepezil_effect_corr": {
+              "point": 0.8973437980647613,
+              "ci_low": 0.8828500118968986,
+              "ci_high": 0.9113295909474745
+            },
+            "memantine_effect_corr": {
+              "point": 0.8996930483730636,
+              "ci_low": 0.8855866789490362,
+              "ci_high": 0.913316386264818
+            }
+          }
+        },
+        "OSF": {
+          "signature_used": "linear_own_signature_mean_predicted_delta_on_all_66_training_subjects",
+          "n_used": 92,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.7410348042993592,
+          "memantine_effect_corr": 0.7456996830563168,
+          "effect_magnitude_correlation": 0.743367243677838,
+          "donepezil_cosine": 0.7993682056659364,
+          "memantine_cosine": 0.8190894313840903,
+          "cosine_mean": 0.8092288185250134,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.743367243677838,
+              "ci_low": 0.7284050968035164,
+              "ci_high": 0.7586074172632055
+            },
+            "donepezil_effect_corr": {
+              "point": 0.7410348042993592,
+              "ci_low": 0.726043994298198,
+              "ci_high": 0.7563160409812786
+            },
+            "memantine_effect_corr": {
+              "point": 0.7456996830563168,
+              "ci_low": 0.7307996009693263,
+              "ci_high": 0.7608689100880075
+            }
+          }
+        },
+        "P-ADIC": {
+          "signature_used": "linear_own_signature_mean_predicted_delta_on_all_66_training_subjects",
+          "n_used": 145,
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.8586325162696773,
+          "memantine_effect_corr": 0.8594067793612178,
+          "effect_magnitude_correlation": 0.8590196478154475,
+          "donepezil_cosine": 0.8828261319598057,
+          "memantine_cosine": 0.8936251020222236,
+          "cosine_mean": 0.8882256169910147,
+          "bootstrap": {
+            "B": 2000,
+            "seed": 42,
+            "method": "subject_bootstrap_percentile_shared_means",
+            "effect_magnitude_correlation": {
+              "point": 0.8590196478154475,
+              "ci_low": 0.8442116092791395,
+              "ci_high": 0.8718471359746076
+            },
+            "donepezil_effect_corr": {
+              "point": 0.8586325162696773,
+              "ci_low": 0.8438202268670487,
+              "ci_high": 0.8714054611520528
+            },
+            "memantine_effect_corr": {
+              "point": 0.8594067793612178,
+              "ci_low": 0.8445953073458028,
+              "ci_high": 0.872206219588869
+            }
+          }
+        }
+      }
+    }
+  ],
+  "five_fold_summary_primary_locked_cvae_signature": {
+    "TUH": {
+      "r_mean": 0.8827922245556431,
+      "r_std": 0.027196363080154985,
+      "r_per_fold": [
+        0.8511122728594015,
+        0.8806489464201874,
+        0.9188461308055793,
+        0.8996766580671277,
+        0.8636771146259197
+      ],
+      "signs_per_fold": [
+        "10/10",
+        "10/10",
+        "10/10",
+        "10/10",
+        "10/10"
+      ]
+    },
+    "OSF": {
+      "r_mean": 0.7869994657093086,
+      "r_std": 0.10953421893762198,
+      "r_per_fold": [
+        0.638709502034682,
+        0.804031542900218,
+        0.9134856712852104,
+        0.8590302299649843,
+        0.7197403823614482
+      ],
+      "signs_per_fold": [
+        "10/10",
+        "8/10",
+        "10/10",
+        "10/10",
+        "10/10"
+      ]
+    },
+    "P-ADIC": {
+      "r_mean": 0.8583259349985983,
+      "r_std": 0.05989774353253612,
+      "r_per_fold": [
+        0.7751187161841678,
+        0.8857915324825192,
+        0.9185963114566732,
+        0.8949870331754912,
+        0.8171360816941403
+      ],
+      "signs_per_fold": [
+        "10/10",
+        "10/10",
+        "10/10",
+        "10/10",
+        "10/10"
+      ]
+    }
+  },
+  "five_fold_summary_secondary_own_fit_subjects": {
+    "TUH": {
+      "r_mean": 0.9443406093848246,
+      "r_std": 0.04488701550152082,
+      "r_per_fold": [
+        0.8971006050537248,
+        0.9522278216115068,
+        0.9966977177846965,
+        0.9761772540057805,
+        0.8994996484684141
+      ],
+      "signs_per_fold": [
+        "10/10",
+        "10/10",
+        "10/10",
+        "10/10",
+        "10/10"
+      ]
+    },
+    "OSF": {
+      "r_mean": 0.8422303686920538,
+      "r_std": 0.13366156834011184,
+      "r_per_fold": [
+        0.6676715192815701,
+        0.8689290912189683,
+        0.9896904604786417,
+        0.9386943125803836,
+        0.7461664599007045
+      ],
+      "signs_per_fold": [
+        "10/10",
+        "8/10",
+        "10/10",
+        "10/10",
+        "10/10"
+      ]
+    },
+    "P-ADIC": {
+      "r_mean": 0.9210710808410824,
+      "r_std": 0.07774099923269638,
+      "r_per_fold": [
+        0.8184702500665639,
+        0.9552092606792149,
+        0.9968205789205763,
+        0.9753835479044393,
+        0.8594717666346168
+      ],
+      "signs_per_fold": [
+        "10/10",
+        "10/10",
+        "10/10",
+        "10/10",
+        "10/10"
+      ]
+    }
+  },
+  "five_fold_summary_secondary_own_full66": {
+    "TUH": {
+      "r_mean": 0.9448548634151239,
+      "r_std": 0.04536703061349383,
+      "r_per_fold": [
+        0.8970243475908658,
+        0.9556152471929278,
+        0.9966510164975821,
+        0.976465282575331,
+        0.8985184232189125
+      ],
+      "signs_per_fold": [
+        "10/10",
+        "10/10",
+        "10/10",
+        "10/10",
+        "10/10"
+      ]
+    },
+    "OSF": {
+      "r_mean": 0.843598999730401,
+      "r_std": 0.13335475275864367,
+      "r_per_fold": [
+        0.6712158774733747,
+        0.874986488120058,
+        0.989620501774138,
+        0.9388048876065961,
+        0.743367243677838
+      ],
+      "signs_per_fold": [
+        "10/10",
+        "8/10",
+        "10/10",
+        "10/10",
+        "10/10"
+      ]
+    },
+    "P-ADIC": {
+      "r_mean": 0.922646686067354,
+      "r_std": 0.07632959870138821,
+      "r_per_fold": [
+        0.8239837855088235,
+        0.9583688280798727,
+        0.9967999815339001,
+        0.9750611873987256,
+        0.8590196478154475
+      ],
+      "signs_per_fold": [
+        "10/10",
+        "10/10",
+        "10/10",
+        "10/10",
+        "10/10"
+      ]
+    }
+  },
+  "interpretation_constraints": [
+    "Do not treat own-signature scores as external generalization by themselves.",
+    "Do not replace locked CVAE fold-0 r=0.908/0.851/0.918.",
+    "Do not claim independent pharmacodynamic discovery.",
+    "Do not call the best fold a new hero result."
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "timestamp": "2026-08-09T19:49:11.792154",
+  "n_features_for_r": 2185,
+  "cohorts": {
+    "tuh": {
+      "direction_agreement_total": "10/10",
+      "effect_magnitude_correlation": 0.9080237169930465,
+      "effect_magnitude_correlation_ci": {
+        "r": 0.9080237169930465,
+        "n": 2185,
+        "ci_low": 0.9003732967442762,
+        "ci_high": 0.9151128969310335,
+        "method": "fisher_z",
+        "alpha": 0.05
+      },
+      "effect_magnitude_correlation_formatted": "0.908 (95% CI 0.900 to 0.915)",
+      "donepezil_effect_corr": 0.8959002296326153,
+      "donepezil_effect_corr_ci": {
+        "r": 0.8959002296326153,
+        "n": 2185,
+        "ci_low": 0.8873009622856064,
+        "ci_high": 0.9038767663695916,
+        "method": "fisher_z",
+        "alpha": 0.05
+      },
+      "memantine_effect_corr": 0.9201472043534777,
+      "memantine_effect_corr_ci": {
+        "r": 0.9201472043534777,
+        "n": 2185,
+        "ci_low": 0.9134594562293379,
+        "ci_high": 0.9263380273559705,
+        "method": "fisher_z",
+        "alpha": 0.05
+      },
+      "n_used": 200
+    },
+    "osf": {
+      "direction_agreement_total": "10/10",
+      "effect_magnitude_correlation": 0.8510028552622375,
+      "effect_magnitude_correlation_ci": {
+        "r": 0.8510028552622375,
+        "n": 2185,
+        "ci_low": 0.8390097266612975,
+        "ci_high": 0.8621695056883124,
+        "method": "fisher_z",
+        "alpha": 0.05
+      },
+      "effect_magnitude_correlation_formatted": "0.851 (95% CI 0.839 to 0.862)",
+      "donepezil_effect_corr": 0.826493536761903,
+      "donepezil_effect_corr_ci": {
+        "r": 0.826493536761903,
+        "n": 2185,
+        "ci_low": 0.8127271925270048,
+        "ci_high": 0.8393376129571694,
+        "method": "fisher_z",
+        "alpha": 0.05
+      },
+      "memantine_effect_corr": 0.8755121737625721,
+      "memantine_effect_corr_ci": {
+        "r": 0.8755121737625721,
+        "n": 2185,
+        "ci_low": 0.8653483448039413,
+        "ci_high": 0.884956128442864,
+        "method": "fisher_z",
+        "alpha": 0.05
+      },
+      "n_used": 92
+    },
+    "padic": {
+      "direction_agreement_total": "10/10",
+      "effect_magnitude_correlation": 0.9176399843046972,
+      "effect_magnitude_correlation_ci": {
+        "r": 0.9176399843046972,
+        "n": 2185,
+        "ci_low": 0.9107520140171113,
+        "ci_high": 0.9240174950885196,
+        "method": "fisher_z",
+        "alpha": 0.05
+      },
+      "effect_magnitude_correlation_formatted": "0.918 (95% CI 0.911 to 0.924)",
+      "donepezil_effect_corr": 0.9176399843046972,
+      "donepezil_effect_corr_ci": {
+        "r": 0.9176399843046972,
+        "n": 2185,
+        "ci_low": 0.9107520140171113,
+        "ci_high": 0.9240174950885196,
+        "method": "fisher_z",
+        "alpha": 0.05
+      },
+      "memantine_effect_corr": 0.9176399843046972,
+      "memantine_effect_corr_ci": {
+        "r": 0.9176399843046972,
+        "n": 2185,
+        "ci_low": 0.9107520140171113,
+        "ci_high": 0.9240174950885196,
+        "method": "fisher_z",
+        "alpha": 0.05
+      },
+      "n_used": 145
+    }
+  }
+}

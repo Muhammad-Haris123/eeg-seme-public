@@ -1,0 +1,10 @@
+{
+  "train_seed": 42,
+  "split_seed": 42,
+  "checkpoint_path": "models/checkpoints_constrained/checkpoint_constrained.pt",
+  "selection_rule": "historical locked fold-0 alias (not retrained in this experiment)",
+  "checkpoint_sha256": "2fdf42964a2b63a0185319cd69c818e911eba935151a6c4b57efafc353b634c3",
+  "training_config_hash": "4b1a25273e1e752755172c0ab99555350afd21206384b96bcbdfee484419dc09",
+  "retrained": false,
+  "best_epoch": 99
+}

@@ -1,0 +1,169 @@
+{
+  "dataset": "P-ADIC Dryad 10.5061/dryad.8gtht76pw",
+  "status": "FAIL",
+  "discrimination": {
+    "n_ad": 49,
+    "n_hc": 96,
+    "mean_ad": 0.21378665858385515,
+    "std_ad": 0.014416529383963879,
+    "mean_hc": 0.21472171565983444,
+    "std_hc": 0.014319683566914279,
+    "mannwhitney_u": 2342.0,
+    "mannwhitney_p": 0.9683240188058532,
+    "cohens_d": -0.06515049252110158,
+    "direction_ad_gt_hc": false,
+    "status": "FAIL",
+    "pass": false,
+    "caveats": [
+      "Recording-level units (AD multi-row cells) \u2014 not fully independent subjects",
+      "Age imbalance (AD older than HC) may confound",
+      "Eyes open/closed mixed; no EO/EC labels in mats",
+      "Channel order assumed (not embedded in .mat)"
+    ]
+  },
+  "scale_check": {
+    "train_abs_bandpower_mean": 3.2201134568993676e-05,
+    "padic_abs_bandpower_mean": 0.000107515552372206,
+    "bandpower_ratio_padic_over_train": 3.338874664240316,
+    "target_n_epochs": 864,
+    "epoch_count_summary": {
+      "min": 791,
+      "median": 791.0,
+      "max": 791,
+      "mean": 791.0
+    }
+  },
+  "pca": {
+    "pca_overlap": "moderate",
+    "overlap_fraction_within_train_r95": 0.4689655172413793,
+    "spectral_overlap_fraction": 0.903448275862069,
+    "figure": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\validation\\figures\\layer5d_padic_pca.png"
+  },
+  "cross_dataset": {
+    "direction_agreement_total": "10/10",
+    "donepezil_direction_agreement": "5/5",
+    "memantine_direction_agreement": "5/5",
+    "effect_magnitude_correlation": 0.9176399843046972,
+    "n_used": 145
+  },
+  "disease_label_ablation": {
+    "disease_fixed_0": {
+      "n_ad": 49,
+      "n_hc": 96,
+      "mean_ad": 0.21245812062098055,
+      "std_ad": 0.014733934191112246,
+      "mean_hc": 0.21472171565983444,
+      "std_hc": 0.014319683566914279,
+      "mannwhitney_u": 2200.0,
+      "mannwhitney_p": 0.5265532878563087,
+      "cohens_d": -0.15654123633801492,
+      "direction_ad_gt_hc": false,
+      "status": "FAIL",
+      "pass": false,
+      "caveats": [
+        "Recording-level units (AD multi-row cells) \u2014 not fully independent subjects",
+        "Age imbalance (AD older than HC) may confound",
+        "Eyes open/closed mixed; no EO/EC labels in mats",
+        "Channel order assumed (not embedded in .mat)"
+      ]
+    },
+    "disease_fixed_1": {
+      "n_ad": 49,
+      "n_hc": 96,
+      "mean_ad": 0.21378665858385515,
+      "std_ad": 0.014416529383963879,
+      "mean_hc": 0.2158008957436929,
+      "std_hc": 0.014628095853155436,
+      "mannwhitney_u": 2260.0,
+      "mannwhitney_p": 0.7021099968467742,
+      "cohens_d": -0.13836495027670082,
+      "direction_ad_gt_hc": false,
+      "status": "FAIL",
+      "pass": false,
+      "caveats": [
+        "Recording-level units (AD multi-row cells) \u2014 not fully independent subjects",
+        "Age imbalance (AD older than HC) may confound",
+        "Eyes open/closed mixed; no EO/EC labels in mats",
+        "Channel order assumed (not embedded in .mat)"
+      ]
+    }
+  },
+  "montage": {
+    "padic_assumed_order": [
+      "Fp1",
+      "Fp2",
+      "F7",
+      "F3",
+      "Fz",
+      "F4",
+      "F8",
+      "T3",
+      "C3",
+      "Cz",
+      "C4",
+      "T4",
+      "T5",
+      "P3",
+      "Pz",
+      "P4",
+      "T6",
+      "O1",
+      "O2"
+    ],
+    "train_order": [
+      "Fp1",
+      "Fp2",
+      "F3",
+      "F4",
+      "C3",
+      "C4",
+      "P3",
+      "P4",
+      "O1",
+      "O2",
+      "F7",
+      "F8",
+      "T3",
+      "T4",
+      "T5",
+      "T6",
+      "Fz",
+      "Cz",
+      "Pz"
+    ],
+    "same_channel_names": true,
+    "order_identical": false,
+    "remap_padic_index_to_train": [
+      0,
+      1,
+      3,
+      5,
+      8,
+      10,
+      13,
+      15,
+      17,
+      18,
+      2,
+      6,
+      7,
+      11,
+      12,
+      16,
+      4,
+      9,
+      14
+    ],
+    "embedded_channel_names_in_mat": false,
+    "assumption_source": "Independent open loader for this Dryad release (eeg-slowing-transportability CHANNELS tuple); author notes confirm 19-electrode 10\u201320 but do not list order.",
+    "mismatch_flag": true
+  },
+  "n_features": 145,
+  "prior_layers_untouched": {
+    "v3_exists": true,
+    "layer5_status": "FAIL",
+    "layer5_p": null,
+    "layer5b_present": true
+  },
+  "addition_only": true
+}

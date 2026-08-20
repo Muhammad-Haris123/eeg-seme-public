@@ -1,0 +1,79 @@
+{
+  "git_commit": "a818288dcab309dfb09aea186c1f87bcfd16dcf4",
+  "seeds": {
+    "42": {
+      "train_seed": 42,
+      "split_seed": 42,
+      "checkpoint_path": "models/checkpoints_constrained/checkpoint_constrained.pt",
+      "selection_rule": "historical locked fold-0 alias (not retrained in this experiment)",
+      "checkpoint_sha256": "2fdf42964a2b63a0185319cd69c818e911eba935151a6c4b57efafc353b634c3",
+      "training_config_hash": "4b1a25273e1e752755172c0ab99555350afd21206384b96bcbdfee484419dc09",
+      "retrained": false,
+      "best_epoch": 99,
+      "external_scoring_start_time": "2026-08-11T00:01:39.581022",
+      "external_scoring_end_time": "2026-08-11T00:01:48.868163",
+      "git_commit": "a818288dcab309dfb09aea186c1f87bcfd16dcf4"
+    },
+    "7": {
+      "train_seed": 7,
+      "training_start_time": "2026-08-11T00:01:48.899852",
+      "training_end_time": "2026-08-11T00:02:30.033409",
+      "checkpoint_selection_time": "2026-08-11T00:02:30.033409",
+      "checkpoint_path": "models/validation/multiseed_robustness/seed_7/checkpoint.pt",
+      "selection_metric": "val_total_loss",
+      "selection_rule": "argmin_epoch val_total on fixed fold-0 split (split_seed=42)",
+      "best_epoch": 100,
+      "external_scoring_start_time": "2026-08-11T00:02:30.071441",
+      "external_scoring_end_time": "2026-08-11T00:02:32.889253",
+      "git_commit": "a818288dcab309dfb09aea186c1f87bcfd16dcf4",
+      "training_config_hash": "4b1a25273e1e752755172c0ab99555350afd21206384b96bcbdfee484419dc09",
+      "checkpoint_sha256": "791b73882d45c5537b72b85fc57cfa8121d7e128fa4b8063e6ec65fdded4d8b9"
+    },
+    "21": {
+      "train_seed": 21,
+      "training_start_time": "2026-08-11T00:02:32.890236",
+      "training_end_time": "2026-08-11T00:02:54.513603",
+      "checkpoint_selection_time": "2026-08-11T00:02:54.513603",
+      "checkpoint_path": "models/validation/multiseed_robustness/seed_21/checkpoint.pt",
+      "selection_metric": "val_total_loss",
+      "selection_rule": "argmin_epoch val_total on fixed fold-0 split (split_seed=42)",
+      "best_epoch": 100,
+      "external_scoring_start_time": "2026-08-11T00:02:54.552131",
+      "external_scoring_end_time": "2026-08-11T00:02:57.297101",
+      "git_commit": "a818288dcab309dfb09aea186c1f87bcfd16dcf4",
+      "training_config_hash": "4b1a25273e1e752755172c0ab99555350afd21206384b96bcbdfee484419dc09",
+      "checkpoint_sha256": "ad6eff4791b75c87dc21b035b285a22dfcfd55463c2fe8f12416d7390c912c31"
+    },
+    "123": {
+      "train_seed": 123,
+      "training_start_time": "2026-08-11T00:02:57.301810",
+      "training_end_time": "2026-08-11T00:03:18.999782",
+      "checkpoint_selection_time": "2026-08-11T00:03:18.999782",
+      "checkpoint_path": "models/validation/multiseed_robustness/seed_123/checkpoint.pt",
+      "selection_metric": "val_total_loss",
+      "selection_rule": "argmin_epoch val_total on fixed fold-0 split (split_seed=42)",
+      "best_epoch": 96,
+      "external_scoring_start_time": "2026-08-11T00:03:19.051505",
+      "external_scoring_end_time": "2026-08-11T00:03:22.018326",
+      "git_commit": "a818288dcab309dfb09aea186c1f87bcfd16dcf4",
+      "training_config_hash": "4b1a25273e1e752755172c0ab99555350afd21206384b96bcbdfee484419dc09",
+      "checkpoint_sha256": "b5a9e49db2bdb0a77d738662e95dfd18469abeb83cc88783ba365ed901e6cf7d"
+    },
+    "2024": {
+      "train_seed": 2024,
+      "training_start_time": "2026-08-11T00:03:22.020307",
+      "training_end_time": "2026-08-11T00:03:43.844733",
+      "checkpoint_selection_time": "2026-08-11T00:03:43.844733",
+      "checkpoint_path": "models/validation/multiseed_robustness/seed_2024/checkpoint.pt",
+      "selection_metric": "val_total_loss",
+      "selection_rule": "argmin_epoch val_total on fixed fold-0 split (split_seed=42)",
+      "best_epoch": 95,
+      "external_scoring_start_time": "2026-08-11T00:03:43.886737",
+      "external_scoring_end_time": "2026-08-11T00:03:46.622521",
+      "git_commit": "a818288dcab309dfb09aea186c1f87bcfd16dcf4",
+      "training_config_hash": "4b1a25273e1e752755172c0ab99555350afd21206384b96bcbdfee484419dc09",
+      "checkpoint_sha256": "17fb298d10d8329c2f7b247477156db6595c02cdf3fca5c1dc53b1de129b0538"
+    }
+  },
+  "failures": []
+}

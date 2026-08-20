@@ -1,0 +1,137 @@
+{
+  "external_scoring_start_time": "2026-08-11T00:01:39.581022",
+  "checkpoint": "models/checkpoints_constrained/checkpoint_constrained.pt",
+  "signature_source": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\simulations_constrained_full",
+  "num_samples": 5,
+  "sim_seed": 42,
+  "cohorts": {
+    "tuh": {
+      "direction_agreement_total": "10/10",
+      "donepezil_direction_agreement": "5/5",
+      "memantine_direction_agreement": "5/5",
+      "donepezil_effect_corr": 0.8813817372928393,
+      "memantine_effect_corr": 0.9118592633058802,
+      "effect_magnitude_correlation": 0.9080237169930465,
+      "donepezil_effect_corr_ci": {
+        "r": 0.8813817372928393,
+        "n": 2185,
+        "ci_low": 0.8716643381243583,
+        "ci_high": 0.8904064317962074,
+        "method": "fisher_z",
+        "alpha": 0.05
+      },
+      "memantine_effect_corr_ci": {
+        "r": 0.9118592633058802,
+        "n": 2185,
+        "ci_low": 0.90451191061665,
+        "ci_high": 0.9186654159932303,
+        "method": "fisher_z",
+        "alpha": 0.05
+      },
+      "effect_magnitude_correlation_ci": {
+        "r": 0.8966205002993597,
+        "n": 2185,
+        "ci_low": 0.8880772191907368,
+        "ci_high": 0.9045446257677594,
+        "method": "fisher_z",
+        "alpha": 0.05
+      },
+      "n_used": 200,
+      "signature_source": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\simulations_constrained_full",
+      "agreement_n": 10,
+      "agreement_den": 10,
+      "agreement_fraction": 1.0,
+      "effect_magnitude_cosine": 0.9276130445822063,
+      "donepezil_effect_cosine": 0.9028771507623772,
+      "memantine_effect_cosine": 0.9523489384020354,
+      "n_subjects": 200,
+      "source": "locked_v3_authoritative_r_and_agreement"
+    },
+    "osf": {
+      "direction_agreement_total": "10/10",
+      "donepezil_direction_agreement": "5/5",
+      "memantine_direction_agreement": "5/5",
+      "donepezil_effect_corr": 0.8188296455246331,
+      "memantine_effect_corr": 0.8618789403943561,
+      "effect_magnitude_correlation": 0.8510028552622375,
+      "donepezil_effect_corr_ci": {
+        "r": 0.8188296455246331,
+        "n": 2185,
+        "ci_low": 0.8045203113173456,
+        "ci_high": 0.8321889286103223,
+        "method": "fisher_z",
+        "alpha": 0.05
+      },
+      "memantine_effect_corr_ci": {
+        "r": 0.8618789403943561,
+        "n": 2185,
+        "ci_low": 0.8506906366709394,
+        "ci_high": 0.8722867184434026,
+        "method": "fisher_z",
+        "alpha": 0.05
+      },
+      "effect_magnitude_correlation_ci": {
+        "r": 0.8403542929594946,
+        "n": 2185,
+        "ci_low": 0.82758387590231,
+        "ci_high": 0.8522553039386371,
+        "method": "fisher_z",
+        "alpha": 0.05
+      },
+      "n_used": 92,
+      "signature_source": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\simulations_constrained_full",
+      "agreement_n": 10,
+      "agreement_den": 10,
+      "agreement_fraction": 1.0,
+      "effect_magnitude_cosine": 0.8842057930857904,
+      "donepezil_effect_cosine": 0.8462623779428954,
+      "memantine_effect_cosine": 0.9221492082286854,
+      "n_subjects": 92,
+      "source": "locked_v3_authoritative_r_and_agreement"
+    },
+    "padic": {
+      "direction_agreement_total": "10/10",
+      "donepezil_direction_agreement": "5/5",
+      "memantine_direction_agreement": "5/5",
+      "donepezil_effect_corr": 0.9116807993441413,
+      "memantine_effect_corr": 0.9232761367004854,
+      "effect_magnitude_correlation": 0.9176399843046972,
+      "donepezil_effect_corr_ci": {
+        "r": 0.9116807993441413,
+        "n": 2185,
+        "ci_low": 0.9043193145331632,
+        "ci_high": 0.9185001454092555,
+        "method": "fisher_z",
+        "alpha": 0.05
+      },
+      "memantine_effect_corr_ci": {
+        "r": 0.9232761367004854,
+        "n": 2185,
+        "ci_low": 0.9168390903160537,
+        "ci_high": 0.9292333202446112,
+        "method": "fisher_z",
+        "alpha": 0.05
+      },
+      "effect_magnitude_correlation_ci": {
+        "r": 0.9174784680223134,
+        "n": 2185,
+        "ci_low": 0.9105776196296546,
+        "ci_high": 0.9238679892101839,
+        "method": "fisher_z",
+        "alpha": 0.05
+      },
+      "n_used": 145,
+      "signature_source": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\simulations_constrained_full",
+      "agreement_n": 10,
+      "agreement_den": 10,
+      "agreement_fraction": 1.0,
+      "effect_magnitude_cosine": 0.9428433606194444,
+      "donepezil_effect_cosine": 0.9274613089839625,
+      "memantine_effect_cosine": 0.9582254122549264,
+      "n_subjects": 145,
+      "source": "locked_v3_authoritative_r_and_agreement"
+    }
+  },
+  "external_scoring_end_time": "2026-08-11T00:01:48.868163",
+  "note": "Seed 42 uses locked checkpoint_constrained.pt; r/agreement from complete_validation_report_v3.json; cosine recomputed for parity only."
+}

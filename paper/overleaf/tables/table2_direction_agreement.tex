@@ -1,0 +1,26 @@
+% Table 2 -- Drug-response direction agreement
+% Caption placement: ABOVE the tabular (Elsevier convention).
+% Requires: \usepackage{booktabs}
+\begin{table}[!t]
+\centering
+\caption{Checkpoint-specific external signature concordance at the locked fold-0
+seed-42 checkpoint. Band-level direction agreement is scored between each
+external cohort and the training-cohort constrained signature on five feature
+blocks $\times$ two drugs (Donepezil, Memantine; maximum 10/10).
+Correlation $r$ is the Pearson correlation of mean drug-minus-baseline effect
+vectors (\texttt{effect\_magnitude\_correlation}). These values are not
+architecture-wide performance estimates; fold and training-seed sensitivity
+are reported in the Results. CAUEEG is not included in the locked
+10/10 direction claim.}
+\label{tab:direction-agreement}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}llllp{4.6cm}@{}}
+\toprule
+Dataset & N & Agree & $r$ & Assessment role \\
+\midrule
+  TUH & 200 & 10/10 & 0.908 & 1st external assessment \\
+  OSF & 92 & 10/10 & 0.851 & 2nd assessment (independent) \\
+  P-ADIC & 145 & 10/10 & 0.918 & 3rd assessment (acq.\ change) \\
+\bottomrule
+\end{tabular}
+\end{table}

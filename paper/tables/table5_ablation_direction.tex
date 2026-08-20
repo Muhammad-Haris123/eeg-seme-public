@@ -1,0 +1,15 @@
+\begin{table}[!t]
+\centering
+\caption{Locked unconstrained battery versus constrained direction agreement against the constrained training signature (locked fold-0 seed-42 checkpoints). Unconstrained $r$ values are from that locked battery, not from the $\alpha_c$-sweep fold-0 re-simulation. Prior-only signed effects also reach 10/10 on signs with lower mean effect-vector correlation ($r{=}0.636$).}
+\label{tab:ablation-direction}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrrr}
+\toprule
+Dataset & $n$ & Constr.\ agree & Constr.\ $r$ & Unconstr.\ agree & Unconstr.\ $r$ \\
+\midrule
+TUH & 200 & 10/10 & 0.908 & 3/10 & -0.309 \\
+OSF & 92 & 10/10 & 0.851 & 4/10 & -0.331 \\
+P-ADIC & 145 & 10/10 & 0.918 & 4/10 & -0.327 \\
+\bottomrule
+\end{tabular}
+\end{table}

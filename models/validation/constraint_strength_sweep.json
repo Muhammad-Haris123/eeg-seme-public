@@ -1,0 +1,634 @@
+{
+  "timestamp": "2026-08-09T19:55:26.273860",
+  "weights": [
+    0.0,
+    0.01,
+    0.05,
+    0.1,
+    0.2,
+    0.5
+  ],
+  "epochs": 100,
+  "warmup_epochs": 5,
+  "selection_rule": "fold_0_best only (matched to constrained external checkpoint)",
+  "points": [
+    {
+      "constraint_weight": 0.0,
+      "checkpoint": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\checkpoints_alpha_c\\alpha_0p0\\fold_0_best.pt",
+      "train_meta": {
+        "constraint_weight": 0.0,
+        "note": "Seeded from checkpoints_5fold/fold_0_best.pt (matched unconstrained)",
+        "checkpoint": "models/checkpoints_alpha_c/alpha_0p0/fold_0_best.pt"
+      },
+      "external": {
+        "checkpoint": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\checkpoints_alpha_c\\alpha_0p0\\fold_0_best.pt",
+        "tag": "alpha_0p0",
+        "tuh_direction": {
+          "direction_agreement_total": "3/10",
+          "donepezil_direction_agreement": "1/5",
+          "memantine_direction_agreement": "2/5",
+          "donepezil_effect_corr": -0.2571423005256185,
+          "memantine_effect_corr": -0.44367733248074154,
+          "effect_magnitude_correlation": -0.35040981650318004,
+          "donepezil_effect_corr_ci": {
+            "r": -0.2571423005256185,
+            "n": 2185,
+            "ci_low": -0.2958857336749992,
+            "ci_high": -0.21755421888431198,
+            "method": "fisher_z",
+            "alpha": 0.05
+          },
+          "memantine_effect_corr_ci": {
+            "r": -0.44367733248074154,
+            "n": 2185,
+            "ci_low": -0.47674145382416494,
+            "ci_high": -0.4093595608352206,
+            "method": "fisher_z",
+            "alpha": 0.05
+          },
+          "effect_magnitude_correlation_ci": {
+            "r": -0.35040981650318004,
+            "n": 2185,
+            "ci_low": -0.3866621424763918,
+            "ci_high": -0.3130762134373609,
+            "method": "fisher_z",
+            "alpha": 0.05
+          },
+          "n_used": 200,
+          "signature_source": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\simulations_constrained_full"
+        },
+        "padic_direction": {
+          "direction_agreement_total": "4/10",
+          "donepezil_direction_agreement": "1/5",
+          "memantine_direction_agreement": "3/5",
+          "donepezil_effect_corr": -0.26607252856025426,
+          "memantine_effect_corr": -0.4625610887883387,
+          "effect_magnitude_correlation": -0.3643168086742965,
+          "donepezil_effect_corr_ci": {
+            "r": -0.26607252856025426,
+            "n": 2185,
+            "ci_low": -0.3046078417308442,
+            "ci_high": -0.22666759892826172,
+            "method": "fisher_z",
+            "alpha": 0.05
+          },
+          "memantine_effect_corr_ci": {
+            "r": -0.4625610887883387,
+            "n": 2185,
+            "ci_low": -0.4948955569416509,
+            "ci_high": -0.42894742323737006,
+            "method": "fisher_z",
+            "alpha": 0.05
+          },
+          "effect_magnitude_correlation_ci": {
+            "r": -0.3643168086742965,
+            "n": 2185,
+            "ci_low": -0.4001377722532516,
+            "ci_high": -0.32738437327093833,
+            "method": "fisher_z",
+            "alpha": 0.05
+          },
+          "n_used": 145,
+          "signature_source": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\simulations_constrained_full"
+        },
+        "caueeg_latent_probe": {
+          "roc_auc_oof": 0.5374460102777514,
+          "roc_auc_mean": 0.539349502298423,
+          "roc_auc_std": 0.051991870635499926,
+          "n": 727,
+          "n_pos": 291,
+          "n_neg": 436
+        },
+        "caueeg_theta_alpha_probe": {
+          "roc_auc_oof": 0.6728932185756172,
+          "roc_auc_mean": 0.6752999217675048,
+          "roc_auc_std": 0.02463824373965717,
+          "n": 727,
+          "n_pos": 291,
+          "n_neg": 436
+        }
+      }
+    },
+    {
+      "constraint_weight": 0.01,
+      "checkpoint": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\checkpoints_alpha_c\\alpha_0p01\\fold_0_best.pt",
+      "train_meta": {
+        "constraint_weight": 0.01,
+        "epochs": 100,
+        "warmup_epochs": 5,
+        "seconds": 23.231857776641846,
+        "best_val_total": 0.023918652907013893,
+        "test_reconstruction_mse": 0.0343838632106781,
+        "test_pearson_global": 0.8824040597958797,
+        "test_accuracy": 0.7142857142857143,
+        "n_train": 46,
+        "n_val": 6,
+        "n_test": 14,
+        "checkpoint": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\checkpoints_alpha_c\\alpha_0p01\\fold_0_best.pt"
+      },
+      "external": {
+        "checkpoint": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\checkpoints_alpha_c\\alpha_0p01\\fold_0_best.pt",
+        "tag": "alpha_0p01",
+        "tuh_direction": {
+          "direction_agreement_total": "8/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "3/5",
+          "donepezil_effect_corr": 0.21804786524514388,
+          "memantine_effect_corr": -0.026319542428333346,
+          "effect_magnitude_correlation": 0.09586416140840527,
+          "donepezil_effect_corr_ci": {
+            "r": 0.21804786524514388,
+            "n": 2185,
+            "ci_low": 0.17773907428016916,
+            "ci_high": 0.25762619931630154,
+            "method": "fisher_z",
+            "alpha": 0.05
+          },
+          "memantine_effect_corr_ci": {
+            "r": -0.026319542428333346,
+            "n": 2185,
+            "ci_low": -0.06817826338706076,
+            "ci_high": 0.015631678125804977,
+            "method": "fisher_z",
+            "alpha": 0.05
+          },
+          "effect_magnitude_correlation_ci": {
+            "r": 0.09586416140840527,
+            "n": 2185,
+            "ci_low": 0.054147865777863034,
+            "ci_high": 0.1372464038500921,
+            "method": "fisher_z",
+            "alpha": 0.05
+          },
+          "n_used": 200,
+          "signature_source": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\simulations_constrained_full"
+        },
+        "padic_direction": {
+          "direction_agreement_total": "8/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "3/5",
+          "donepezil_effect_corr": 0.23816581936416642,
+          "memantine_effect_corr": -0.017111319963341375,
+          "effect_magnitude_correlation": 0.11052724970041253,
+          "donepezil_effect_corr_ci": {
+            "r": 0.23816581936416642,
+            "n": 2185,
+            "ci_low": 0.19821143598709054,
+            "ci_high": 0.2773300265564154,
+            "method": "fisher_z",
+            "alpha": 0.05
+          },
+          "memantine_effect_corr_ci": {
+            "r": -0.017111319963341375,
+            "n": 2185,
+            "ci_low": -0.05900295079780367,
+            "ci_high": 0.02484047234597249,
+            "method": "fisher_z",
+            "alpha": 0.05
+          },
+          "effect_magnitude_correlation_ci": {
+            "r": 0.11052724970041253,
+            "n": 2185,
+            "ci_low": 0.06891268123791792,
+            "ci_high": 0.151757843579737,
+            "method": "fisher_z",
+            "alpha": 0.05
+          },
+          "n_used": 145,
+          "signature_source": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\simulations_constrained_full"
+        },
+        "caueeg_latent_probe": {
+          "roc_auc_oof": 0.5564803430120748,
+          "roc_auc_mean": 0.5564185838513718,
+          "roc_auc_std": 0.04769809046774964,
+          "n": 727,
+          "n_pos": 291,
+          "n_neg": 436
+        },
+        "caueeg_theta_alpha_probe": {
+          "roc_auc_oof": 0.6728932185756172,
+          "roc_auc_mean": 0.6752999217675048,
+          "roc_auc_std": 0.02463824373965717,
+          "n": 727,
+          "n_pos": 291,
+          "n_neg": 436
+        }
+      }
+    },
+    {
+      "constraint_weight": 0.05,
+      "checkpoint": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\checkpoints_alpha_c\\alpha_0p05\\fold_0_best.pt",
+      "train_meta": {
+        "constraint_weight": 0.05,
+        "epochs": 100,
+        "warmup_epochs": 5,
+        "seconds": 20.990508794784546,
+        "best_val_total": 0.02354106493294239,
+        "test_reconstruction_mse": 0.03272279351949692,
+        "test_pearson_global": 0.8820007581675728,
+        "test_accuracy": 0.7857142857142857,
+        "n_train": 46,
+        "n_val": 6,
+        "n_test": 14,
+        "checkpoint": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\checkpoints_alpha_c\\alpha_0p05\\fold_0_best.pt"
+      },
+      "external": {
+        "checkpoint": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\checkpoints_alpha_c\\alpha_0p05\\fold_0_best.pt",
+        "tag": "alpha_0p05",
+        "tuh_direction": {
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.3243853860983448,
+          "memantine_effect_corr": 0.27366943736451904,
+          "effect_magnitude_correlation": 0.2990274117314319,
+          "donepezil_effect_corr_ci": {
+            "r": 0.3243853860983448,
+            "n": 2185,
+            "ci_low": 0.28634652283186457,
+            "ci_high": 0.36140326996344185,
+            "method": "fisher_z",
+            "alpha": 0.05
+          },
+          "memantine_effect_corr_ci": {
+            "r": 0.27366943736451904,
+            "n": 2185,
+            "ci_low": 0.23442574978872815,
+            "ci_high": 0.31202261973273054,
+            "method": "fisher_z",
+            "alpha": 0.05
+          },
+          "effect_magnitude_correlation_ci": {
+            "r": 0.2990274117314319,
+            "n": 2185,
+            "ci_low": 0.2603581805118805,
+            "ci_high": 0.33673887442281486,
+            "method": "fisher_z",
+            "alpha": 0.05
+          },
+          "n_used": 200,
+          "signature_source": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\simulations_constrained_full"
+        },
+        "padic_direction": {
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.3275259949383452,
+          "memantine_effect_corr": 0.2752531310417891,
+          "effect_magnitude_correlation": 0.30138956299006714,
+          "donepezil_effect_corr_ci": {
+            "r": 0.3275259949383452,
+            "n": 2185,
+            "ci_low": 0.2895691034099182,
+            "ci_high": 0.36445437732045743,
+            "method": "fisher_z",
+            "alpha": 0.05
+          },
+          "memantine_effect_corr_ci": {
+            "r": 0.2752531310417891,
+            "n": 2185,
+            "ci_low": 0.2360436867779207,
+            "ci_high": 0.31356775713253426,
+            "method": "fisher_z",
+            "alpha": 0.05
+          },
+          "effect_magnitude_correlation_ci": {
+            "r": 0.30138956299006714,
+            "n": 2185,
+            "ci_low": 0.26277668759333506,
+            "ci_high": 0.33903860516671663,
+            "method": "fisher_z",
+            "alpha": 0.05
+          },
+          "n_used": 145,
+          "signature_source": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\simulations_constrained_full"
+        },
+        "caueeg_latent_probe": {
+          "roc_auc_oof": 0.5276884517166367,
+          "roc_auc_mean": 0.5270630003658179,
+          "roc_auc_std": 0.03210668053892763,
+          "n": 727,
+          "n_pos": 291,
+          "n_neg": 436
+        },
+        "caueeg_theta_alpha_probe": {
+          "roc_auc_oof": 0.6728932185756172,
+          "roc_auc_mean": 0.6752999217675048,
+          "roc_auc_std": 0.02463824373965717,
+          "n": 727,
+          "n_pos": 291,
+          "n_neg": 436
+        }
+      }
+    },
+    {
+      "constraint_weight": 0.1,
+      "checkpoint": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\checkpoints_alpha_c\\alpha_0p1\\fold_0_best.pt",
+      "train_meta": {
+        "constraint_weight": 0.1,
+        "note": "Seeded from checkpoints_constrained/fold_0_best.pt (paper constrained twin)",
+        "checkpoint": "models/checkpoints_alpha_c/alpha_0p1/fold_0_best.pt"
+      },
+      "external": {
+        "checkpoint": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\checkpoints_alpha_c\\alpha_0p1\\fold_0_best.pt",
+        "tag": "alpha_0p1",
+        "tuh_direction": {
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.8813817372928393,
+          "memantine_effect_corr": 0.9118592633058802,
+          "effect_magnitude_correlation": 0.8966205002993597,
+          "donepezil_effect_corr_ci": {
+            "r": 0.8813817372928393,
+            "n": 2185,
+            "ci_low": 0.8716643381243583,
+            "ci_high": 0.8904064317962074,
+            "method": "fisher_z",
+            "alpha": 0.05
+          },
+          "memantine_effect_corr_ci": {
+            "r": 0.9118592633058802,
+            "n": 2185,
+            "ci_low": 0.90451191061665,
+            "ci_high": 0.9186654159932303,
+            "method": "fisher_z",
+            "alpha": 0.05
+          },
+          "effect_magnitude_correlation_ci": {
+            "r": 0.8966205002993597,
+            "n": 2185,
+            "ci_low": 0.8880772191907368,
+            "ci_high": 0.9045446257677594,
+            "method": "fisher_z",
+            "alpha": 0.05
+          },
+          "n_used": 200,
+          "signature_source": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\simulations_constrained_full"
+        },
+        "padic_direction": {
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.894927046227148,
+          "memantine_effect_corr": 0.9052065237024716,
+          "effect_magnitude_correlation": 0.9000667849648099,
+          "donepezil_effect_corr_ci": {
+            "r": 0.894927046227148,
+            "n": 2185,
+            "ci_low": 0.8862522112600139,
+            "ci_high": 0.9029743359374169,
+            "method": "fisher_z",
+            "alpha": 0.05
+          },
+          "memantine_effect_corr_ci": {
+            "r": 0.9052065237024716,
+            "n": 2185,
+            "ci_low": 0.8973343830436604,
+            "ci_high": 0.912502884700617,
+            "method": "fisher_z",
+            "alpha": 0.05
+          },
+          "effect_magnitude_correlation_ci": {
+            "r": 0.9000667849648099,
+            "n": 2185,
+            "ci_low": 0.8917920560398354,
+            "ci_high": 0.9077395998144668,
+            "method": "fisher_z",
+            "alpha": 0.05
+          },
+          "n_used": 145,
+          "signature_source": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\simulations_constrained_full"
+        },
+        "caueeg_latent_probe": {
+          "roc_auc_oof": 0.5759954601343044,
+          "roc_auc_mean": 0.5790672423869888,
+          "roc_auc_std": 0.041668515279806466,
+          "n": 727,
+          "n_pos": 291,
+          "n_neg": 436
+        },
+        "caueeg_theta_alpha_probe": {
+          "roc_auc_oof": 0.6728932185756172,
+          "roc_auc_mean": 0.6752999217675048,
+          "roc_auc_std": 0.02463824373965717,
+          "n": 727,
+          "n_pos": 291,
+          "n_neg": 436
+        }
+      }
+    },
+    {
+      "constraint_weight": 0.2,
+      "checkpoint": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\checkpoints_alpha_c\\alpha_0p2\\fold_0_best.pt",
+      "train_meta": {
+        "constraint_weight": 0.2,
+        "epochs": 100,
+        "warmup_epochs": 5,
+        "seconds": 19.100744009017944,
+        "best_val_total": 0.03034263476729393,
+        "test_reconstruction_mse": 0.035063862800598145,
+        "test_pearson_global": 0.8744960105695528,
+        "test_accuracy": 0.8571428571428571,
+        "n_train": 46,
+        "n_val": 6,
+        "n_test": 14,
+        "checkpoint": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\checkpoints_alpha_c\\alpha_0p2\\fold_0_best.pt"
+      },
+      "external": {
+        "checkpoint": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\checkpoints_alpha_c\\alpha_0p2\\fold_0_best.pt",
+        "tag": "alpha_0p2",
+        "tuh_direction": {
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.19106278279127223,
+          "memantine_effect_corr": 0.249853473098712,
+          "effect_magnitude_correlation": 0.22045812794499212,
+          "donepezil_effect_corr_ci": {
+            "r": 0.19106278279127223,
+            "n": 2185,
+            "ci_low": 0.15033328805999066,
+            "ci_high": 0.23114481390900693,
+            "method": "fisher_z",
+            "alpha": 0.05
+          },
+          "memantine_effect_corr_ci": {
+            "r": 0.249853473098712,
+            "n": 2185,
+            "ci_low": 0.21012101587697257,
+            "ci_high": 0.2887619815886365,
+            "method": "fisher_z",
+            "alpha": 0.05
+          },
+          "effect_magnitude_correlation_ci": {
+            "r": 0.22045812794499212,
+            "n": 2185,
+            "ci_low": 0.1801899590578407,
+            "ci_high": 0.25998858375415573,
+            "method": "fisher_z",
+            "alpha": 0.05
+          },
+          "n_used": 200,
+          "signature_source": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\simulations_constrained_full"
+        },
+        "padic_direction": {
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.17060224734398163,
+          "memantine_effect_corr": 0.24337800438900778,
+          "effect_magnitude_correlation": 0.2069901258664947,
+          "donepezil_effect_corr_ci": {
+            "r": 0.17060224734398163,
+            "n": 2185,
+            "ci_low": 0.1295954085424547,
+            "ci_high": 0.21102652555623153,
+            "method": "fisher_z",
+            "alpha": 0.05
+          },
+          "memantine_effect_corr_ci": {
+            "r": 0.24337800438900778,
+            "n": 2185,
+            "ci_low": 0.20352113334837652,
+            "ci_high": 0.28242955146348087,
+            "method": "fisher_z",
+            "alpha": 0.05
+          },
+          "effect_magnitude_correlation_ci": {
+            "r": 0.2069901258664947,
+            "n": 2185,
+            "ci_low": 0.1665013759078828,
+            "ci_high": 0.24678204624234856,
+            "method": "fisher_z",
+            "alpha": 0.05
+          },
+          "n_used": 145,
+          "signature_source": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\simulations_constrained_full"
+        },
+        "caueeg_latent_probe": {
+          "roc_auc_oof": 0.5131545761215675,
+          "roc_auc_mean": 0.5138887412996122,
+          "roc_auc_std": 0.014022298985407428,
+          "n": 727,
+          "n_pos": 291,
+          "n_neg": 436
+        },
+        "caueeg_theta_alpha_probe": {
+          "roc_auc_oof": 0.6728932185756172,
+          "roc_auc_mean": 0.6752999217675048,
+          "roc_auc_std": 0.02463824373965717,
+          "n": 727,
+          "n_pos": 291,
+          "n_neg": 436
+        }
+      }
+    },
+    {
+      "constraint_weight": 0.5,
+      "checkpoint": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\checkpoints_alpha_c\\alpha_0p5\\fold_0_best.pt",
+      "train_meta": {
+        "constraint_weight": 0.5,
+        "epochs": 100,
+        "warmup_epochs": 5,
+        "seconds": 19.390286684036255,
+        "best_val_total": 0.026041659526526928,
+        "test_reconstruction_mse": 0.03404448553919792,
+        "test_pearson_global": 0.8695488026377192,
+        "test_accuracy": 0.6428571428571429,
+        "n_train": 46,
+        "n_val": 6,
+        "n_test": 14,
+        "checkpoint": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\checkpoints_alpha_c\\alpha_0p5\\fold_0_best.pt"
+      },
+      "external": {
+        "checkpoint": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\checkpoints_alpha_c\\alpha_0p5\\fold_0_best.pt",
+        "tag": "alpha_0p5",
+        "tuh_direction": {
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.3900199740025058,
+          "memantine_effect_corr": 0.4340409084643053,
+          "effect_magnitude_correlation": 0.4120304412334056,
+          "donepezil_effect_corr_ci": {
+            "r": 0.3900199740025058,
+            "n": 2185,
+            "ci_low": 0.35387363937250854,
+            "ci_high": 0.42500298217337806,
+            "method": "fisher_z",
+            "alpha": 0.05
+          },
+          "memantine_effect_corr_ci": {
+            "r": 0.4340409084643053,
+            "n": 2185,
+            "ci_low": 0.39937600602563067,
+            "ci_high": 0.46746649204315377,
+            "method": "fisher_z",
+            "alpha": 0.05
+          },
+          "effect_magnitude_correlation_ci": {
+            "r": 0.4120304412334056,
+            "n": 2185,
+            "ci_low": 0.37660345446828997,
+            "ci_high": 0.44625400088483635,
+            "method": "fisher_z",
+            "alpha": 0.05
+          },
+          "n_used": 200,
+          "signature_source": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\simulations_constrained_full"
+        },
+        "padic_direction": {
+          "direction_agreement_total": "10/10",
+          "donepezil_direction_agreement": "5/5",
+          "memantine_direction_agreement": "5/5",
+          "donepezil_effect_corr": 0.3767725658976688,
+          "memantine_effect_corr": 0.3813823755721077,
+          "effect_magnitude_correlation": 0.37907747073488823,
+          "donepezil_effect_corr_ci": {
+            "r": 0.3767725658976688,
+            "n": 2185,
+            "ci_low": 0.3402138295565997,
+            "ci_high": 0.41219404586087055,
+            "method": "fisher_z",
+            "alpha": 0.05
+          },
+          "memantine_effect_corr_ci": {
+            "r": 0.3813823755721077,
+            "n": 2185,
+            "ci_low": 0.3449653963747674,
+            "ci_high": 0.4166528659304175,
+            "method": "fisher_z",
+            "alpha": 0.05
+          },
+          "effect_magnitude_correlation_ci": {
+            "r": 0.37907747073488823,
+            "n": 2185,
+            "ci_low": 0.3425893796279869,
+            "ci_high": 0.41442366800487357,
+            "method": "fisher_z",
+            "alpha": 0.05
+          },
+          "n_used": 145,
+          "signature_source": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\simulations_constrained_full"
+        },
+        "caueeg_latent_probe": {
+          "roc_auc_oof": 0.579542230209023,
+          "roc_auc_mean": 0.5782597178378028,
+          "roc_auc_std": 0.04245812492365062,
+          "n": 727,
+          "n_pos": 291,
+          "n_neg": 436
+        },
+        "caueeg_theta_alpha_probe": {
+          "roc_auc_oof": 0.6728932185756172,
+          "roc_auc_mean": 0.6752999217675048,
+          "roc_auc_std": 0.02463824373965717,
+          "n": 727,
+          "n_pos": 291,
+          "n_neg": 436
+        }
+      }
+    }
+  ]
+}

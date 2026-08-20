@@ -1,0 +1,24 @@
+% Table 1 -- External assessment datasets (fit page width)
+% Caption placement: ABOVE the tabular (Elsevier convention).
+% Requires: booktabs, adjustbox
+\begin{table*}[!t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\caption{External EEG datasets used for escalating external assessment of the constrained twin.
+Sampling rates list native acquisition then the common 500\,Hz analysis rate.
+Roles follow the Results narrative sequence.}
+\label{tab:datasets}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{@{}llp{2.2cm}p{2.4cm}p{2.5cm}p{1.9cm}p{2.4cm}@{}}
+\toprule
+Dataset & N & Groups & Labels & Sampling rate & Montage & Role \\
+\midrule
+TUH & 200 & Abn 131 / Nor 69 & Abnormal vs normal & Mixed EDF $\rightarrow$ 500\,Hz & 19ch 10--20 & First external; proxy labels \\
+OSF & 92 & AD 80 / HC 12 & Folder AD vs HC & 256 $\rightarrow$ 500\,Hz & 19ch 10--20 & AD/HC; small HC \\
+P-ADIC & 145 & AD 49 / HC 96 & NIA-AA AD vs HC & 200/500 $\rightarrow$ 500\,Hz & 19ch 10--20 & Larger AD/HC; null check \\
+CAUEEG & 1122 & Nor 436 / MCI 395 / Dem 291 & Normal / MCI / Dementia & 200 $\rightarrow$ 500\,Hz & 19ch AVG 10--20 & Large-N; encoding \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table*}

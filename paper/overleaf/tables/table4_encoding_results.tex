@@ -1,0 +1,31 @@
+% Table 4 -- Encoding analysis (pairs with Fig. 5)
+% Caption ABOVE tabular. Requires booktabs, adjustbox.
+\begin{table}[!t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\caption{CAUEEG Dementia vs Normal encoding analysis ($n = 727$).
+Out-of-fold (OOF) ROC-AUC and balanced accuracy are reported.
+Permutation $p$-values are included where computed (original latent probe:
+200 label shuffles of 5-fold CV; best head: 200 shuffles of nested CV).
+The 2185-D logistic row is a raw feature-space diagnostic reference, not a CVAE result,
+not a theoretical upper bound, and not a supervised deep 2185-D classifier. The final column is OOF AUC minus the $\theta/\alpha$
+pooled OOF AUC ($0.673$; mean-fold $\theta/\alpha$ AUC $= 0.675$ is used in the prose
+and Fig.~\ref{fig:encoding}). Complements Fig.~\ref{fig:encoding}.}
+\label{tab:encoding-results}
+\begin{adjustbox}{max width=\columnwidth}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+Model & Input & AUC & Bal.\ acc. & Perm.\ $p$ & vs.\ $\theta/\alpha$ \\
+\midrule
+  2185-D logistic (feature ref.) & packed 2185-D & 0.699 & 0.642 & -- & +0.026 \\
+  $\theta/\alpha$ probe (ref.) & $\theta/\alpha$ & 0.673 & 0.625 & -- & +0.000 \\
+  Untuned logistic & $\mu_{\mathrm{base}}$ & 0.576 & 0.568 & $0.010$ & -0.097 \\
+  Tuned L2 logistic & $\mu_{\mathrm{base}}$ & 0.593 & 0.573 & $0.005$ & -0.080 \\
+  MLP & $\mu_{\mathrm{base}}$ & 0.543 & 0.543 & -- & -0.130 \\
+  HistGradientBoosting & $\mu_{\mathrm{base}}$ & 0.556 & 0.548 & -- & -0.117 \\
+  Tuned LogReg ($\mu$+logvar) & $\mu$+logvar & 0.587 & 0.554 & -- & -0.085 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}

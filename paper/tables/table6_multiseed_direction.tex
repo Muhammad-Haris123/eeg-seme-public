@@ -1,0 +1,28 @@
+% Table 6 -- Fixed-fold multi-seed training sensitivity (READ-ONLY from aggregate_results)
+\begin{table}[!t]
+\centering
+\caption{Fixed-fold training-seed sensitivity of external direction metrics.
+Fold assignment and fold-0 subject membership were frozen at \texttt{split\_seed}${}={}$42;
+only \texttt{train\_seed} varied. Seed 42 is the locked historical checkpoint
+(\texttt{checkpoint\_constrained.pt}); seeds 7, 21, 123, and 2024 are independent
+training-seed perturbations under the same fold split. Values are Pearson $r$
+(mean Donepezil/Memantine effect-vector correlation) and sign agreement.
+Source: \texttt{models/validation/multiseed\_robustness/aggregate\_results.csv}.}
+\label{tab:multiseed-direction}
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{@{}rlccc@{}}
+\toprule
+Seed & Role & TUH ($r$; agree) & OSF ($r$; agree) & P-ADIC ($r$; agree) \\
+\midrule
+42 & Locked fold-0 & 0.908; 10/10 & 0.851; 10/10 & 0.918; 10/10 \\
+7 & Alternate train seed & 0.408; 10/10 & 0.408; 10/10 & 0.428; 10/10 \\
+21 & Alternate train seed & 0.154; 10/10 & 0.160; 10/10 & 0.106; 8/10 \\
+123 & Alternate train seed & 0.147; 9/10 & 0.230; 9/10 & 0.080; 9/10 \\
+2024 & Alternate train seed & 0.163; 10/10 & 0.182; 10/10 & 0.146; 10/10 \\
+\midrule
+\multicolumn{2}{@{}l}{Mean $r$ (all five)} & 0.356 & 0.366 & 0.336 \\
+\multicolumn{2}{@{}l}{Median $r$} & 0.163 & 0.230 & 0.146 \\
+\multicolumn{2}{@{}l}{SD $r$} & 0.328 & 0.288 & 0.354 \\
+\bottomrule
+\end{tabular}
+\end{table}

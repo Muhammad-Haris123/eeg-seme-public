@@ -1,0 +1,22 @@
+\begin{table}[!t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\caption{Architecture of the locked \texttt{constrained\_mlp} twin. Hidden blocks are Linear, BatchNorm1d, ReLU, Dropout ($p=0.2$). Encoder/decoder output heads are linear (no output activation). Parameter count is from instantiating \texttt{UpgradedDigitalTwinModel} with \texttt{MODEL\_VARIANTS['constrained\_mlp']}.}
+\label{tab:architecture}
+\begin{adjustbox}{max width=\columnwidth}
+\begin{tabular}{@{}llll@{}}
+\toprule
+Module & Input dim & Hidden widths & Output \\
+\midrule
+EEG encoder & 2185 & 256, 512 & 128 \\
+Drug encoder & 384 & 256, 128 & 64 \\
+Fusion MLP & $128{+}64{+}1$ & 256 & 256 \\
+CVAE encoder & 256 & 512, 256 & $\mu$, $\log\sigma^2$ (128) \\
+CVAE decoder & $128{+}64{+}1$ & 256, 512 & 2185 \\
+\midrule
+Total parameters & \multicolumn{3}{l}{2{,}648{,}777 (all trainable)} \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}

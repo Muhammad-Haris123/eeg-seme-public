@@ -1,0 +1,131 @@
+{
+  "timestamp": "2026-08-10T18:40:47.333466",
+  "script": "src/validation/run_prior_vs_ensemble_analysis.py",
+  "backup_restore_point": "backups/pre_prior_vs_ensemble_20260810_183819",
+  "files_inspected": [
+    "C:\\Users\\UC\\Desktop\\my_fyp\\models\\validation\\prior_only_direction.json",
+    "C:\\Users\\UC\\Desktop\\my_fyp\\models\\validation\\fold_ensemble\\fold_ensemble_external_direction_results.json",
+    "C:\\Users\\UC\\Desktop\\my_fyp\\models\\validation\\fold_ensemble\\bootstrap\\ensemble_subject_bootstrap_B2000.json",
+    "C:\\Users\\UC\\Desktop\\my_fyp\\models\\validation\\fold_ensemble\\bootstrap\\ensemble_bootstrap_distributions.npz"
+  ],
+  "prior_artifact": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\validation\\prior_only_direction.json",
+  "ensemble_point_artifact": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\validation\\fold_ensemble\\fold_ensemble_external_direction_results.json",
+  "ensemble_bootstrap_json": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\validation\\fold_ensemble\\bootstrap\\ensemble_subject_bootstrap_B2000.json",
+  "ensemble_bootstrap_npz": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\validation\\fold_ensemble\\bootstrap\\ensemble_bootstrap_distributions.npz",
+  "bootstrap_meta": {
+    "n_boot": 2000,
+    "seed": 42,
+    "method": "subject_bootstrap_percentile",
+    "resampling_unit": "subject",
+    "signature_source": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\simulations_constrained_full"
+  },
+  "prior_meta": {
+    "effect_magnitude_correlation_mean": 0.6360168032016147,
+    "prior_source": "get_eeg_effect_prior / DRUG_PHARMACOLOGY eeg_effects",
+    "reference_signature": "models/simulations_constrained_full",
+    "endpoint": "Prior-only signed band/connectivity effect vs constrained training mean effect (same 10-block direction metric as external twins)"
+  },
+  "sanity_checks": {
+    "CHECK_B_B_equals_2000": true,
+    "CHECK_seed_42": true,
+    "CHECK_E_resampling_unit_subject": true,
+    "CHECK_G_fixed_signature": true,
+    "CHECK_E_prior_r": true,
+    "prior_r_exact": 0.6360168032016147,
+    "prior_r_reported_3dp": 0.636,
+    "CHECK_A_point_estimates": true
+  },
+  "paired_analysis": {
+    "performed": false,
+    "reason": "The prior-only baseline is a FIXED scalar: literature prior effect vectors (get_eeg_effect_prior) correlated with the FIXED constrained training signature (models/simulations_constrained_full). It does not produce subject-level prior-only effect vectors for external TUH/OSF/P-ADIC subjects. The ensemble bootstrap resamples external subjects and recomputes cohort-mean ensemble effects. A paired bootstrap of \u0394r = r_ensemble - r_prior under the same subject resampling is therefore not statistically supportable from stored artifacts without reconstructing a different prior-only statistic. The available stored artifacts do not support a formally paired bootstrap comparison without reconstructing the subject-level prior-only statistic.",
+    "prior_is_fixed_scalar": true,
+    "subject_level_prior_effects_available": false,
+    "overlap_note": "N/A \u2014 prior has no external subject-level effects to overlap"
+  },
+  "cohorts": [
+    {
+      "cohort": "tuh",
+      "n_subjects": 200,
+      "ensemble_r_point": 0.6420808218081392,
+      "ensemble_r_expected_approx": 0.642,
+      "check_A_within_atol_1e-3": true,
+      "prior_r": 0.6360168032016147,
+      "difference_point_minus_prior": 0.006064018606524502,
+      "n_boot": 2000,
+      "n_bootstrap_gt_prior": 539,
+      "n_bootstrap_ge_prior": 539,
+      "fraction_bootstrap_gt_prior": 0.2695,
+      "percent_bootstrap_gt_prior": 26.950000000000003,
+      "empirical_percentile_rank_of_prior": 73.05,
+      "ensemble_bootstrap_ci_low": 0.6178774853771118,
+      "ensemble_bootstrap_ci_high": 0.6447292833385225,
+      "ci_low_from_npz": 0.6178774853771118,
+      "ci_high_from_npz": 0.6447292833385225,
+      "prior_outside_95pct_ci": false,
+      "bootstrap_mean": 0.6317603658250713,
+      "bootstrap_median": 0.6317085574764306,
+      "bootstrap_std": 0.006793067022398856,
+      "n_invalid": 0
+    },
+    {
+      "cohort": "osf",
+      "n_subjects": 92,
+      "ensemble_r_point": 0.6259669017554602,
+      "ensemble_r_expected_approx": 0.626,
+      "check_A_within_atol_1e-3": true,
+      "prior_r": 0.6360168032016147,
+      "difference_point_minus_prior": -0.010049901446154474,
+      "n_boot": 2000,
+      "n_bootstrap_gt_prior": 0,
+      "n_bootstrap_ge_prior": 0,
+      "fraction_bootstrap_gt_prior": 0.0,
+      "percent_bootstrap_gt_prior": 0.0,
+      "empirical_percentile_rank_of_prior": 100.0,
+      "ensemble_bootstrap_ci_low": 0.5844143479835273,
+      "ensemble_bootstrap_ci_high": 0.6238901900283169,
+      "ci_low_from_npz": 0.5844143479835273,
+      "ci_high_from_npz": 0.6238901900283169,
+      "prior_outside_95pct_ci": true,
+      "bootstrap_mean": 0.6058408091689661,
+      "bootstrap_median": 0.6061887261742153,
+      "bootstrap_std": 0.010093598708608478,
+      "n_invalid": 0
+    },
+    {
+      "cohort": "padic",
+      "n_subjects": 145,
+      "ensemble_r_point": 0.6266931891285097,
+      "ensemble_r_expected_approx": 0.627,
+      "check_A_within_atol_1e-3": true,
+      "prior_r": 0.6360168032016147,
+      "difference_point_minus_prior": -0.009323614073105002,
+      "n_boot": 2000,
+      "n_bootstrap_gt_prior": 1,
+      "n_bootstrap_ge_prior": 1,
+      "fraction_bootstrap_gt_prior": 0.0005,
+      "percent_bootstrap_gt_prior": 0.05,
+      "empirical_percentile_rank_of_prior": 99.95,
+      "ensemble_bootstrap_ci_low": 0.5950641756420336,
+      "ensemble_bootstrap_ci_high": 0.6289364816806313,
+      "ci_low_from_npz": 0.5950641756420336,
+      "ci_high_from_npz": 0.6289364816806313,
+      "prior_outside_95pct_ci": true,
+      "bootstrap_mean": 0.6128944912090046,
+      "bootstrap_median": 0.6131504644405528,
+      "bootstrap_std": 0.008686828024707525,
+      "n_invalid": 0
+    }
+  ],
+  "interpretation": {
+    "question": "Does the five-fold ensemble provide evidence of incremental agreement beyond the established prior-only direction baseline (r\u22480.636)?",
+    "verdict": "Evidence does not clearly establish incremental agreement",
+    "rationale": [
+      "Prior-only r is a fixed literature-vs-training-signature scalar, not a subject-resampled external statistic; no valid paired \u0394r bootstrap from stored artifacts.",
+      "Point differences vs prior are small in magnitude (order 10^-2) and mixed in sign: TUH slightly above; OSF and P-ADIC slightly below.",
+      "For all three cohorts, the fraction of ensemble bootstrap replicates with r > prior is low (TUH=0.270, OSF=0.000, P-ADIC=0.001), and prior sits at a high empirical percentile of each bootstrap distribution (near or above the upper tail).",
+      "Existing ensemble 95% percentile CIs describe uncertainty in the ensemble correlation under subject resampling; they are not a formal paired test of ensemble vs prior. Not converting CI exclusion into a p-value.",
+      "Fold-0 locked external r values remain substantially higher than the ensemble; this analysis does not erase five-fold sensitivity variance."
+    ]
+  },
+  "statistical_warning": "Do not interpret 'prior outside ensemble 95% CI' as a formal p<0.05 hypothesis test comparing two independently estimated statistics. Report bootstrap distributional relationships only."
+}

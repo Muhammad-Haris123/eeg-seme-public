@@ -1,0 +1,22 @@
+# Integrity check report (pre-run vs post-run)
+# timestamp: 2026-08-10T17:02:17.966062
+# pre_manifest: C:/Users/UC/Desktop/my_fyp/models/validation/fold_ensemble/pre_run_integrity_sha256.txt
+# post_manifest: C:/Users/UC/Desktop/my_fyp/models/validation/fold_ensemble/post_run_integrity_sha256.txt
+
+number_of_protected_files_checked: 2353
+number_unchanged: 2353
+number_changed: 0
+number_missing_in_post: 0
+number_extra_keys_in_post: 0
+all_protected_artifacts_byte_identical: true
+
+changed_files:
+  (none)
+
+missing_in_post:
+  (none)
+
+extra_keys_in_post_not_in_pre:
+  (none)
+
+RESULT: PASS — Changed protected files = 0

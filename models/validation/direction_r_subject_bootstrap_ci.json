@@ -1,0 +1,181 @@
+{
+  "timestamp": "2026-08-09T23:34:06.750458",
+  "method": "subject_bootstrap_percentile",
+  "n_boot": 2000,
+  "seed": 42,
+  "signature_source": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\simulations_constrained_full",
+  "note": "CIs resample subjects with replacement, then recompute cohort-mean effect vectors vs the fixed training constrained signature. Fisher-z CIs with n=2185 features are NOT used for inference.",
+  "cohorts": {
+    "tuh": {
+      "n_used": 200,
+      "sim_dir": "C:\\Users\\UC\\Desktop\\my_fyp\\data\\tuh_validation",
+      "n_subjects": 200,
+      "n_boot": 2000,
+      "seed": 42,
+      "alpha": 0.05,
+      "method": "subject_bootstrap_percentile",
+      "point": {
+        "donepezil_effect_corr": 0.8959002340232962,
+        "memantine_effect_corr": 0.9201472024370994,
+        "effect_magnitude_correlation": 0.9080237182301978,
+        "donepezil_cosine": 0.9147082901100744,
+        "memantine_cosine": 0.9569068200259808,
+        "cosine_mean": 0.9358075550680276
+      },
+      "ci": {
+        "donepezil_effect_corr": {
+          "ci_low": 0.8587094242255785,
+          "ci_high": 0.8899487384624752,
+          "boot_mean": 0.8751501040617399,
+          "boot_std": 0.008095658167707716
+        },
+        "memantine_effect_corr": {
+          "ci_low": 0.8873912526944853,
+          "ci_high": 0.9126546060103085,
+          "boot_mean": 0.9006383741215975,
+          "boot_std": 0.006528698435778461
+        },
+        "effect_magnitude_correlation": {
+          "ci_low": 0.8737007341545099,
+          "ci_high": 0.9004299328933343,
+          "boot_mean": 0.8878942390916686,
+          "boot_std": 0.0069296868681426056
+        },
+        "donepezil_cosine": {
+          "ci_low": 0.88323742037273,
+          "ci_high": 0.9096714611115043,
+          "boot_mean": 0.8971339746943466,
+          "boot_std": 0.006733486796487453
+        },
+        "memantine_cosine": {
+          "ci_low": 0.9384625323799307,
+          "ci_high": 0.9525750073738543,
+          "boot_mean": 0.9460519489131614,
+          "boot_std": 0.0036775514513341834
+        },
+        "cosine_mean": {
+          "ci_low": 0.9113769962913574,
+          "ci_high": 0.9305178863853475,
+          "boot_mean": 0.921592961803754,
+          "boot_std": 0.004941907578903838
+        }
+      },
+      "effect_magnitude_correlation_formatted": "0.908 (subject-bootstrap 95% percentile interval 0.874 to 0.900; boot mean 0.888; n_subj=200, B=2000)",
+      "reporting_note": "Full-sample point estimate is reported with the percentile interval of subject-bootstrap replicates of the same estimator. The bootstrap distribution can be slightly downward-biased relative to the full-sample point; the interval reflects subject-sampling variability, not feature-length Fisher z."
+    },
+    "osf": {
+      "n_used": 92,
+      "sim_dir": "C:\\Users\\UC\\Desktop\\my_fyp\\data\\ad_labeled_external\\validation",
+      "n_subjects": 92,
+      "n_boot": 2000,
+      "seed": 42,
+      "alpha": 0.05,
+      "method": "subject_bootstrap_percentile",
+      "point": {
+        "donepezil_effect_corr": 0.826493536363122,
+        "memantine_effect_corr": 0.8755121773614,
+        "effect_magnitude_correlation": 0.851002856862261,
+        "donepezil_cosine": 0.8583024305242141,
+        "memantine_cosine": 0.9328913584506364,
+        "cosine_mean": 0.8955968944874253
+      },
+      "ci": {
+        "donepezil_effect_corr": {
+          "ci_low": 0.7638954982040814,
+          "ci_high": 0.8164747421086165,
+          "boot_mean": 0.7917543641699829,
+          "boot_std": 0.013263003588182486
+        },
+        "memantine_effect_corr": {
+          "ci_low": 0.8143583718155242,
+          "ci_high": 0.860818397784431,
+          "boot_mean": 0.8391062039814813,
+          "boot_std": 0.011891270442667396
+        },
+        "effect_magnitude_correlation": {
+          "ci_low": 0.7895325061990331,
+          "ci_high": 0.8373429440278966,
+          "boot_mean": 0.815430284075732,
+          "boot_std": 0.01182074009640492
+        },
+        "donepezil_cosine": {
+          "ci_low": 0.8017945834068692,
+          "ci_high": 0.8500683903492544,
+          "boot_mean": 0.8284229166990167,
+          "boot_std": 0.01199234843490693
+        },
+        "memantine_cosine": {
+          "ci_low": 0.8939882586355042,
+          "ci_high": 0.9247905376556418,
+          "boot_mean": 0.9115137431270055,
+          "boot_std": 0.007840783002197338
+        },
+        "cosine_mean": {
+          "ci_low": 0.8491781660684661,
+          "ci_high": 0.8867387241784799,
+          "boot_mean": 0.8699683299130111,
+          "boot_std": 0.009297177001987641
+        }
+      },
+      "effect_magnitude_correlation_formatted": "0.851 (subject-bootstrap 95% percentile interval 0.790 to 0.837; boot mean 0.815; n_subj=92, B=2000)",
+      "reporting_note": "Full-sample point estimate is reported with the percentile interval of subject-bootstrap replicates of the same estimator. The bootstrap distribution can be slightly downward-biased relative to the full-sample point; the interval reflects subject-sampling variability, not feature-length Fisher z."
+    },
+    "padic": {
+      "n_used": 145,
+      "sim_dir": "C:\\Users\\UC\\Desktop\\my_fyp\\data\\padic_external\\validation",
+      "n_subjects": 145,
+      "n_boot": 2000,
+      "seed": 42,
+      "alpha": 0.05,
+      "method": "subject_bootstrap_percentile",
+      "point": {
+        "donepezil_effect_corr": 0.910595111407299,
+        "memantine_effect_corr": 0.9246848536610046,
+        "effect_magnitude_correlation": 0.9176399825341518,
+        "donepezil_cosine": 0.925789775506002,
+        "memantine_cosine": 0.9583196236240309,
+        "cosine_mean": 0.9420546995650165
+      },
+      "ci": {
+        "donepezil_effect_corr": {
+          "ci_low": 0.8617153923550388,
+          "ci_high": 0.8971706159890134,
+          "boot_mean": 0.880657803650307,
+          "boot_std": 0.009009646327399253
+        },
+        "memantine_effect_corr": {
+          "ci_low": 0.8785265520827586,
+          "ci_high": 0.912023370414776,
+          "boot_mean": 0.8965289189069946,
+          "boot_std": 0.00864673878045169
+        },
+        "effect_magnitude_correlation": {
+          "ci_low": 0.8713159507579307,
+          "ci_high": 0.9037110342544193,
+          "boot_mean": 0.8885933612786507,
+          "boot_std": 0.008493849959032976
+        },
+        "donepezil_cosine": {
+          "ci_low": 0.8806739818282924,
+          "ci_high": 0.9144860082536416,
+          "boot_mean": 0.8995880326792085,
+          "boot_std": 0.00869578574048953
+        },
+        "memantine_cosine": {
+          "ci_low": 0.9287512104716378,
+          "ci_high": 0.9512147648326225,
+          "boot_mean": 0.9414916727328508,
+          "boot_std": 0.00581421988957543
+        },
+        "cosine_mean": {
+          "ci_low": 0.9055225754117608,
+          "ci_high": 0.9322969305880341,
+          "boot_mean": 0.9205398527060296,
+          "boot_std": 0.006933971661804155
+        }
+      },
+      "effect_magnitude_correlation_formatted": "0.918 (subject-bootstrap 95% percentile interval 0.871 to 0.904; boot mean 0.889; n_subj=145, B=2000)",
+      "reporting_note": "Full-sample point estimate is reported with the percentile interval of subject-bootstrap replicates of the same estimator. The bootstrap distribution can be slightly downward-biased relative to the full-sample point; the interval reflects subject-sampling variability, not feature-length Fisher z."
+    }
+  }
+}

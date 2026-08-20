@@ -1,0 +1,126 @@
+\section{Reproducibility appendix}
+\label{sec:supp-repro}
+This appendix lists configuration keys, scripts, and artifact paths used to regenerate the manuscript numbers. It is not required to follow the scientific argument in the main text. Table~\ref{tab:reviewer-defense} lists methodological safeguards and remaining scope boundaries, including non-locked Phase~C DeLong and ChemBERTa-versus-one-hot rows.
+
+
+\subsection{Reproduction contract}
+
+\begin{itemize}
+  \item Environment: Python 3.10.0 in \texttt{eeg\_twin/}; PyTorch 2.10.0+cu128; NumPy 1.26.4; SciPy 1.15.3; scikit-learn 1.7.2; MNE 1.11.0; Transformers 5.0.0 (\texttt{computational\_\allowbreak{}requirements.\allowbreak{}json}).
+  \item Hardware: NVIDIA GeForce RTX 5060 Ti (16 GB).
+  \item Split: subject-level \texttt{StratifiedKFold} (\texttt{n\_splits=5}, \texttt{random\_\allowbreak{}state=42}); within-fold validation \texttt{random\_\allowbreak{}state=42+fold\_\allowbreak{}idx}.
+  \item Locked checkpoint: \texttt{models/\allowbreak{}checkpoints\_\allowbreak{}constrained/\allowbreak{}checkpoint\_\allowbreak{}constrained.\allowbreak{}pt} = \texttt{fold\_\allowbreak{}0\_\allowbreak{}best.\allowbreak{}pt}, epoch 99, \texttt{constraint\_\allowbreak{}weight=0.\allowbreak{}1}, selection = minimum fold-0 validation total loss (0.0241).
+  \item Matched unconstrained: \texttt{models/\allowbreak{}checkpoints\_\allowbreak{}unconstrained/\allowbreak{}checkpoint\_\allowbreak{}unconstrained.\allowbreak{}pt} from \texttt{checkpoints\_\allowbreak{}5fold/\allowbreak{}fold\_\allowbreak{}0\_\allowbreak{}best.\allowbreak{}pt}.
+  \item Variant: \texttt{constrained\_\allowbreak{}mlp}; 2,648,777 trainable parameters; ChemBERTa embeddings frozen \texttt{.npy} files.
+  \item Preprocessing: FIR 0.5--40 Hz, training notch 50 Hz, FastICA with empty default exclusion, 4 s epochs at 90\% overlap, per-subject z-score after epoching, Welch \texttt{n\_\allowbreak{}per\_\allowbreak{}seg=256} at 500 Hz.
+  \item Feature map: 2185-D, 0-based slices PSD \texttt{[0,380)}, bands \texttt{[380,475)}, interleaved connectivity \texttt{[475,2185)}; \(L_{\mathrm{conn}}\) window \texttt{[475,1330)}.
+  \item Dummy-batch inference (not clinical real-time or end-to-end latency): 0.602 ms/subject; dummy throughput 1660 subjects/s; peak dummy-forward GPU memory 50.2 MiB; checkpoint 31,876,749 bytes. Training wall-clock for the locked run is not logged.
+  \item Expected locked direction outputs (fold-0 seed-42): \(r = 0.908 / 0.851 / 0.918\) and 10/10 signs on TUH / OSF / P-ADIC against the training constrained signature.
+  \item Master roll-up: \texttt{models/\allowbreak{}validation/\allowbreak{}complete\_\allowbreak{}validation\_\allowbreak{}report\_\allowbreak{}v3.\allowbreak{}json}.
+\end{itemize}
+
+\subsection{Model configuration}
+
+\begin{itemize}
+  \item Variant: \texttt{constrained\_\allowbreak{}mlp} in \texttt{src/\allowbreak{}models/\allowbreak{}config.\allowbreak{}py} (\texttt{MODEL\_\allowbreak{}VARIANTS['constrained\_\allowbreak{}mlp']}).
+  \item ChemBERTa input dim: \texttt{MODEL\_\allowbreak{}CONFIG['drug\_\allowbreak{}encoder']['input\_\allowbreak{}dim'] = 384}.
+  \item CVAE latent dim: \texttt{MODEL\_\allowbreak{}CONFIG['cvae']['latent\_\allowbreak{}dim'] = 128}.
+  \item Hidden widths: EEG encoder [256, 512], drug encoder [256, 128], CVAE [512, 256]; \texttt{use\_\allowbreak{}attention: False}.
+  \item KL weight: \texttt{TRAINING\_\allowbreak{}CONFIG['beta\_\allowbreak{}kl'] = 0.\allowbreak{}01}.
+  \item Constraint schedule: \texttt{warmup\_\allowbreak{}epochs = 5}, paper \texttt{constraint\_\allowbreak{}weight = 0.\allowbreak{}1} in \texttt{run\_\allowbreak{}constrained\_\allowbreak{}training.\allowbreak{}py}. Implemented \(\alpha_c(t)=\alpha_c^{\star}\min(1,(t-T_w)/5)\) for \(t\ge T_w\) with 0-indexed \(t\), so \(\alpha_c(T_w)=0\).
+  \item Parameter count: 2,648,777 (\texttt{models/\allowbreak{}validation/\allowbreak{}computational\_\allowbreak{}requirements.\allowbreak{}json}).
+  \item Fold-0 loss histories: \texttt{models/\allowbreak{}evaluation/\allowbreak{}constrained\_\allowbreak{}evaluation\_\allowbreak{}report.\allowbreak{}json} → \texttt{constraint\_\allowbreak{}curves.\allowbreak{}fold\_\allowbreak{}0} (Fig.~\ref{fig:traincurves}).
+\end{itemize}
+
+\subsection{Pharmacodynamic priors and loss helpers}
+
+\begin{itemize}
+  \item Priors store: \texttt{src/\allowbreak{}drugs/\allowbreak{}pharmacological\_\allowbreak{}embedding.\allowbreak{}py} (\texttt{DRUG\_\allowbreak{}PHARMACOLOGY[*]['eeg\_\allowbreak{}effects']}).
+  \item Prior loader: \texttt{get\_\allowbreak{}eeg\_\allowbreak{}effect\_\allowbreak{}prior(drug\_\allowbreak{}name)}.
+  \item Band constraint: \texttt{compute\_\allowbreak{}band\_\allowbreak{}direction\_\allowbreak{}constraint} in \texttt{src/\allowbreak{}models/\allowbreak{}losses.\allowbreak{}py}.
+  \item Connectivity constraint: \texttt{compute\_\allowbreak{}connectivity\_\allowbreak{}constraint}.
+  \item Band / connectivity index slices used by external direction scoring: \texttt{BAND\_SLICES} in \texttt{src/\allowbreak{}tuh/\allowbreak{}tuh\_\allowbreak{}validation.\allowbreak{}py} (delta [380:399], theta [399:418], alpha [418:437], beta [437:456], connectivity [475:1330]).
+  \item Flatten order (\texttt{api/\allowbreak{}utils/\allowbreak{}feature\_\allowbreak{}processor.\allowbreak{}py} \texttt{flatten\_\allowbreak{}features}): PSD [0:380), band powers [380:475), then for each of five bands coherence upper-triangle (171) then PLV (171), so full connectivity is interleaved on [475:2185). Coherence and PLV are \textbf{not} contiguous pure blocks. The training connectivity constraint and direction-scoring window \texttt{[475:1330)} match \texttt{CONNECTIVITY\_\allowbreak{}INDICES} / \texttt{BAND\_\allowbreak{}SLICES['connectivity']}; that window mixes interleaved coh/PLV from early bands and must not be cited as an all-coherence block. Do not use \texttt{feature\_\allowbreak{}block\_\allowbreak{}ranges()['coherence\_\allowbreak{}block']} as a pure-coherence map (it conflicts with interleaving).
+\end{itemize}
+
+\subsection{Training data paths and checkpoint aliases}
+
+\begin{itemize}
+  \item Training arrays: \texttt{data/\allowbreak{}eeg\_\allowbreak{}features/\allowbreak{}\{AD,HC\}\_\allowbreak{}*.\allowbreak{}npy} (PSD shapes \texttt{(37, 19, 20)} and \texttt{(29, 19, 20)}).
+  \item Raw EEGLAB discovery: \texttt{EEGLoader.\allowbreak{}find\_\allowbreak{}eeg\_\allowbreak{}files} under \texttt{data/\allowbreak{}raw\_\allowbreak{}eeg/\allowbreak{}\{AD,HC\}/\allowbreak{}}.
+  \item Subject-level CV helper: \texttt{get\_\allowbreak{}subject\_\allowbreak{}level\_\allowbreak{}kfold} (\texttt{n\_\allowbreak{}splits = 5}, \texttt{random\_\allowbreak{}seed = 42} from \texttt{DATA\_CONFIG}).
+  \item Constrained evaluation alias: \texttt{models/\allowbreak{}checkpoints\_\allowbreak{}constrained/\allowbreak{}checkpoint\_\allowbreak{}constrained.\allowbreak{}pt} (fold-0 best).
+  \item Matched unconstrained alias: \texttt{models/\allowbreak{}checkpoints\_\allowbreak{}unconstrained/\allowbreak{}checkpoint\_\allowbreak{}unconstrained.\allowbreak{}pt} (from \texttt{checkpoints\_\allowbreak{}5fold/\allowbreak{}fold\_\allowbreak{}0\_\allowbreak{}best.\allowbreak{}pt}).
+  \item Simulation draws: \texttt{num\_\allowbreak{}samples = 5} in \texttt{simulate\_\allowbreak{}post\_\allowbreak{}drug\_\allowbreak{}eeg} for reported external runs.
+\end{itemize}
+
+\subsection{External processing and validation artifacts}
+
+\begin{itemize}
+  \item TUH processing: \texttt{process\_\allowbreak{}tuh\_\allowbreak{}eeg.\allowbreak{}py} (\texttt{CROP\_\allowbreak{}SECONDS = 320}, \texttt{TARGET\_\allowbreak{}N\_\allowbreak{}EPOCHS\_\allowbreak{}FOR\_\allowbreak{}PSD = 864}). For locked TUH results, the stored feature provenance in \texttt{data/\allowbreak{}tuh\_\allowbreak{}features/\allowbreak{}processing\_\allowbreak{}report.\allowbreak{}json} records \texttt{crop\_\allowbreak{}seconds=60.\allowbreak{}0} and \texttt{apply\_\allowbreak{}ica=false}; the 320-s value reflects the current script default and was not used to regenerate the locked TUH artifacts.
+  \item CAUEEG processing: \texttt{src/\allowbreak{}tuh/\allowbreak{}process\_\allowbreak{}caueeg\_\allowbreak{}eeg.\allowbreak{}py}.
+  \item Master report: \texttt{models/\allowbreak{}validation/\allowbreak{}complete\_\allowbreak{}validation\_\allowbreak{}report\_\allowbreak{}v3.\allowbreak{}json}.
+  \item Unconstrained battery: \texttt{models/\allowbreak{}validation/\allowbreak{}unconstrained\_\allowbreak{}external\_\allowbreak{}battery.\allowbreak{}json}.
+  \item Prior-only baseline: \texttt{models/\allowbreak{}validation/\allowbreak{}prior\_\allowbreak{}only\_\allowbreak{}direction.\allowbreak{}json}.
+  \item Fisher-\(z\) CIs for \(r\): \texttt{models/\allowbreak{}validation/\allowbreak{}direction\_\allowbreak{}r\_\allowbreak{}fisher\_\allowbreak{}ci.\allowbreak{}json}.
+  \item \(\alpha_c\) sweep: \texttt{models/\allowbreak{}validation/\allowbreak{}constraint\_\allowbreak{}strength\_\allowbreak{}sweep.\allowbreak{}json}.
+  \item Latent probe: \texttt{models/\allowbreak{}validation/\allowbreak{}layer5e\_\allowbreak{}caueeg\_\allowbreak{}latent\_\allowbreak{}probe\_\allowbreak{}results.\allowbreak{}json}.
+  \item Nested heads: \texttt{models/\allowbreak{}validation/\allowbreak{}layer5e\_\allowbreak{}caueeg\_\allowbreak{}classifier\_\allowbreak{}head\_\allowbreak{}results.\allowbreak{}json}.
+\end{itemize}
+
+\subsection{Endpoint implementation notes}
+
+\begin{itemize}
+  \item Direction correlation key in JSON: \texttt{effect\_\allowbreak{}magnitude\_\allowbreak{}correlation}.
+  \item Subject-bootstrap CIs: \texttt{models/\allowbreak{}validation/\allowbreak{}direction\_\allowbreak{}r\_\allowbreak{}subject\_\allowbreak{}bootstrap\_\allowbreak{}ci.\allowbreak{}json} (B=2000).
+  \item Five-fold external direction: \texttt{models/\allowbreak{}validation/\allowbreak{}fold\_\allowbreak{}external\_\allowbreak{}direction\_\allowbreak{}results.\allowbreak{}json}.
+  \item Equal-weight fold ensemble: \texttt{models/\allowbreak{}validation/\allowbreak{}fold\_\allowbreak{}ensemble/\allowbreak{}fold\_\allowbreak{}ensemble\_\allowbreak{}external\_\allowbreak{}direction\_\allowbreak{}results.\allowbreak{}json}.
+  \item Ensemble subject bootstrap (B=2000, seed 42): \texttt{models/\allowbreak{}validation/\allowbreak{}fold\_\allowbreak{}ensemble/\allowbreak{}bootstrap/\allowbreak{}ensemble\_\allowbreak{}subject\_\allowbreak{}bootstrap\_\allowbreak{}B2000.\allowbreak{}json}.
+  \item Prior vs ensemble incremental-value note: \texttt{models/\allowbreak{}validation/\allowbreak{}prior\_\allowbreak{}vs\_\allowbreak{}ensemble/\allowbreak{}} (paired \(\Delta r\) not supportable from stored prior-only artifacts).
+  \item Domain-shift LR AUCs (2185-D): \texttt{models/\allowbreak{}validation/\allowbreak{}domain\_\allowbreak{}shift/\allowbreak{}domain\_\allowbreak{}shift\_\allowbreak{}results.\allowbreak{}json}.
+  \item Domain-shift forensics (feature families): \texttt{models/\allowbreak{}validation/\allowbreak{}domain\_\allowbreak{}shift\_\allowbreak{}forensics/\allowbreak{}domain\_\allowbreak{}shift\_\allowbreak{}forensic\_\allowbreak{}summary.\allowbreak{}md}.
+  \item Feature dimension map (interleaved connectivity): \texttt{models/\allowbreak{}validation/\allowbreak{}domain\_\allowbreak{}shift\_\allowbreak{}forensics/\allowbreak{}feature\_\allowbreak{}dimension\_\allowbreak{}mapping.\allowbreak{}md}.
+  \item Raw 2185-D probe: \texttt{models/\allowbreak{}validation/\allowbreak{}layer5e\_\allowbreak{}caueeg\_\allowbreak{}raw2185\_\allowbreak{}probe\_\allowbreak{}results.\allowbreak{}json}.
+  \item Magnitude score helper: \texttt{mean\_\allowbreak{}drug\_\allowbreak{}response}.
+  \item Cohen's d helper: \texttt{\_cohens\_d} (sample variance, \texttt{ddof = 1}).
+  \item Encoding probe scripts: \texttt{run\_\allowbreak{}latent\_\allowbreak{}probe\_\allowbreak{}caueeg.\allowbreak{}py} (\texttt{PROBE\_\allowbreak{}DISEASE\_\allowbreak{}LABEL = 0.\allowbreak{}0}), \texttt{run\_\allowbreak{}latent\_\allowbreak{}classifier\_\allowbreak{}head\_\allowbreak{}caueeg.\allowbreak{}py}.
+  \item Probe CV: \texttt{StratifiedKFold(n\_\allowbreak{}splits=5, shuffle=True, random\_\allowbreak{}state=42)}; \texttt{N\_\allowbreak{}PERM = 200}.
+  \item Theta/alpha mean-fold AUC 0.675 vs pooled OOF AUC 0.673: \texttt{feature\_\allowbreak{}probe\_\allowbreak{}theta\_\allowbreak{}alpha\_\allowbreak{}dementia\_\allowbreak{}vs\_\allowbreak{}normal.\allowbreak{}cv.\allowbreak{}roc\_\allowbreak{}auc.\allowbreak{}mean} vs \texttt{.\allowbreak{}cv.\allowbreak{}oof.\allowbreak{}roc\_\allowbreak{}auc}.
+  \item Raw 2185-D mean-fold AUC 0.699: \texttt{raw2185\_\allowbreak{}logistic\_\allowbreak{}dementia\_\allowbreak{}vs\_\allowbreak{}normal.\allowbreak{}cv.\allowbreak{}roc\_\allowbreak{}auc.\allowbreak{}mean}.
+\end{itemize}
+
+\subsection{Architecture, compute, and training curves}
+
+Layer widths and the measured parameter count (2,648,777) are listed in Table~\ref{tab:architecture}. Dummy-batch inference time, checkpoint size, and package versions are listed in Table~\ref{tab:compute}. Fold-0 constrained train/validation total loss, MSE, KL, and unweighted \(L_{\mathrm{band}}\)/\(L_{\mathrm{conn}}\) with \(\alpha_c(t)\) are stored in \texttt{constraint\_\allowbreak{}curves.\allowbreak{}fold\_\allowbreak{}0}. Fig.~\ref{fig:traincurves} plots those logged values.
+
+\input{tables/table7_architecture.tex}
+\input{tables/table8_compute.tex}
+\input{tables/table_s_reviewer_defense.tex}
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/fig_s1_training_curves.png}
+\caption{Fold-0 constrained training curves from \texttt{constrained\_evaluation\_report.json} (\texttt{constraint\_curves.fold\_0}). (A) Train and validation total loss. (B) Reconstruction MSE. (C) Unweighted KL. (D) Unweighted $L_{\mathrm{band}}$ and $L_{\mathrm{conn}}$ with the implemented $\alpha_c(t)$ schedule. Validation total loss remains below training total loss on this fold (minimum validation total $0.0241$ at epoch 99). Logged $\alpha_c$ is 0 through epoch 6 and $0.1$ by epoch 11. Alternate-seed curves were not stored. Logged values only; not an external-generalization claim.}
+\label{fig:traincurves}
+\end{figure*}
+ Alternate-seed loss histories were not found in that report. The figure is a convergence diagnostic, not an external-performance claim.
+
+
+\subsection{Regeneration entry points}
+
+\begin{itemize}
+  \item \texttt{eeg\_\allowbreak{}twin/\allowbreak{}Scripts/\allowbreak{}python.\allowbreak{}exe -m src.\allowbreak{}validation.\allowbreak{}run\_\allowbreak{}prior\_\allowbreak{}only\_\allowbreak{}direction}
+  \item \texttt{eeg\_\allowbreak{}twin/\allowbreak{}Scripts/\allowbreak{}python.\allowbreak{}exe -m src.\allowbreak{}validation.\allowbreak{}compute\_\allowbreak{}direction\_\allowbreak{}r\_\allowbreak{}cis}
+  \item \texttt{eeg\_\allowbreak{}twin/\allowbreak{}Scripts/\allowbreak{}python.\allowbreak{}exe -m src.\allowbreak{}validation.\allowbreak{}run\_\allowbreak{}unconstrained\_\allowbreak{}external\_\allowbreak{}battery}
+  \item \texttt{eeg\_\allowbreak{}twin/\allowbreak{}Scripts/\allowbreak{}python.\allowbreak{}exe -m src.\allowbreak{}validation.\allowbreak{}run\_\allowbreak{}alpha\_\allowbreak{}c\_\allowbreak{}sweep --eval-only}
+  \item \texttt{eeg\_\allowbreak{}twin/\allowbreak{}Scripts/\allowbreak{}python.\allowbreak{}exe -m src.\allowbreak{}validation.\allowbreak{}run\_\allowbreak{}delong\_\allowbreak{}oof\_\allowbreak{}probes}
+  \item \texttt{eeg\_\allowbreak{}twin/\allowbreak{}Scripts/\allowbreak{}python.\allowbreak{}exe -m src.\allowbreak{}validation.\allowbreak{}run\_\allowbreak{}chemberta\_\allowbreak{}onehot\_\allowbreak{}ablation --eval-only}
+  \item \texttt{eeg\_\allowbreak{}twin/\allowbreak{}Scripts/\allowbreak{}python.\allowbreak{}exe src/\allowbreak{}figures/\allowbreak{}make\_\allowbreak{}fig6\_\allowbreak{}constraint\_\allowbreak{}strength.\allowbreak{}py}
+  \item \texttt{eeg\_\allowbreak{}twin/\allowbreak{}Scripts/\allowbreak{}python.\allowbreak{}exe src/\allowbreak{}figures/\allowbreak{}make\_\allowbreak{}graphical\_\allowbreak{}abstract.\allowbreak{}py}
+\end{itemize}
+
+See also \texttt{paper/\allowbreak{}CODE\_\allowbreak{}AVAILABILITY.\allowbreak{}md}.
+
+
+\subsection{Known missing artifacts}
+
+These items are not present in the locked record and are not invented here: locked-run training wall-clock; alternate-seed training curves; a public code URL and commit hash; the native EEG reference of the ds004504 files on disk; a supervised deep 2185-D classifier. Non-locked secondary Phase~C artifacts now exist separately: DeLong on stored OOF scores (\texttt{models/\allowbreak{}validation/\allowbreak{}delong\_\allowbreak{}oof\_\allowbreak{}probe\_\allowbreak{}results.\allowbreak{}json}) and a ChemBERTa-versus-padded-one-hot fold-0 ablation (\texttt{models/\allowbreak{}validation/\allowbreak{}chemberta\_\allowbreak{}onehot\_\allowbreak{}ablation/}). A non-locked fitted drug-conditioned linear imitation control is stored under \texttt{models/\allowbreak{}validation/\allowbreak{}linear\_\allowbreak{}direction\_\allowbreak{}baseline/} and is not a locked biological validation artifact. Table~\ref{tab:reviewer-defense} restates the corresponding scope boundaries.

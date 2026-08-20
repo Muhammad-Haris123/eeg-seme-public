@@ -1,0 +1,288 @@
+{
+  "timestamp_utc": "2026-08-20T10:24:09.988183+00:00",
+  "experiment": "phase_c_chemberta_vs_onehot_fold0",
+  "status": "NEW_NON_LOCKED",
+  "script": "C:\\Users\\UC\\Desktop\\my_fyp\\src\\validation\\run_chemberta_onehot_ablation.py",
+  "constraint_weight": 0.1,
+  "warmup_epochs": 5,
+  "epochs": 100,
+  "random_seed": 42,
+  "locked_checkpoint_untouched": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\checkpoints_constrained\\checkpoint_constrained.pt",
+  "matched_protocol": "Same fold-0 split, seed 42, alpha_c=0.1, warmup=5, architecture, and epochs; only drug embedding source differs.",
+  "claim_boundary": "Secondary ablation of chemical identifier vs drug-identity conditioning. Does not claim large-library ChemBERTa generalization. Locked fold-0 ChemBERTa twin remains the primary historical checkpoint.",
+  "arms": {
+    "chemberta": {
+      "tag": "chemberta",
+      "checkpoint": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\validation\\chemberta_onehot_ablation\\chemberta\\fold_0_best.pt",
+      "tuh_direction": {
+        "direction_agreement_total": "9/10",
+        "donepezil_direction_agreement": "5/5",
+        "memantine_direction_agreement": "4/5",
+        "donepezil_effect_corr": 0.2818599157794652,
+        "memantine_effect_corr": -0.07463954214362814,
+        "effect_magnitude_correlation": 0.10361018681791852,
+        "donepezil_effect_corr_ci": {
+          "r": 0.2818599157794652,
+          "n": 2185,
+          "ci_low": 0.2427956722363743,
+          "ci_high": 0.32001150640552034,
+          "method": "fisher_z",
+          "alpha": 0.05
+        },
+        "memantine_effect_corr_ci": {
+          "r": -0.07463954214362814,
+          "n": 2185,
+          "ci_low": -0.11620978154749817,
+          "ci_high": -0.03280826163855393,
+          "method": "fisher_z",
+          "alpha": 0.05
+        },
+        "effect_magnitude_correlation_ci": {
+          "r": 0.10361018681791852,
+          "n": 2185,
+          "ci_low": 0.061945358020096604,
+          "ci_high": 0.1449145322863147,
+          "method": "fisher_z",
+          "alpha": 0.05
+        },
+        "n_used": 200,
+        "signature_source": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\simulations_constrained_full"
+      },
+      "osf_direction": {
+        "direction_agreement_total": "9/10",
+        "donepezil_direction_agreement": "5/5",
+        "memantine_direction_agreement": "4/5",
+        "donepezil_effect_corr": 0.27597715608795953,
+        "memantine_effect_corr": -0.05611492481941288,
+        "effect_magnitude_correlation": 0.10993111563427332,
+        "donepezil_effect_corr_ci": {
+          "r": 0.27597715608795953,
+          "n": 2185,
+          "ci_low": 0.2367834394260982,
+          "ci_high": 0.314274087637894,
+          "method": "fisher_z",
+          "alpha": 0.05
+        },
+        "memantine_effect_corr_ci": {
+          "r": -0.05611492481941288,
+          "n": 2185,
+          "ci_low": -0.09781871364323756,
+          "ci_high": -0.01421440490174584,
+          "method": "fisher_z",
+          "alpha": 0.05
+        },
+        "effect_magnitude_correlation_ci": {
+          "r": 0.10993111563427332,
+          "n": 2185,
+          "ci_low": 0.06831205568171864,
+          "ci_high": 0.15116822126586696,
+          "method": "fisher_z",
+          "alpha": 0.05
+        },
+        "n_used": 92,
+        "signature_source": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\simulations_constrained_full"
+      },
+      "padic_direction": {
+        "direction_agreement_total": "9/10",
+        "donepezil_direction_agreement": "5/5",
+        "memantine_direction_agreement": "4/5",
+        "donepezil_effect_corr": 0.2532632819111601,
+        "memantine_effect_corr": -0.10223040399655896,
+        "effect_magnitude_correlation": 0.07551643895730056,
+        "donepezil_effect_corr_ci": {
+          "r": 0.2532632819111601,
+          "n": 2185,
+          "ci_low": 0.21359779376787322,
+          "ci_high": 0.29209510238783887,
+          "method": "fisher_z",
+          "alpha": 0.05
+        },
+        "memantine_effect_corr_ci": {
+          "r": -0.10223040399655896,
+          "n": 2185,
+          "ci_low": -0.1435489881735485,
+          "ci_high": -0.06055603512951716,
+          "method": "fisher_z",
+          "alpha": 0.05
+        },
+        "effect_magnitude_correlation_ci": {
+          "r": 0.07551643895730056,
+          "n": 2185,
+          "ci_low": 0.03368915439642089,
+          "ci_high": 0.11707965050515987,
+          "method": "fisher_z",
+          "alpha": 0.05
+        },
+        "n_used": 145,
+        "signature_source": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\simulations_constrained_full"
+      },
+      "caueeg_latent_probe": {
+        "roc_auc_oof": 0.542332671269586,
+        "roc_auc_mean": 0.5400972531905239,
+        "roc_auc_std": 0.044836998583110556,
+        "n": 727,
+        "n_pos": 291,
+        "n_neg": 436
+      },
+      "caueeg_theta_alpha_probe": {
+        "roc_auc_oof": 0.6728932185756172,
+        "roc_auc_mean": 0.6752999217675048,
+        "roc_auc_std": 0.02463824373965717,
+        "n": 727,
+        "n_pos": 291,
+        "n_neg": 436
+      }
+    },
+    "onehot": {
+      "tag": "onehot",
+      "checkpoint": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\validation\\chemberta_onehot_ablation\\onehot\\fold_0_best.pt",
+      "tuh_direction": {
+        "direction_agreement_total": "10/10",
+        "donepezil_direction_agreement": "5/5",
+        "memantine_direction_agreement": "5/5",
+        "donepezil_effect_corr": 0.19796873964122008,
+        "memantine_effect_corr": 0.1548553507758505,
+        "effect_magnitude_correlation": 0.1764120452085353,
+        "donepezil_effect_corr_ci": {
+          "r": 0.19796873964122008,
+          "n": 2185,
+          "ci_low": 0.15734095551036048,
+          "ci_high": 0.23792752511153437,
+          "method": "fisher_z",
+          "alpha": 0.05
+        },
+        "memantine_effect_corr_ci": {
+          "r": 0.1548553507758505,
+          "n": 2185,
+          "ci_low": 0.11365945295208818,
+          "ci_high": 0.1955196729426303,
+          "method": "fisher_z",
+          "alpha": 0.05
+        },
+        "effect_magnitude_correlation_ci": {
+          "r": 0.1764120452085353,
+          "n": 2185,
+          "ci_low": 0.13548031397380858,
+          "ci_high": 0.21674262572712985,
+          "method": "fisher_z",
+          "alpha": 0.05
+        },
+        "n_used": 200,
+        "signature_source": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\simulations_constrained_full"
+      },
+      "osf_direction": {
+        "direction_agreement_total": "10/10",
+        "donepezil_direction_agreement": "5/5",
+        "memantine_direction_agreement": "5/5",
+        "donepezil_effect_corr": 0.20596749589257254,
+        "memantine_effect_corr": 0.18226204674187182,
+        "effect_magnitude_correlation": 0.19411477131722218,
+        "donepezil_effect_corr_ci": {
+          "r": 0.20596749589257254,
+          "n": 2185,
+          "ci_low": 0.16546263421894486,
+          "ci_high": 0.24577866524254013,
+          "method": "fisher_z",
+          "alpha": 0.05
+        },
+        "memantine_effect_corr_ci": {
+          "r": 0.18226204674187182,
+          "n": 2185,
+          "ci_low": 0.14140886241780437,
+          "ci_high": 0.22249548834674543,
+          "method": "fisher_z",
+          "alpha": 0.05
+        },
+        "effect_magnitude_correlation_ci": {
+          "r": 0.19411477131722218,
+          "n": 2185,
+          "ci_low": 0.153429721515742,
+          "ci_high": 0.23414281631430423,
+          "method": "fisher_z",
+          "alpha": 0.05
+        },
+        "n_used": 92,
+        "signature_source": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\simulations_constrained_full"
+      },
+      "padic_direction": {
+        "direction_agreement_total": "10/10",
+        "donepezil_direction_agreement": "5/5",
+        "memantine_direction_agreement": "5/5",
+        "donepezil_effect_corr": 0.19464900604037658,
+        "memantine_effect_corr": 0.15420701147485907,
+        "effect_magnitude_correlation": 0.17442800875761783,
+        "donepezil_effect_corr_ci": {
+          "r": 0.19464900604037658,
+          "n": 2185,
+          "ci_low": 0.15397181827420198,
+          "ci_high": 0.23466752276716082,
+          "method": "fisher_z",
+          "alpha": 0.05
+        },
+        "memantine_effect_corr_ci": {
+          "r": 0.15420701147485907,
+          "n": 2185,
+          "ci_low": 0.11300378364822587,
+          "ci_high": 0.19488078072506743,
+          "method": "fisher_z",
+          "alpha": 0.05
+        },
+        "effect_magnitude_correlation_ci": {
+          "r": 0.17442800875761783,
+          "n": 2185,
+          "ci_low": 0.13347030362368584,
+          "ci_high": 0.21479089777540653,
+          "method": "fisher_z",
+          "alpha": 0.05
+        },
+        "n_used": 145,
+        "signature_source": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\simulations_constrained_full"
+      },
+      "caueeg_latent_probe": {
+        "roc_auc_oof": 0.5604606072070367,
+        "roc_auc_mean": 0.5585721073366935,
+        "roc_auc_std": 0.034317205129046915,
+        "n": 727,
+        "n_pos": 291,
+        "n_neg": 436
+      },
+      "caueeg_theta_alpha_probe": {
+        "roc_auc_oof": 0.6728932185756172,
+        "roc_auc_mean": 0.6752999217675048,
+        "roc_auc_std": 0.02463824373965717,
+        "n": 727,
+        "n_pos": 291,
+        "n_neg": 436
+      }
+    }
+  },
+  "direction_contrast": {
+    "tuh": {
+      "chemberta_signs": "9/10",
+      "onehot_signs": "10/10",
+      "chemberta_r": 0.10361018681791852,
+      "onehot_r": 0.1764120452085353,
+      "r_diff_chemberta_minus_onehot": -0.07280185839061677
+    },
+    "osf": {
+      "chemberta_signs": "9/10",
+      "onehot_signs": "10/10",
+      "chemberta_r": 0.10993111563427332,
+      "onehot_r": 0.19411477131722218,
+      "r_diff_chemberta_minus_onehot": -0.08418365568294886
+    },
+    "padic": {
+      "chemberta_signs": "9/10",
+      "onehot_signs": "10/10",
+      "chemberta_r": 0.07551643895730056,
+      "onehot_r": 0.17442800875761783,
+      "r_diff_chemberta_minus_onehot": -0.09891156980031726
+    }
+  },
+  "latent_probe_contrast": {
+    "chemberta_auc_mean": 0.5400972531905239,
+    "onehot_auc_mean": 0.5585721073366935,
+    "chemberta_auc_oof": 0.542332671269586,
+    "onehot_auc_oof": 0.5604606072070367
+  }
+}

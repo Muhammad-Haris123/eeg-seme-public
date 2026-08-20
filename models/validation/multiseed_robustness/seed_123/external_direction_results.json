@@ -1,0 +1,133 @@
+{
+  "external_scoring_start_time": "2026-08-11T00:03:19.051505",
+  "checkpoint": "models/validation/multiseed_robustness/seed_123/checkpoint.pt",
+  "signature_source": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\simulations_constrained_full",
+  "num_samples": 5,
+  "sim_seed": 42,
+  "cohorts": {
+    "tuh": {
+      "direction_agreement_total": "9/10",
+      "donepezil_direction_agreement": "4/5",
+      "memantine_direction_agreement": "5/5",
+      "donepezil_effect_corr": 0.0548586702982166,
+      "memantine_effect_corr": 0.23895308462334153,
+      "effect_magnitude_correlation": 0.14690587746077907,
+      "donepezil_effect_corr_ci": {
+        "r": 0.0548586702982166,
+        "n": 2185,
+        "ci_low": 0.012954503239073207,
+        "ci_high": 0.09657048366648636,
+        "method": "fisher_z",
+        "alpha": 0.05
+      },
+      "memantine_effect_corr_ci": {
+        "r": 0.23895308462334153,
+        "n": 2185,
+        "ci_low": 0.19901327950472064,
+        "ci_high": 0.27810041677271446,
+        "method": "fisher_z",
+        "alpha": 0.05
+      },
+      "effect_magnitude_correlation_ci": {
+        "r": 0.14690587746077907,
+        "n": 2185,
+        "ci_low": 0.10562258100682811,
+        "ci_high": 0.18768364930927411,
+        "method": "fisher_z",
+        "alpha": 0.05
+      },
+      "n_used": 200,
+      "signature_source": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\simulations_constrained_full",
+      "agreement_n": 9,
+      "agreement_den": 10,
+      "agreement_fraction": 0.9,
+      "effect_magnitude_cosine": 0.025395068224088366,
+      "donepezil_effect_cosine": -0.14770354992598084,
+      "memantine_effect_cosine": 0.19849368637415757,
+      "n_subjects": 200
+    },
+    "osf": {
+      "direction_agreement_total": "9/10",
+      "donepezil_direction_agreement": "4/5",
+      "memantine_direction_agreement": "5/5",
+      "donepezil_effect_corr": 0.12379969904720514,
+      "memantine_effect_corr": 0.3364273475822684,
+      "effect_magnitude_correlation": 0.23011352331473678,
+      "donepezil_effect_corr_ci": {
+        "r": 0.12379969904720514,
+        "n": 2185,
+        "ci_low": 0.08229294755593923,
+        "ci_high": 0.16487771891295125,
+        "method": "fisher_z",
+        "alpha": 0.05
+      },
+      "memantine_effect_corr_ci": {
+        "r": 0.3364273475822684,
+        "n": 2185,
+        "ci_low": 0.29870746480331367,
+        "ci_high": 0.373097752001454,
+        "method": "fisher_z",
+        "alpha": 0.05
+      },
+      "effect_magnitude_correlation_ci": {
+        "r": 0.23011352331473678,
+        "n": 2185,
+        "ci_low": 0.19001310048930628,
+        "ci_high": 0.26944743868274773,
+        "method": "fisher_z",
+        "alpha": 0.05
+      },
+      "n_used": 92,
+      "signature_source": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\simulations_constrained_full",
+      "agreement_n": 9,
+      "agreement_den": 10,
+      "agreement_fraction": 0.9,
+      "effect_magnitude_cosine": 0.20995122093785393,
+      "donepezil_effect_cosine": 0.001252636092926636,
+      "memantine_effect_cosine": 0.4186498057827812,
+      "n_subjects": 92
+    },
+    "padic": {
+      "direction_agreement_total": "9/10",
+      "donepezil_direction_agreement": "4/5",
+      "memantine_direction_agreement": "5/5",
+      "donepezil_effect_corr": 0.016649027618674084,
+      "memantine_effect_corr": 0.14425302792502462,
+      "effect_magnitude_correlation": 0.08045102777184936,
+      "donepezil_effect_corr_ci": {
+        "r": 0.016649027618674084,
+        "n": 2185,
+        "ci_low": -0.025302605782376707,
+        "ci_high": 0.05854212400047625,
+        "method": "fisher_z",
+        "alpha": 0.05
+      },
+      "memantine_effect_corr_ci": {
+        "r": 0.14425302792502462,
+        "n": 2185,
+        "ci_low": 0.10294176500994684,
+        "ci_high": 0.18506750387896273,
+        "method": "fisher_z",
+        "alpha": 0.05
+      },
+      "effect_magnitude_correlation_ci": {
+        "r": 0.08045102777184936,
+        "n": 2185,
+        "ci_low": 0.038647441834310924,
+        "ci_high": 0.12197350234227106,
+        "method": "fisher_z",
+        "alpha": 0.05
+      },
+      "n_used": 145,
+      "signature_source": "C:\\Users\\UC\\Desktop\\my_fyp\\models\\simulations_constrained_full",
+      "agreement_n": 9,
+      "agreement_den": 10,
+      "agreement_fraction": 0.9,
+      "effect_magnitude_cosine": -0.1247994935374736,
+      "donepezil_effect_cosine": -0.2108510841494674,
+      "memantine_effect_cosine": -0.03874790292547982,
+      "n_subjects": 145
+    }
+  },
+  "external_scoring_end_time": "2026-08-11T00:03:22.018326"
+}

@@ -1,0 +1,31 @@
+{
+  "experiment": "multiseed_fold0_constrained_external_direction",
+  "prespecified_seeds": [
+    42,
+    7,
+    21,
+    123,
+    2024
+  ],
+  "new_train_seeds": [
+    7,
+    21,
+    123,
+    2024
+  ],
+  "reference_seed": 42,
+  "split_seed_fixed": 42,
+  "fold_idx": 0,
+  "constraint_weight": 0.1,
+  "warmup_epochs": 5,
+  "epochs": 100,
+  "batch_size": 16,
+  "learning_rate": 0.0001,
+  "weight_decay": 1e-05,
+  "beta_kl": 0.01,
+  "num_samples_external": 5,
+  "training_config_hash": "4b1a25273e1e752755172c0ab99555350afd21206384b96bcbdfee484419dc09",
+  "git_commit": "a818288dcab309dfb09aea186c1f87bcfd16dcf4",
+  "design": "Hold fold assignment + fold-0 train/val split fixed at split_seed=42; vary train_seed for initialization and shuffle only.",
+  "created": "2026-08-11T00:01:39.579019"
+}
