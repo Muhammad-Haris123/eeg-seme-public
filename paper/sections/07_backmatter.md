@@ -30,7 +30,7 @@ Training resting-state EEG features used in this project are from OpenNeuro acce
 
 ## Code availability
 
-Analysis and figure-generation code for this manuscript live in the project repository. Until a public URL is inserted at acceptance, reproducibility is provided by `paper/CODE_AVAILABILITY.md`, Supplementary Material S1, and the one-command regenerator `src/paper/regenerate_cmpb_artifacts.py` (DeLong, table/figure scripts that do not require locked clinical raw EEG redistribution). The Python environment is the project virtualenv `eeg_twin` (Python 3.10); install from `requirements.txt` into that environment. Exact script names, configuration keys, and checkpoint aliases are listed in S1. A public mirror (URL and commit hash) will be linked at acceptance; raw CAUEEG and TUH recordings remain under provider terms and are not redistributed.
+Analysis and figure-generation code are available at https://github.com/Muhammad-Haris123/eeg-seme-public (commit `31e4249`). Locked fold-0 CVAE checkpoints (`checkpoint_constrained.pt`, `checkpoint_unconstrained.pt`) are deposited on Zenodo (DOI https://doi.org/10.5281/zenodo.22028681; version v0.1.0). Reproducibility details, environment pins, and the one-command regenerator `src/paper/regenerate_cmpb_artifacts.py` are listed in `paper/CODE_AVAILABILITY.md` and Supplementary Material S1. The Python environment is the project virtualenv `eeg_twin` (Python 3.10); install from `requirements.txt` into that environment. Raw CAUEEG and TUH recordings remain under provider terms and are not redistributed.
 
 ---
 

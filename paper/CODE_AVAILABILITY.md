@@ -33,11 +33,17 @@ This regenerates DeLong outputs, selected tables/figures from frozen JSON, and o
 
 ## Frozen checkpoints (locked; do not overwrite)
 
-| Role | Path |
-|------|------|
-| Constrained external twin | `models/checkpoints_constrained/checkpoint_constrained.pt` |
-| Matched unconstrained twin | `models/checkpoints_unconstrained/checkpoint_unconstrained.pt` |
-| Selection rule | `models/checkpoints_unconstrained/CHECKPOINT_SELECTION.md` |
+Locked `.pt` weights are **not** stored in this GitHub mirror (size and clinical-data hygiene). Download from Zenodo:
+
+| Role | Filename on Zenodo |
+|------|--------------------|
+| Constrained external twin | `checkpoint_constrained.pt` |
+| Matched unconstrained twin | `checkpoint_unconstrained.pt` |
+| Selection rule | `CHECKPOINT_SELECTION.md` |
+
+**Zenodo (v0.1.0):** https://doi.org/10.5281/zenodo.22028681  
+**Concept DOI (all versions):** https://doi.org/10.5281/zenodo.22028680  
+Citation: Haris, M. (2026). SEME locked EEG–drug CVAE checkpoints (constrained and unconstrained) (Version v0.1.0) [Dataset]. Zenodo. https://doi.org/10.5281/zenodo.22028681
 
 ## Non-locked Phase C secondary artifacts
 
@@ -47,24 +53,9 @@ This regenerates DeLong outputs, selected tables/figures from frozen JSON, and o
 | DeLong | `models/validation/delong_oof_probe_results.json` |
 | ChemBERTa vs one-hot | `models/validation/chemberta_onehot_ablation/` |
 
-## Public release checklist (at acceptance)
-
-1. Push a tagged commit; paste URL + hash into this file, `CITATION.cff`, and the Data/Code availability statements.
-2. Confirm regenerator succeeds on a clean machine with `eeg_twin` + frozen validation JSON.
-3. Do not redistribute raw TUH/CAUEEG beyond provider terms.
-
-## Public release status
-
-Code is prepared for public release packaging (`LICENSE`, `CITATION.cff`, regenerator). **Public URL and commit hash: to be inserted at acceptance.** Until then, the local repository and Overleaf package are the reproducibility record.
-
-
 ## Public repository
 
-https://github.com/Muhammad-Haris123/eeg-seme-public
-
-
-## Public repository
-
-- URL: https://github.com/Muhammad-Haris123/eeg-seme-public
-- Commit (initial push): `41cd6fff0f5962a5380f883cdfbdf233f05dfdb1`
-- Zenodo DOI for `.pt` checkpoints: TBD
+- **Code:** https://github.com/Muhammad-Haris123/eeg-seme-public
+- **Commit:** `31e424933ef84adbb957d78b70b964721aa5a264` (short: `31e4249`)
+- **Weights:** https://doi.org/10.5281/zenodo.22028681
+- Do not redistribute raw TUH/CAUEEG beyond provider terms.

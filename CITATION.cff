@@ -1,10 +1,11 @@
 ﻿cff-version: 1.2.0
-title: "SEME: A Decoupled Evaluation Protocol for Literature-Constrained EEGâ€“Drug Generators"
-message: "If you use this software or protocol, please cite this manuscript and this repository."
+title: "SEME: A Decoupled Evaluation Protocol for Literature-Constrained EEG–Drug Generators"
+message: "If you use this software or protocol, please cite this manuscript, this repository, and the Zenodo checkpoint deposit."
 type: software
 authors:
-  - family-names: "Authors"
-    given-names: "To be completed at submission"
+  - family-names: "Haris"
+    given-names: "Muhammad"
+    affiliation: "University of Wah"
 abstract: >
   SEME (Signed concordance, Effect-vector fidelity, Magnitude transfer,
   Encoding retention) is an evaluation protocol for literature-constrained,
@@ -18,7 +19,12 @@ keywords:
   - pharmacodynamic constraints
 license: MIT
 repository-code: "https://github.com/Muhammad-Haris123/eeg-seme-public"
-version: "0.1.0-pathA"
+version: "0.1.0"
 date-released: "2026-08-20"
-
-
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.22028681"
+    description: "Locked CVAE checkpoints (version v0.1.0)"
+  - type: url
+    value: "https://github.com/Muhammad-Haris123/eeg-seme-public"
+    description: "Public code mirror"

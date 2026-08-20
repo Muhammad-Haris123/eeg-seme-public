@@ -9,7 +9,7 @@ Public code and frozen validation artifacts for the CMPB manuscript.
 
 ## What this repo is NOT
 - Raw EEG (TUH/CAUEEG/OpenNeuro/OSF/P-ADIC) — obtain from providers
-- Locked `.pt` checkpoints — release via Zenodo DOI (link TBD)
+- Locked `.pt` checkpoints — https://doi.org/10.5281/zenodo.22028681
 - Training virtualenv (`eeg_twin`) — create locally from `requirements.txt`
 
 ## Quick start
